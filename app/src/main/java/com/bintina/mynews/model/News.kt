@@ -3,7 +3,7 @@ package com.bintina.mynews.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Result(
+data class News(
     @SerializedName("abstract")
     val `abstract`: String?,
     @SerializedName("byline")
@@ -11,9 +11,9 @@ data class Result(
     @SerializedName("created_date")
     val createdDate: String?,
     @SerializedName("des_facet")
-    val desFacet: List<String?>?,
+    val desFacet: List<String?>,
     @SerializedName("geo_facet")
-    val geoFacet: List<String?>?,
+    val geoFacet: List<String?>,
     @SerializedName("item_type")
     val itemType: String?,
     @SerializedName("kicker")
@@ -21,13 +21,13 @@ data class Result(
     @SerializedName("material_type_facet")
     val materialTypeFacet: String?,
     @SerializedName("media")
-    val media: List<Media?>?,
+    val media: List<Media?>,
     @SerializedName("multimedia")
-    val multimedia: List<Multimedia?>?,
+    val multimedia: List<Multimedia?>,
     @SerializedName("org_facet")
-    val orgFacet: List<String?>?,
+    val orgFacet: List<String?>,
     @SerializedName("per_facet")
-    val perFacet: List<String?>?,
+    val perFacet: List<String?>,
     @SerializedName("published_date")
     val publishedDate: String?,
     @SerializedName("section")

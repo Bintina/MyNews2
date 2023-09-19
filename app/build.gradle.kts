@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.bintina.mynews"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.bintina.mynews"
