@@ -8,25 +8,38 @@ object DataSource {
 
     suspend fun loadTopStories(): List<News?>? {
         val apiCall = ApiService.create()
-        val response = try{
+        val response = try {
             apiCall.getTopStories()
-        } catch (e: Exception){
+        } catch (e: Exception) {
             Log.e("TopDatasourceLog", "Error is ${e.message.toString()}")
             null
         }
 
-        return if(response != null && response.results!!.isNotEmpty()){
+        return if (response != null && response.results!!.isNotEmpty()) {
             response.results
         } else {
             null
         }
     }
 
-    suspend fun loadPopularNews(){
+    suspend fun loadPopularNews(): List<News?>? {
         TODO()
     }
 
-    suspend fun loadBusinessNews(){
-        TODO()
+    suspend fun loadBusinessNews(): List<News?>? {
+        val apiCall = com.bintina.mynews.business.api.ApiService.create()
+
+        val response = try {
+            apiCall.getBusinessNews()
+        } catch (e: Exception) {
+            Log.e("BusDataSourceLog", "Error is ${e.message.toString()}")
+            null
+        }
+
+        return if (response != null && response.results.isNotEmpty()){
+            response.results
+        } else {
+            null
+        }
     }
 }
