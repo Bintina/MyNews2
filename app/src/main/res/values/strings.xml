@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My News</string>
+    <string name="business_btn_title">Business</string>
+    <string name="popular_btn_title">Popular</string>
+    <string name="top_stories_btn_title">Top Stories</string>
+    <string name="news_caption_placeholder">News Caption</string>
+    <string name="date_placeholder">Date</string>
+    <string name="news_title_placeholder">News Title</string>
+</resources>
