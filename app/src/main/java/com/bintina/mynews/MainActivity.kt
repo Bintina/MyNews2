@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<TopStoriesFragment>(R.id.fragment_container_view)
+                add<PopularNewsFragment>(R.id.fragment_container_view)
             }
         }
 
