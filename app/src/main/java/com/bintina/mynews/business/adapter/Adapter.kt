@@ -8,6 +8,7 @@ import com.bintina.mynews.R
 import com.bintina.mynews.databinding.ItemRowBinding
 import com.bintina.mynews.model.News
 import com.bintina.mynews.topstories.adapter.Adapter
+import com.bumptech.glide.Glide
 import com.squareup.picasso.Picasso
 
 class Adapter(): RecyclerView.Adapter<Adapter.ItemViewHolder>() {
@@ -28,14 +29,15 @@ class Adapter(): RecyclerView.Adapter<Adapter.ItemViewHolder>() {
     class ItemViewHolder(private var view: ItemRowBinding): RecyclerView.ViewHolder(view.root){
         fun bind(news: News?){
             //Image View holder
-            Picasso.with(view.newsImage.context)
+            Glide.with(view.newsImage.context)
                 .load(news?.multimedia?.first()?.url)
                 .placeholder(R.drawable.ic_android_black_24dp)
+                .centerCrop()
                 .into(view.newsImage)
 
 
             //Date View holder
-            view.date.text = news?.publishedDate
+            view.date.text = news?.publishedDate.toString()
 
             //Location View holder
             view.location.text = news?.subsection

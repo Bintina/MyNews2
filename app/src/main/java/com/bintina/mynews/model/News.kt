@@ -2,6 +2,7 @@ package com.bintina.mynews.model
 
 
 import com.google.gson.annotations.SerializedName
+import java.util.Date
 
 data class News(
     @SerializedName("abstract")
@@ -29,7 +30,7 @@ data class News(
     @SerializedName("per_facet")
     val perFacet: List<String?>,
     @SerializedName("published_date")
-    val publishedDate: String?,
+    val publishedDate: Date?,
     @SerializedName("section")
     val section: String?,
     @SerializedName("short_url")

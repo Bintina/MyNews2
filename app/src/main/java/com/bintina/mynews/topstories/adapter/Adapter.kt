@@ -1,12 +1,14 @@
 package com.bintina.mynews.topstories.adapter
 
+import android.text.TextUtils.substring
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bintina.mynews.R
 import com.bintina.mynews.databinding.ItemRowBinding
 import com.bintina.mynews.model.News
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
 
 class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
@@ -24,18 +26,28 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
     class ItemViewHolder(private val view: ItemRowBinding) : RecyclerView.ViewHolder(view.root) {
         fun bind(news: News?) {
 //Image View holder
-            Picasso.with(view.newsImage.context)
+            Glide.with(view.newsImage.context)
                 .load(news?.multimedia?.first()?.url)
                 .placeholder(R.drawable.ic_android_black_24dp)
+                .centerCrop()
                 .into(view.newsImage)
 
-            //Date View holder
-            view.date.text = news?.publishedDate
-
             //Location View holder
-            view.location.text = news?.subsection
+            view.location.text = if (news?.section?.isNotEmpty() == true && news?.subsection?.isNotEmpty() == true){
+
+                "${news?.section} > ${news?.subsection}"
+            } else {
+                ""
+            }.toString()
+
+            //Date View holder
+            val dateResponse = news?.publishedDate
+            val dateFormatted = SimpleDateFormat("d/M/Y").format(dateResponse).toString()
+            view.date.text = dateFormatted
+
 
             //Caption View holder
+
             view.caption.text = news?.abstract
         }
     }

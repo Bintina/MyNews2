@@ -5,13 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardBackgroundColor="@color/design_default_color_secondary_variant"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/cardview_compat_inset_shadow">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+
 
         <LinearLayout
             android:id="@+id/card_container"
@@ -28,23 +25,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:maxWidth="100dp"
-                android:maxHeight="100dp"
                 android:minWidth="100dp"
                 android:minHeight="100dp"
                 android:padding="10dp"
-                android:scaleType="centerInside"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/caption"
                 app:layout_constraintStart_toStartOf="parent"
-
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+
+                >
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -55,10 +50,10 @@
                         android:id="@+id/location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="20dp"
+                        android:padding="5dp"
                         android:text="@string/news_title_placeholder"
+                        android:textFontWeight="700"
                         app:layout_constraintBottom_toTopOf="@id/caption"
-                        app:layout_constraintEnd_toStartOf="@id/date"
                         app:layout_constraintStart_toEndOf="@id/news_image"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,11 +62,12 @@
                         android:id="@+id/date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="20dp"
+                        android:padding="5dp"
                         android:text="@string/date_placeholder"
+
                         app:layout_constraintBottom_toTopOf="@id/caption"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/location"
+                        app:layout_constraintEnd_toEndOf="@id/card_container"
+
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </LinearLayout>
@@ -80,16 +76,18 @@
                     android:id="@+id/caption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
                     android:text="@string/news_caption_placeholder"
+                    android:textColor="@color/grey"
+                    android:textSize="20sp"
+                    android:ellipsize="end"
+                    android:maxLines= "2"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/card_container"
                     app:layout_constraintStart_toEndOf="@id/news_image"
                     app:layout_constraintTop_toBottomOf="@id/location" />
 
 
             </LinearLayout>
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
