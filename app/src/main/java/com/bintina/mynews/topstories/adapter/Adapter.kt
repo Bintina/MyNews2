@@ -1,7 +1,7 @@
 package com.bintina.mynews.topstories.adapter
 
-import android.text.TextUtils.substring
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bintina.mynews.R
@@ -13,10 +13,15 @@ import java.text.SimpleDateFormat
 class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
     var topStoriesList: List<News?> = mutableListOf<News?>()
+
+    lateinit var listener: OnNewsClickedListener
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
         return ItemViewHolder(binding)
     }
+
 
     override fun getItemCount(): Int =topStoriesList.size
 
@@ -25,7 +30,7 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
     }
     class ItemViewHolder(private val view: ItemRowBinding) : RecyclerView.ViewHolder(view.root) {
         fun bind(news: News?) {
-//Image View holder
+            //Image View holder
             Glide.with(view.newsImage.context)
                 .load(news?.multimedia?.first()?.url)
                 .placeholder(R.drawable.ic_android_black_24dp)
@@ -49,6 +54,14 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
             //Caption View holder
 
             view.caption.text = news?.abstract
+
+            //News link linking
+            val newsLink = news?.url.toString()
+            view.cardContents.setOnClickListener { Adapter().listener.openLink(newsLink) }
+
+
         }
+
     }
+
 }

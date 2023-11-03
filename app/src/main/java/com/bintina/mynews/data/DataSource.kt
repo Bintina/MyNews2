@@ -6,6 +6,7 @@ import com.bintina.mynews.topstories.api.ApiService
 
 object DataSource {
 
+
     suspend fun loadTopStories(): List<News?>? {
         val apiCall = ApiService.create()
         val response = try {
@@ -15,8 +16,37 @@ object DataSource {
             null
         }
 
-        return if (response != null && response.results!!.isNotEmpty()) {
-            response.results
+        //Filter Results..................................................
+            val results = response?.results
+            var parameterToCheckForNull = "section"
+
+            val filteredForSection = results?.filterNot { News ->
+                when (parameterToCheckForNull) {
+                    "section" -> News?.section.isNullOrBlank()
+                    else -> false
+                }
+            }
+
+            parameterToCheckForNull = "subsection"
+            val filteredForSubsection = filteredForSection?.filterNot { News ->
+                when (parameterToCheckForNull) {
+                    "subsection" -> News?.subsection.isNullOrBlank()
+                    else -> false
+                }
+            }
+
+            parameterToCheckForNull = "abstract"
+            val filteredForAll = filteredForSubsection?.filterNot { News ->
+                when (parameterToCheckForNull) {
+                    "abstract" -> News?.abstract.isNullOrBlank()
+                    else -> false
+                }
+            }
+            val filteredList: List<News?>? = filteredForAll
+
+
+        return if (filteredList != null && filteredList!!.isNotEmpty()) {
+            filteredList
         } else {
             null
         }
@@ -27,13 +57,41 @@ object DataSource {
 
         val response = try {
             apiCall.getPopularNews()
-        } catch (e: Exception){
+        } catch (e: Exception) {
             Log.e("PopDataSourceLog", "Error is ${e.message.toString()}")
             null
         }
 
-        return if (response != null && response.results.isNotEmpty()){
-            response.results
+        //Filter Results..................................................
+        val results = response?.results
+        var parameterToCheckForNull = "section"
+
+        val filteredForSection = results?.filterNot { News ->
+            when (parameterToCheckForNull) {
+                "section" -> News?.section.isNullOrBlank()
+                else -> false
+            }
+        }
+
+        parameterToCheckForNull = "subsection"
+        val filteredForSubsection = filteredForSection?.filterNot { News ->
+            when (parameterToCheckForNull) {
+                "subsection" -> News?.subsection.isNullOrBlank()
+                else -> false
+            }
+        }
+
+        parameterToCheckForNull = "abstract"
+        val filteredForAll = filteredForSubsection?.filterNot { News ->
+            when (parameterToCheckForNull) {
+                "abstract" -> News?.abstract.isNullOrBlank()
+                else -> false
+            }
+        }
+        val filteredList: List<News?>? = filteredForAll
+
+        return if (response != null && response.results.isNotEmpty()) {
+            filteredList
         } else {
             null
         }
@@ -49,8 +107,36 @@ object DataSource {
             null
         }
 
-        return if (response != null && response.results.isNotEmpty()){
-            response.results
+        //Filter Results..................................................
+        val results = response?.results
+        var parameterToCheckForNull = "section"
+
+        val filteredForSection = results?.filterNot { News ->
+            when (parameterToCheckForNull) {
+                "section" -> News?.section.isNullOrBlank()
+                else -> false
+            }
+        }
+
+        parameterToCheckForNull = "subsection"
+        val filteredForSubsection = filteredForSection?.filterNot { News ->
+            when (parameterToCheckForNull) {
+                "subsection" -> News?.subsection.isNullOrBlank()
+                else -> false
+            }
+        }
+
+        parameterToCheckForNull = "abstract"
+        val filteredForAll = filteredForSubsection?.filterNot { News ->
+            when (parameterToCheckForNull) {
+                "abstract" -> News?.abstract.isNullOrBlank()
+                else -> false
+            }
+        }
+        val filteredList: List<News?>? = filteredForAll
+
+        return if (response != null && response.results.isNotEmpty()) {
+            filteredList
         } else {
             null
         }

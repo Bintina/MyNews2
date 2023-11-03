@@ -1,9 +1,15 @@
 package com.bintina.mynews.model
 
 
-import com.google.gson.annotations.SerializedName
-import java.util.Date
 
+
+
+import android.os.Parcel
+import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+import java.util.Date
+@Parcelize
 data class News(
     @SerializedName("abstract")
     val `abstract`: String?,
@@ -21,10 +27,6 @@ data class News(
     val kicker: String?,
     @SerializedName("material_type_facet")
     val materialTypeFacet: String?,
-    @SerializedName("media")
-    val media: List<Media?>,
-    @SerializedName("multimedia")
-    val multimedia: List<Multimedia?>,
     @SerializedName("org_facet")
     val orgFacet: List<String?>,
     @SerializedName("per_facet")
@@ -45,4 +47,13 @@ data class News(
     val uri: String?,
     @SerializedName("url")
     val url: String?
-)
+): Parcelable{
+        lateinit var media: List<Media?>
+        lateinit var multimedia: List<Multimedia?>
+
+
+}
+/*    @SerializedName("media")
+    val media: List<Media?>,
+    @SerializedName("multimedia")
+    val multimedia: List<Multimedia?>,*/
