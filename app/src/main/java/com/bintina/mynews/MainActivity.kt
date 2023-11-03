@@ -14,11 +14,11 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.viewpager.widget.PagerAdapter
-import com.bintina.mynews.business.controller.BusinessNewsFragment
+import com.bintina.mynews.topstories.business.controller.BusinessNewsFragment
 import com.bintina.mynews.databinding.ActivityMainBinding
 import com.bintina.mynews.popular.controller.PopularNewsFragment
 import com.bintina.mynews.topstories.adapter.OnNewsClickedListener
-import com.bintina.mynews.topstories.controller.TopStoriesFragment
+import com.bintina.mynews.topstories.world.controller.TopStoriesFragment
 import com.google.android.material.navigation.NavigationBarMenu
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -42,6 +42,8 @@ class MainActivity : FragmentActivity() {
                 0 -> "Top Stories"
                 1 -> "Popular"
                 2 -> "Business"
+                3 -> "Arts"
+                4 -> "Science"
                 else -> throw IllegalStateException("Unexpected position $position")
             }
         }

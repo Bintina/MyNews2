@@ -3,13 +3,15 @@ package com.bintina.mynews
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.bintina.mynews.business.controller.BusinessNewsFragment
+import com.bintina.mynews.topstories.business.controller.BusinessNewsFragment
 import com.bintina.mynews.popular.controller.PopularNewsFragment
-import com.bintina.mynews.topstories.controller.TopStoriesFragment
+import com.bintina.mynews.topstories.arts.controller.ArtsFragment
+import com.bintina.mynews.topstories.science.controller.ScienceFragment
+import com.bintina.mynews.topstories.world.controller.TopStoriesFragment
 
 class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
     override fun getItemCount(): Int {
-        return 3
+        return 5
     }
 
     override fun createFragment(position: Int): Fragment {
@@ -17,6 +19,8 @@ class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
             0 -> TopStoriesFragment()
             1 -> PopularNewsFragment()
             2 -> BusinessNewsFragment()
+            3 -> ArtsFragment()
+            4 -> ScienceFragment()
             else -> throw IllegalStateException("Unexpected position $position")
         }
     }

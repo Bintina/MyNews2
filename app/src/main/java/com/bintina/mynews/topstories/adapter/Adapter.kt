@@ -1,7 +1,6 @@
 package com.bintina.mynews.topstories.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bintina.mynews.R
@@ -12,7 +11,7 @@ import java.text.SimpleDateFormat
 
 class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
-    var topStoriesList: List<News?> = mutableListOf<News?>()
+    var storiesList: List<News?> = mutableListOf<News?>()
 
     lateinit var listener: OnNewsClickedListener
 
@@ -23,10 +22,10 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
     }
 
 
-    override fun getItemCount(): Int =topStoriesList.size
+    override fun getItemCount(): Int =storiesList.size
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.bind(topStoriesList[position])
+        holder.bind(storiesList[position])
     }
     class ItemViewHolder(private val view: ItemRowBinding) : RecyclerView.ViewHolder(view.root) {
         fun bind(news: News?) {

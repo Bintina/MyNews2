@@ -1,4 +1,4 @@
-package com.bintina.mynews.business.adapter
+package com.bintina.mynews.topstories.business.adapter
 
 import android.media.Image
 import android.view.LayoutInflater

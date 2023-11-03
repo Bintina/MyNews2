@@ -48,8 +48,8 @@ data class News(
     @SerializedName("url")
     val url: String?
 ): Parcelable{
-        lateinit var media: List<Media?>
-        lateinit var multimedia: List<Multimedia?>
+         var media: List<Media?>? = null
+         var multimedia: List<Multimedia?>? = null
 
 
 }

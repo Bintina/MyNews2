@@ -1,26 +1,19 @@
-package com.bintina.mynews.topstories.controller
+package com.bintina.mynews.topstories.world.controller
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.util.Linkify
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.bintina.mynews.R
 import com.bintina.mynews.data.DataSource
 import com.bintina.mynews.databinding.FragmentTopStoriesBinding
 import com.bintina.mynews.databinding.ItemRowBinding
-import com.bintina.mynews.model.News
 import com.bintina.mynews.topstories.adapter.Adapter
 import com.bintina.mynews.topstories.adapter.OnNewsClickedListener
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.NonDisposableHandle.parent
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -30,7 +23,6 @@ class TopStoriesFragment : Fragment(), OnNewsClickedListener {
     private var _binding: FragmentTopStoriesBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var rowBinding: ItemRowBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,7 +35,7 @@ class TopStoriesFragment : Fragment(), OnNewsClickedListener {
             val result = DataSource.loadTopStories()
             withContext(Dispatchers.Main) {
                 if (result != null) {
-                    adapter.topStoriesList = result
+                    adapter.storiesList = result
                     adapter.notifyDataSetChanged()
                 }
                 }
