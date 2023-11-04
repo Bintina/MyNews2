@@ -29,28 +29,22 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
     }
     class ItemViewHolder(private val view: ItemRowBinding) : RecyclerView.ViewHolder(view.root) {
         fun bind(news: News?) {
-            //Image View holder
+            //Image View
             Glide.with(view.newsImage.context)
                 .load(news?.multimedia?.first()?.url)
                 .placeholder(R.drawable.ic_android_black_24dp)
                 .centerCrop()
                 .into(view.newsImage)
 
-            //Location View holder
-            view.location.text = if (news?.section?.isNotEmpty() == true && news?.subsection?.isNotEmpty() == true){
+            //Section View
+            view.section.text = "${news?.section} > ${news?.subsection}"
 
-                "${news?.section} > ${news?.subsection}"
-            } else {
-                ""
-            }.toString()
+            //Date View
 
-            //Date View holder
-            val dateResponse = news?.publishedDate
-            val dateFormatted = SimpleDateFormat("d/M/Y").format(dateResponse).toString()
-            view.date.text = dateFormatted
+            view.date.text = SimpleDateFormat("d/M/Y").format(news?.publishedDate).toString()
 
 
-            //Caption View holder
+            //Caption View
 
             view.caption.text = news?.abstract
 

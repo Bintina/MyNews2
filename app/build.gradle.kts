@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-parcelize")
+        id("kotlin-parcelize")
 }
 
 android {
@@ -50,16 +50,12 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 
-//Retrofit implementaions
+//Retrofit implementations
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    //Glide dependancy
+    //Glide Image dependancy
     implementation("com.github.bumptech.glide:glide:4.15.1")
-
-    //Image dependencies
-
-    implementation("com.squareup.picasso:picasso:2.4.0")
 
 //coroutine dependencies
     //comes with main dispatcher

@@ -9,7 +9,8 @@ import com.bintina.mynews.databinding.ItemRowBinding
 import com.bintina.mynews.model.News
 import com.bintina.mynews.topstories.adapter.Adapter
 import com.bumptech.glide.Glide
-import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+
 
 class Adapter(): RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
@@ -36,13 +37,13 @@ class Adapter(): RecyclerView.Adapter<Adapter.ItemViewHolder>() {
                 .into(view.newsImage)
 
 
-            //Date View holder
-            view.date.text = news?.publishedDate.toString()
+            //Date View
+            view.date.text = SimpleDateFormat("d/M/Y").format(news?.publishedDate)
 
-            //Location View holder
-            view.location.text = news?.subsection
+            //Section View
+            view.section.text = "${news?.section} > ${news?.subsection}"
 
-            //Caption View holder
+            //Caption View
             view.caption.text = news?.abstract
         }
     }
