@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.bintina.mynews.topstories.business.adapter.Adapter
 import com.bintina.mynews.data.DataSource
 import com.bintina.mynews.databinding.FragmentBusinessNewsBinding
+import com.bintina.mynews.topstories.adapter.Adapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -31,7 +31,7 @@ class BusinessNewsFragment : Fragment() {
             val result = DataSource.loadBusinessNews()
             withContext(Dispatchers.Main) {
                 if (result != null) {
-                    adapter.businessNewsList = result
+                    adapter.storiesList = result
                     adapter.notifyDataSetChanged()
                 }
             }

@@ -46,14 +46,12 @@ data class News(
     @SerializedName("uri")
     val uri: String?,
     @SerializedName("url")
-    val url: String?
+    val url: String?,
+    @SerializedName("media")
+        val media: List<Media>?,
+        @SerializedName("multimedia")
+        val multimedia: List<Multimedia>?
 ): Parcelable{
-         var media: List<Media?>? = null
-         var multimedia: List<Multimedia?>? = null
 
 
 }
-/*    @SerializedName("media")
-    val media: List<Media?>,
-    @SerializedName("multimedia")
-    val multimedia: List<Multimedia?>,*/
