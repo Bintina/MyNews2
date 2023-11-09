@@ -26,7 +26,6 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(storiesList[position], listener)
-
     }
     class ItemViewHolder(private val view: ItemRowBinding) : RecyclerView.ViewHolder(view.root) {
         fun bind(news: News?, listener: OnNewsClickedListener) {
