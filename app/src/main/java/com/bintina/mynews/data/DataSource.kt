@@ -2,7 +2,7 @@ package com.bintina.mynews.data
 
 import android.util.Log
 import com.bintina.mynews.model.News
-import com.bintina.mynews.topstories.world.api.ApiService
+import com.bintina.mynews.topstoriesapi.world.api.ApiService
 
 object DataSource {
 
@@ -98,7 +98,7 @@ object DataSource {
     }
 
     suspend fun loadBusinessNews(): List<News?>? {
-        val apiCall = com.bintina.mynews.topstories.business.api.ApiService.create()
+        val apiCall = com.bintina.mynews.topstoriesapi.business.api.ApiService.create()
 
         val response = try {
             apiCall.getBusinessNews()
@@ -142,7 +142,7 @@ object DataSource {
         }
     }
     suspend fun loadArtStories(): List<News?>? {
-        val apiCall = com.bintina.mynews.topstories.arts.api.ApiService.create()
+        val apiCall = com.bintina.mynews.topstoriesapi.arts.api.ApiService.create()
 
         val response = try {
             apiCall.getArtStories()
@@ -186,7 +186,7 @@ object DataSource {
         }
     }
     suspend fun loadScienceStories(): List<News?>? {
-        val apiCall = com.bintina.mynews.topstories.science.api.ApiService.create()
+        val apiCall = com.bintina.mynews.topstoriesapi.science.api.ApiService.create()
 
         val response = try {
             apiCall.getScienceStories()

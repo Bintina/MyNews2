@@ -3,13 +3,15 @@ package com.bintina.mynews
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.bintina.mynews.topstories.business.controller.BusinessNewsFragment
+import com.bintina.mynews.topstoriesapi.business.controller.BusinessNewsFragment
 import com.bintina.mynews.popular.controller.PopularNewsFragment
-import com.bintina.mynews.topstories.arts.controller.ArtsFragment
-import com.bintina.mynews.topstories.science.controller.ScienceFragment
-import com.bintina.mynews.topstories.world.controller.TopStoriesFragment
+import com.bintina.mynews.topstoriesapi.arts.controller.ArtsFragment
+import com.bintina.mynews.topstoriesapi.science.controller.ScienceFragment
+import com.bintina.mynews.topstoriesapi.world.controller.TopStoriesFragment
 
 class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
+
+
     override fun getItemCount(): Int {
         return 5
     }

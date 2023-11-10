@@ -1,4 +1,4 @@
-package com.bintina.mynews.topstories.adapter
+package com.bintina.mynews.topstoriesapi.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

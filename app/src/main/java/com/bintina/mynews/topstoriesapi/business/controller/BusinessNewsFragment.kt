@@ -1,4 +1,4 @@
-package com.bintina.mynews.topstories.business.controller
+package com.bintina.mynews.topstoriesapi.business.controller
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.data.DataSource
 import com.bintina.mynews.databinding.FragmentBusinessNewsBinding
-import com.bintina.mynews.topstories.adapter.Adapter
+import com.bintina.mynews.topstoriesapi.adapter.Adapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

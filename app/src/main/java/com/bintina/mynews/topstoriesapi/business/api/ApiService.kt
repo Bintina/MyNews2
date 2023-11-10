@@ -1,4 +1,4 @@
-package com.bintina.mynews.topstories.world.api
+package com.bintina.mynews.topstoriesapi.business.api
 
 import com.bintina.mynews.util.Constants.TOP_BASE_URL
 import retrofit2.Retrofit

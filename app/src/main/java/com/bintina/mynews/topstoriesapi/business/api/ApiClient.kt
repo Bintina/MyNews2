@@ -1,4 +1,4 @@
-package com.bintina.mynews.topstories.business.api
+package com.bintina.mynews.topstoriesapi.business.api
 
 import com.bintina.mynews.model.NewsResult
 import com.bintina.mynews.util.Constants.BUSINESS_END_URL
