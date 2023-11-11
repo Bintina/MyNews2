@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.data.DataSource
-import com.bintina.mynews.databinding.FragmentTopStoriesBinding
+import com.bintina.mynews.databinding.FragmentNewsBinding
 import com.bintina.mynews.topstoriesapi.adapter.Adapter
 import com.bintina.mynews.topstoriesapi.adapter.OnNewsClickedListener
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +19,7 @@ import kotlinx.coroutines.withContext
 class TopStoriesFragment : Fragment(), OnNewsClickedListener {
     lateinit var adapter: Adapter
 
-    private var _binding: FragmentTopStoriesBinding? = null
+    private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -27,7 +27,7 @@ class TopStoriesFragment : Fragment(), OnNewsClickedListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTopStoriesBinding.inflate(inflater, container, false)
+        _binding = FragmentNewsBinding.inflate(inflater, container, false)
         initializeList()
 
         lifecycleScope.launch(Dispatchers.IO) {

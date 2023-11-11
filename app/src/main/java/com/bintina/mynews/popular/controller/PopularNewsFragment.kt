@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.data.DataSource
-import com.bintina.mynews.databinding.FragmentPopularNewsBinding
+import com.bintina.mynews.databinding.FragmentNewsBinding
 import com.bintina.mynews.popular.adapter.Adapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ class PopularNewsFragment: Fragment() {
 
     lateinit var adapter: Adapter
 
-    private var _binding: FragmentPopularNewsBinding? = null
+    private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -25,7 +25,7 @@ class PopularNewsFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentPopularNewsBinding.inflate(inflater, container, false)
+        _binding = FragmentNewsBinding.inflate(inflater, container, false)
         initializeList()
 
         lifecycleScope.launch(Dispatchers.IO) {
@@ -47,6 +47,6 @@ class PopularNewsFragment: Fragment() {
 
     private fun initializeList() {
         adapter = Adapter()
-        binding.popularRecyclerview.adapter = adapter
+        binding.recyclerview.adapter = adapter
     }
 }
