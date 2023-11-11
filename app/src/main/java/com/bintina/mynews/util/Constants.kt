@@ -36,6 +36,7 @@ object Constants {
     const val BUSINESS_END_URL = "business.json?api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf"
     //https://api.nytimes.com/svc/topstories/v2/business.json?api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
 
-
+    //Fragment State
+    var fragmentState = 0
 
 }
