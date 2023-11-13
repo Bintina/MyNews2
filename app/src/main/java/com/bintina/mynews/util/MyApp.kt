@@ -2,6 +2,7 @@ package com.bintina.mynews.util
 
 import android.content.SharedPreferences
 import com.bintina.mynews.R
+import com.bintina.mynews.util.Constants.API_KEY
 
 class MyApp {
 
@@ -25,5 +26,9 @@ class MyApp {
             R.string.art_fragment,
             R.string.sci_fragment,
         )
+
+        //query and filter values
+        lateinit var query: String
+        val formattedQuery = "q=$query&api-key=$API_KEY"
     }
 }
