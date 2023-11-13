@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.data.DataSource
 import com.bintina.mynews.databinding.FragmentNewsBinding
-import com.bintina.mynews.topstoriesapi.adapter.Adapter
-import com.bintina.mynews.topstoriesapi.adapter.OnNewsClickedListener
+import com.bintina.mynews.adapter.Adapter
+import com.bintina.mynews.adapter.OnNewsClickedListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -48,7 +48,7 @@ class ScienceFragment: Fragment(), OnNewsClickedListener {
         _binding = null
     }
     private fun initializeList() {
-        adapter = Adapter()
+        adapter = com.bintina.mynews.adapter.Adapter()
         binding.recyclerview.adapter = adapter
         adapter.listener = this
     }

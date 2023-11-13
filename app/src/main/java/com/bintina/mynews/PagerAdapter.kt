@@ -15,13 +15,16 @@ class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
 
 
     override fun getItemCount(): Int {
-        return 2
+        return 5
     }
 
     override fun createFragment(position: Int): Fragment {
         return when (position){
-            0 -> NewsFragment()
-            1 -> NewsFragment()
+            0 -> TopStoriesFragment()
+            1 -> PopularNewsFragment()
+            2 -> BusinessNewsFragment()
+            3 -> ArtsFragment()
+            4 -> ScienceFragment()
 
             else -> throw IllegalStateException("Unexpected position $position")
         }

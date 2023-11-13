@@ -1,4 +1,4 @@
-package com.bintina.mynews.topstoriesapi.adapter
+package com.bintina.mynews.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -30,8 +30,15 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
     class ItemViewHolder(private val view: ItemRowBinding) : RecyclerView.ViewHolder(view.root) {
         fun bind(news: News?, listener: OnNewsClickedListener) {
             //Image View
+
+            val newsUrl = if (news?.multimedia?.first()?.url != null){
+                news.multimedia.first().url
+            } else {
+                news?.media?.first()?.mediaMetadata?.first()?.url
+            }
+
             Glide.with(view.newsImage.context)
-                .load(news?.multimedia?.first()?.url)
+                .load(newsUrl)
                 .placeholder(R.drawable.ic_android_black_24dp)
                 .centerCrop()
                 .into(view.newsImage)

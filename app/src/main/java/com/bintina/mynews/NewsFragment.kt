@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.data.DataSource
 import com.bintina.mynews.databinding.FragmentNewsBinding
-import com.bintina.mynews.topstoriesapi.adapter.Adapter
-import com.bintina.mynews.topstoriesapi.adapter.OnNewsClickedListener
+import com.bintina.mynews.adapter.Adapter
+import com.bintina.mynews.adapter.OnNewsClickedListener
 import com.bintina.mynews.util.Constants.fragmentState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,7 +19,7 @@ import kotlinx.coroutines.withContext
 
 class NewsFragment: Fragment(fragmentState), OnNewsClickedListener {
 
-    lateinit var adapter: com.bintina.mynews.topstoriesapi.adapter.Adapter
+    lateinit var adapter: Adapter
 
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!

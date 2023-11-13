@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.data.DataSource
 
 import com.bintina.mynews.databinding.FragmentNewsBinding
-import com.bintina.mynews.topstoriesapi.adapter.Adapter
+import com.bintina.mynews.adapter.Adapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
