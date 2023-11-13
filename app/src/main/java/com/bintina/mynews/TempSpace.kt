@@ -1,19 +1,35 @@
 package com.bintina.mynews
-/*
 
-import com.bintina.mynews.databinding.FragmentTopStoriesBinding
+import android.content.Context
+import com.bintina.mynews.util.MyApp.Companion.FILE_NAME
+import com.bintina.mynews.util.MyApp.Companion.newsFragmentString
+import com.bintina.mynews.util.MyApp.Companion.newsJson
+import com.bintina.mynews.util.MyApp.Companion.newsSharedPref
+import com.google.gson.Gson
 
 class TempSpace {
 
-    var position: Int = 4
+    fun fragToPreference(context: Context, newsFragmentState: Int, PREFERENCE_NAME: String) {
+        newsSharedPref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        val newsSharedPrefEditor = newsSharedPref.edit()
 
-    var _binding = if (position){
-        0-> FragmentTopStoriesBinding.inflate(inflater, container, false)
-        1-> FragmentTopStoriesBinding.inflate(inflater, container, false)
-        2-> FragmentTopStoriesBinding.inflate(inflater, container, false)
-        3-> FragmentTopStoriesBinding.inflate(inflater, container, false)
-        4-> FragmentTopStoriesBinding.inflate(inflater, container, false)
+        newsFragmentString = newsFragmentState.toString()
+
+        newsSharedPrefEditor.putString(PREFERENCE_NAME, newsFragmentString).apply()
     }
-}*/
+
+
+    //------>>Object....................................................................................
+    fun preferenceToFrag(context: Context, PREFERENCE_NAME: String): Int {
+        newsSharedPref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+
+        newsJson = newsSharedPref.getString(PREFERENCE_NAME, "").toString()
+
+        return newsJson.toInt()
+    }
+
+
+
+}
 //rerouting Science to top xml (recycler view)
 //CRASH

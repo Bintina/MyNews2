@@ -71,5 +71,7 @@ dependencies {
     //Kotlin
     implementation("androidx.fragment:fragment-ktx:1.6.1")
 
+    //Gson dependancy
+    implementation("com.google.code.gson:gson:2.8.2")
 
 }

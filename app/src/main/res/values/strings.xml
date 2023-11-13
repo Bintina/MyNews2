@@ -6,4 +6,12 @@
     <string name="news_caption_placeholder">News Caption</string>
     <string name="date_placeholder">Date</string>
     <string name="news_title_placeholder">News Title</string>
+
+    <!-- News Fragment Preference Titles -->
+    <string name="top_fragment">Top Stories</string>
+    <string name="pop_fragment">Popular News</string>
+    <string name="bus_fragment">Business Stories</string>
+    <string name="art_fragment">Art Stories</string>
+    <string name="sci_fragment">Science Stories</string>
+
 </resources>

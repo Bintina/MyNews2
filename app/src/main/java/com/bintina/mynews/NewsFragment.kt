@@ -12,12 +12,12 @@ import com.bintina.mynews.data.DataSource
 import com.bintina.mynews.databinding.FragmentNewsBinding
 import com.bintina.mynews.adapter.Adapter
 import com.bintina.mynews.adapter.OnNewsClickedListener
-import com.bintina.mynews.util.Constants.fragmentState
+import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_FRAGMENT
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class NewsFragment: Fragment(fragmentState), OnNewsClickedListener {
+class NewsFragment: Fragment(CURRENT_NEWS_FRAGMENT), OnNewsClickedListener {
 
     lateinit var adapter: Adapter
 
@@ -33,9 +33,12 @@ class NewsFragment: Fragment(fragmentState), OnNewsClickedListener {
      initializeList()
 
      lifecycleScope.launch(Dispatchers.IO) {
-         val result = when (fragmentState) {
+         val result = when (CURRENT_NEWS_FRAGMENT) {
              0 -> DataSource.loadTopStories()
              1 -> DataSource.loadScienceStories()
+             2 -> DataSource.loadBusinessNews()
+             3 -> DataSource.loadArtStories()
+             4 -> DataSource.loadScienceStories()
              else -> { null}
          }
          withContext(Dispatchers.Main){
@@ -63,4 +66,6 @@ class NewsFragment: Fragment(fragmentState), OnNewsClickedListener {
 
         startActivity(intent)
     }
+
+
 }
