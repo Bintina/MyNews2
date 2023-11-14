@@ -28,7 +28,7 @@ class MyApp {
         )
 
         //query and filter values
-        lateinit var query: String
-        val formattedQuery = "q=$query&api-key=$API_KEY"
+        /*lateinit var query: String
+        val formattedQuery = "q=$query&api-key=$API_KEY"*/
     }
 }

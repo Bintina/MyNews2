@@ -9,7 +9,14 @@ import com.google.gson.Gson
 
 class TempSpace {
 
-    fun fragToPreference(context: Context, newsFragmentState: Int, PREFERENCE_NAME: String) {
+    //News isnt changing like it does for Github.
+    //Possible issue is the unification of the BASE_URL
+    // or, the CURRENT_NEWS_FRAGMENT isnt changing vallue, this needs a log to check
+    //
+
+
+
+    /*fun fragToPreference(context: Context, newsFragmentState: Int, PREFERENCE_NAME: String) {
         newsSharedPref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val newsSharedPrefEditor = newsSharedPref.edit()
 
@@ -26,7 +33,7 @@ class TempSpace {
         newsJson = newsSharedPref.getString(PREFERENCE_NAME, "").toString()
 
         return newsJson.toInt()
-    }
+    }*/
 
 
 

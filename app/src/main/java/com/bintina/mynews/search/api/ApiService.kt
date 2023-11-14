@@ -1,6 +1,6 @@
 package com.bintina.mynews.search.api
 
-import com.bintina.mynews.topstoriesapi.arts.api.ApiClient
+
 import com.bintina.mynews.util.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

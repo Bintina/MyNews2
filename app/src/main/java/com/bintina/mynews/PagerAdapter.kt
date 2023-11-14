@@ -15,7 +15,7 @@ class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
 
     override fun createFragment(position: Int): Fragment {
 
-        CURRENT_NEWS_FRAGMENT = position
+        position.also { CURRENT_NEWS_FRAGMENT = it }
 
         return when (position){
             0 -> NewsFragment()

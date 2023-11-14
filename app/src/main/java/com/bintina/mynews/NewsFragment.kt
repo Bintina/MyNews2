@@ -1,5 +1,6 @@
 package com.bintina.mynews
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -33,14 +34,7 @@ class NewsFragment: Fragment(CURRENT_NEWS_FRAGMENT), OnNewsClickedListener {
      initializeList()
 
      lifecycleScope.launch(Dispatchers.IO) {
-         val result = when (CURRENT_NEWS_FRAGMENT) {
-             0 -> DataSource.loadTopStories()
-             1 -> DataSource.loadScienceStories()
-             2 -> DataSource.loadBusinessNews()
-             3 -> DataSource.loadArtStories()
-             4 -> DataSource.loadScienceStories()
-             else -> { null}
-         }
+         val result = DataSource.loadNews()
          withContext(Dispatchers.Main){
              if (result != null){
                  adapter.storiesList = result
@@ -59,6 +53,7 @@ class NewsFragment: Fragment(CURRENT_NEWS_FRAGMENT), OnNewsClickedListener {
         adapter = Adapter()
         binding.recyclerview.adapter = adapter
         adapter.listener = this
+        CURRENT_NEWS_FRAGMENT = 0
     }
     override fun openLink(clickedNewsLink: String) {
         val newsSite = Uri.parse(clickedNewsLink)
@@ -66,6 +61,8 @@ class NewsFragment: Fragment(CURRENT_NEWS_FRAGMENT), OnNewsClickedListener {
 
         startActivity(intent)
     }
-
+    private fun isFragmentActive(context: Context): Boolean {
+        return isAdded && activity != null && isResumed
+    }
 
 }
