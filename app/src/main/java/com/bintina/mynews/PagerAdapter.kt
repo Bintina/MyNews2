@@ -3,7 +3,7 @@ package com.bintina.mynews
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_FRAGMENT
+import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
 
 
 class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
@@ -14,8 +14,8 @@ class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
     }
 
     override fun createFragment(position: Int): Fragment {
-
-        position.also { CURRENT_NEWS_FRAGMENT = it }
+//CURRENT_NEWS_FRAGMENT = position
+        position.also { CURRENT_NEWS_STATE = it }
 
         return when (position){
             0 -> NewsFragment()

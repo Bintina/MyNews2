@@ -11,7 +11,7 @@ class TempSpace {
 
     //News isnt changing like it does for Github.
     //Possible issue is the unification of the BASE_URL
-    // or, the CURRENT_NEWS_FRAGMENT isnt changing vallue, this needs a log to check
+    // or, the CURRENT_NEWS_FRAGMENT isn't changing value, this needs a log to check
     //
 
 

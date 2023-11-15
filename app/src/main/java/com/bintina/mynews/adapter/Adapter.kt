@@ -34,7 +34,7 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
             val newsUrl = if (news?.multimedia?.first()?.url != null){
                 news.multimedia.first().url
             } else {
-                news?.media?.first()?.mediaMetadata?.first()?.url
+                news?.media?.firstOrNull()?.mediaMetadata?.firstOrNull()?.url
             }
 
             Glide.with(view.newsImage.context)

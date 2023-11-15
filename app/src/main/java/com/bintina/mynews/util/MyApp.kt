@@ -2,7 +2,6 @@ package com.bintina.mynews.util
 
 import android.content.SharedPreferences
 import com.bintina.mynews.R
-import com.bintina.mynews.util.Constants.API_KEY
 
 class MyApp {
 
@@ -15,7 +14,7 @@ class MyApp {
         lateinit var newsJson: String
         lateinit var newsSharedPref: SharedPreferences
         const val FILE_NAME = "News Fragment Preferences"
-        var CURRENT_NEWS_FRAGMENT = 0
+        var CURRENT_NEWS_STATE = 0
 
 
         //News Array

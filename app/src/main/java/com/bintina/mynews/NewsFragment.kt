@@ -1,6 +1,5 @@
 package com.bintina.mynews
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,12 +12,12 @@ import com.bintina.mynews.data.DataSource
 import com.bintina.mynews.databinding.FragmentNewsBinding
 import com.bintina.mynews.adapter.Adapter
 import com.bintina.mynews.adapter.OnNewsClickedListener
-import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_FRAGMENT
+import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class NewsFragment: Fragment(CURRENT_NEWS_FRAGMENT), OnNewsClickedListener {
+class NewsFragment: Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
 
     lateinit var adapter: Adapter
 
@@ -53,7 +52,7 @@ class NewsFragment: Fragment(CURRENT_NEWS_FRAGMENT), OnNewsClickedListener {
         adapter = Adapter()
         binding.recyclerview.adapter = adapter
         adapter.listener = this
-        CURRENT_NEWS_FRAGMENT = 0
+
     }
     override fun openLink(clickedNewsLink: String) {
         val newsSite = Uri.parse(clickedNewsLink)
@@ -61,8 +60,4 @@ class NewsFragment: Fragment(CURRENT_NEWS_FRAGMENT), OnNewsClickedListener {
 
         startActivity(intent)
     }
-    private fun isFragmentActive(context: Context): Boolean {
-        return isAdded && activity != null && isResumed
-    }
-
 }

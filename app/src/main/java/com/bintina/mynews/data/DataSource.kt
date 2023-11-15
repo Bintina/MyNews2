@@ -1,20 +1,19 @@
 package com.bintina.mynews.data
 
-import android.util.Log
 import com.bintina.mynews.model.News
 
-import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_FRAGMENT
+import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
 
 object DataSource {
     suspend fun loadNews(): List<News?>? {
         val apiCall = com.bintina.mynews.api.ApiService.create()
 
-        val response = when (CURRENT_NEWS_FRAGMENT) {
+        val response = when (CURRENT_NEWS_STATE) {
             0 -> apiCall.getTopStories()
             1 -> apiCall.getPopularNews()
             2 -> apiCall.getBusinessNews()
-            3 -> apiCall.getScienceStories()
-            4 -> apiCall.getArtStories()
+            3 -> apiCall.getArtStories()
+            4 -> apiCall.getScienceStories()
             else -> {
                 null
             }
