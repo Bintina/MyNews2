@@ -3,4 +3,29 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#4C4C4C</color>
+
+    <!-- Style color values -->
+    <color name="textColorPrimary">#42000000</color>
+
+    Not enabled
+    #DD000000
+    Default
+    searchViewStyle = @style/Widget.AppCompat.SearchView.ActionBar => @style/Widget.AppCompat.SearchView.ActionBar  Inherits from: @style/Base.ThemeOverlay.AppCompat:  Inherits from: @style/Platform.ThemeOverlay.AppCompat:     android:android:colorAccent = ?attr/colorAccent
+    #008577
+    android:android:colorButtonNormal = ?attr/colorButtonNormal
+    #D6D7D7
+    android:android:colorControlActivated = ?attr/colorControlActivated
+    #008577
+    android:android:colorControlHighlight = ?attr/colorControlHighlight
+    #1F000000
+    android:android:colorControlNormal = ?attr/colorControlNormal
+    #42000000
+    Not enabled
+    #99000000
+    Default
+    android:android:colorPrimary = ?attr/colorPrimary
+    #F5F5F5
+    android:android:colorPrimaryDark = ?attr/colorPrimaryDark
+    #757575
+
 </resources>
