@@ -1,4 +1,4 @@
-package com.bintina.mynews.api
+package com.bintina.mynews.news.api
 
 import com.bintina.mynews.model.NewsResult
 import com.bintina.mynews.util.Constants

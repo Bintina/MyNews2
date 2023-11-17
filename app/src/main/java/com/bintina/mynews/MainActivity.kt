@@ -1,12 +1,17 @@
 package com.bintina.mynews
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 import com.bintina.mynews.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import androidx.appcompat.widget.Toolbar
+import com.bintina.mynews.news.controller.PagerAdapter
+import com.bintina.mynews.search.controller.SearchActivity
+import com.bintina.mynews.search.controller.SearchFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,9 +21,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val searchBtn = findViewById<View>(R.id.search_btn)
 
         setupViewPager()
 
+        searchBtn.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupViewPager() {

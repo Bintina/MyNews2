@@ -1,4 +1,4 @@
-package com.bintina.mynews.adapter
+package com.bintina.mynews.news.adapter
 
 interface OnNewsClickedListener {
 

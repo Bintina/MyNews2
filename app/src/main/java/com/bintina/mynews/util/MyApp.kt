@@ -17,14 +17,7 @@ class MyApp {
         var CURRENT_NEWS_STATE = 0
 
 
-        //News Array
-        val arrayOfNewsFragments = arrayOf<Int>(
-            R.string.top_fragment,
-            R.string.pop_fragment,
-            R.string.bus_fragment,
-            R.string.art_fragment,
-            R.string.sci_fragment,
-        )
+        var formattedQuery = "placeholder query"
 
         //query and filter values
         /*lateinit var query: String

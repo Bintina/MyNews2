@@ -1,12 +1,13 @@
-package com.bintina.mynews.data
+package com.bintina.mynews.news.data
 
 import com.bintina.mynews.model.News
+import com.bintina.mynews.news.api.ApiService
 
 import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
 
 object DataSource {
     suspend fun loadNews(): List<News?>? {
-        val apiCall = com.bintina.mynews.api.ApiService.create()
+        val apiCall = ApiService.create()
 
         val response = when (CURRENT_NEWS_STATE) {
             0 -> apiCall.getTopStories()

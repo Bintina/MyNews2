@@ -1,4 +1,4 @@
-package com.bintina.mynews
+package com.bintina.mynews.news.controller
 
 import android.content.Intent
 import android.net.Uri
@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.bintina.mynews.data.DataSource
+import com.bintina.mynews.news.data.DataSource
 import com.bintina.mynews.databinding.FragmentNewsBinding
-import com.bintina.mynews.adapter.Adapter
-import com.bintina.mynews.adapter.OnNewsClickedListener
+import com.bintina.mynews.news.adapter.Adapter
+import com.bintina.mynews.news.adapter.OnNewsClickedListener
 import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

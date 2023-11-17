@@ -1,4 +1,4 @@
-package com.bintina.mynews.api
+package com.bintina.mynews.news.api
 
 import com.bintina.mynews.util.Constants.BASE_URL
 import retrofit2.Retrofit

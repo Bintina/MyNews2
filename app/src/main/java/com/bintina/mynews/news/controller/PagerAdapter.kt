@@ -1,4 +1,4 @@
-package com.bintina.mynews
+package com.bintina.mynews.news.controller
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
