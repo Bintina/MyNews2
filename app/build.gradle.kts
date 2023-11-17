@@ -74,6 +74,5 @@ dependencies {
     //Gson dependancy
     implementation("com.google.code.gson:gson:2.8.2")
 
-    //Material
-    implementation ("androidx.compose.material:material:1.5.4")
+
 }
