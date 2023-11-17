@@ -1,5 +1,6 @@
 package com.bintina.mynews.search.controller
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -9,6 +10,10 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
+import com.bintina.mynews.util.MyApp.Companion.DATE_RANGE
+import com.bintina.mynews.util.MyApp.Companion.FILTERS
+import com.bintina.mynews.util.MyApp.Companion.QUERY_TERM
+import com.bintina.mynews.util.stringToPreference
 
 class SearchFragment : Fragment(), OnSearchClickListener {
     private lateinit var binding: FragmentSearchArticlesBinding
@@ -20,7 +25,7 @@ class SearchFragment : Fragment(), OnSearchClickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
-        initializeViews()
+        this.context?.let { initializeViews(context = it) }
 
         return binding.root
     }
@@ -30,27 +35,35 @@ class SearchFragment : Fragment(), OnSearchClickListener {
         super.onDestroy()
     }
 
-    private fun initializeViews() {
+    private fun initializeViews(context: Context) {
         listener = this
         //Query term
-        val queryEtText = binding.searchQueryTermEditText.text
-println("$queryEtText")
+        val queryEtText = binding.searchQueryTermEditText.text.toString()
+        println("$queryEtText")
+        //Save Query to preferences
+        stringToPreference(context, queryEtText, QUERY_TERM)
+        Log.d("Pref Log", "query is: $QUERY_TERM")
 
         //Date Range
-        val startDate = binding.startDateEt.text
-        val endDate = binding.endDateEt.text
-        getDateRange()
+        val dateRange =getDateRange()
+        //Save Date Range to preferences
+        stringToPreference(context,dateRange, DATE_RANGE)
+        Log.d("Pref Log", "Dates are: $DATE_RANGE")
 
         //Category Booleans
-        getQuerryFilters()
+        val filters =getQuerryFilters()
+        //Save Filters to preferences
+        stringToPreference(context, filters, FILTERS)
+        Log.d("Pref Log", "Filters are: $FILTERS")
 
-        binding.searchBtn.setOnClickListener{
+//Testing code for listeners
+        binding.searchBtn.setOnClickListener {
 
-            initializeViews()
+            initializeViews(context)
         }
     }
 
-    private fun getQuerryFilters() {
+    private fun getQuerryFilters(): String {
         val artBoolean = boxChecked(binding.checkboxArts)
         Log.d("ArtCheckBox", "Art is checked? $artBoolean")
 
@@ -68,11 +81,17 @@ println("$queryEtText")
 
         val travelBoolean = boxChecked(binding.checkboxTravel)
         Log.d("TravCheckBox", "Travel is checked? $travelBoolean")
+
+        return "$artBoolean.$entreprenuerBoolean.$sportsBoolean.$businessBoolean.$politicsBoolean.$travelBoolean"
     }
 
-    private fun getDateRange() {
-        Log.d("StartDateLog", "Start Date is ${binding.startDateEt.text}")
-        Log.d("EndDateLog", "End Date is ${binding.endDateEt.text}")
+    private fun getDateRange(): String {
+        val startDate = binding.startDateEt.text
+        val endDate = binding.endDateEt.text
+        Log.d("StartDateLog", "Start Date is $startDate")
+        Log.d("EndDateLog", "End Date is $endDate")
+
+        return "$startDate-$endDate"
     }
 
     override fun getQuery(typedQuery: Editable): String {

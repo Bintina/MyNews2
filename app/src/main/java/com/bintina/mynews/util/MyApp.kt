@@ -7,14 +7,21 @@ class MyApp {
 
     companion object{
         //Fragment State
-        var newsFragmentState = 0
+        var CURRENT_NEWS_STATE = 0
+
 
         //Shared Preference
+        const val FILE_NAME = "Query Preferences"
+        const val QUERY_TERM = ""
+        const val START_DATE = ""
+        const val END_DATE = ""
+        const val DATE_RANGE = ""
+        const val FILTERS = ""
+
+
         lateinit var newsFragmentString: String
         lateinit var newsJson: String
         lateinit var newsSharedPref: SharedPreferences
-        const val FILE_NAME = "News Fragment Preferences"
-        var CURRENT_NEWS_STATE = 0
 
 
         var formattedQuery = "placeholder query"
