@@ -12,12 +12,17 @@ class MyApp {
 
         //Shared Preference
         const val FILE_NAME = "Query Preferences"
-        const val QUERY_TERM = ""
+        const val QUERY_TERM = "Query Term"
         const val START_DATE = ""
         const val END_DATE = ""
-        const val DATE_RANGE = ""
-        const val FILTERS = ""
+        const val DATE_RANGE = "Date Range"
+        const val FILTERS = "Filters"
 
+
+
+        var savedQuery = ""
+        var savedDateRange = ""
+        var savedFilters = ""
 
         lateinit var newsFragmentString: String
         lateinit var newsJson: String
