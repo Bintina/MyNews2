@@ -1,6 +1,7 @@
 package com.bintina.mynews
 
 import android.content.Context
+import com.bintina.mynews.search.controller.SearchResultsFragment
 import com.bintina.mynews.util.MyApp.Companion.FILE_NAME
 import com.bintina.mynews.util.MyApp.Companion.newsFragmentString
 import com.bintina.mynews.util.MyApp.Companion.newsJson
@@ -34,6 +35,9 @@ class TempSpace {
 
         return newsJson.toInt()
     }*/
+/*    val resultFragment = SearchResultsFragment()
+    val transaction = fragmentManager?.beginTransaction()
+    transaction?.replace(R.id.search_fragment_container, resultFragment)?.commit()*/
 
 
 

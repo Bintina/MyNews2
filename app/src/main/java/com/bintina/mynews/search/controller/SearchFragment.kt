@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
+import com.bintina.mynews.R
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
 import com.bintina.mynews.search.data.DataSource
 import com.bintina.mynews.search.data.DataSource.loadSearchResults
@@ -19,6 +20,7 @@ import com.bintina.mynews.util.MyApp.Companion.QUERY_TERM
 import com.bintina.mynews.util.MyApp.Companion.savedDateRange
 import com.bintina.mynews.util.MyApp.Companion.savedFilters
 import com.bintina.mynews.util.MyApp.Companion.savedQuery
+import com.bintina.mynews.util.MyApp.Companion.searchResults
 import com.bintina.mynews.util.stringToPreference
 
 class SearchFragment : Fragment(), OnSearchClickListener {
@@ -33,8 +35,15 @@ class SearchFragment : Fragment(), OnSearchClickListener {
         binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
         this.context?.let { initializeViews(context = it) }
 
+//        navigateToSearchResults()
         return binding.root
     }
+
+/*
+    private fun navigateToSearchResults() {
+
+    }
+*/
 
 
     override fun onDestroy() {
@@ -65,9 +74,12 @@ class SearchFragment : Fragment(), OnSearchClickListener {
 //Testing code for listeners
         binding.searchBtn.setOnClickListener {
 
-            initializeViews(context)
-                DataSource.loadSearchResults(context)
-            println("${MyApp.savedQuery}")
+            val resultFragment = SearchResultsFragment()
+
+            childFragmentManager.beginTransaction()
+                .replace(R.id.search_fragment_container, resultFragment)
+                .commit()
+            println("${MyApp.savedQuery} had ${searchResults.size} results")
         }
     }
 
@@ -118,6 +130,10 @@ class SearchFragment : Fragment(), OnSearchClickListener {
 
     override fun boxChecked(view: CheckBox): Boolean {
         return view.isChecked
+    }
+
+    override fun openResults() {
+        TODO("Not yet implemented")
     }
 
 }

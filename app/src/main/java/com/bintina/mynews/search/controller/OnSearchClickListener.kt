@@ -14,6 +14,8 @@ interface OnSearchClickListener {
 
     fun boxChecked(view: CheckBox): Boolean
 
+    fun openResults()
+
 
 
 }
