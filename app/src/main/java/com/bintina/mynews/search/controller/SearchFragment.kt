@@ -9,7 +9,8 @@ import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchArticlesBinding
- lateinit var listener: OnSearchClicked
+    lateinit var listener: OnSearchClicked
+
     companion object {
         const val KEY_KEYWORD = "KEY_KEYWORD"
         const val KEY_SPORTS = "KEY_SPORTS"
@@ -25,7 +26,7 @@ class SearchFragment : Fragment() {
         binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
 
 
-        binding.searchBtn.setOnClickListener{
+        binding.searchBtn.setOnClickListener {
             extractFromData()
 
         }
@@ -42,7 +43,7 @@ class SearchFragment : Fragment() {
         bundle.putBoolean(KEY_SPORTS, sports)
         bundle.putBoolean(KEY_POLITICS, politics)
 
-listener.onSearchClick(bundle)
+        listener.onSearchClick(bundle)
     }
 
 

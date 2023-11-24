@@ -1,6 +1,6 @@
 package com.bintina.mynews.news.api
 
-import com.bintina.mynews.model.NewsResult
+import com.bintina.mynews.model.news.NewsResult
 import com.bintina.mynews.util.Constants
 import retrofit2.http.GET
 

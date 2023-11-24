@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bintina.mynews.R
 import com.bintina.mynews.databinding.ItemRowBinding
-import com.bintina.mynews.model.News
+import com.bintina.mynews.model.news.News
 import com.bumptech.glide.Glide
 import java.text.SimpleDateFormat
 

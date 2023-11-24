@@ -1,4 +1,4 @@
-package com.bintina.mynews.model
+package com.bintina.mynews.model.news
 
 
 import android.os.Parcelable

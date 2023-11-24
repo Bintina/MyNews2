@@ -1,16 +1,7 @@
 package com.bintina.mynews.util
 
 import android.content.SharedPreferences
-import android.graphics.Insets.add
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
-import com.bintina.mynews.R
-import com.bintina.mynews.model.News
-import com.bintina.mynews.search.controller.SearchFragment
+import com.bintina.mynews.model.news.News
 import com.bintina.mynews.util.Constants.API_KEY
 
 class MyApp {

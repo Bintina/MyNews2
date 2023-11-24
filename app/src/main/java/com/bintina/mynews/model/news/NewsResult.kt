@@ -1,4 +1,4 @@
-package com.bintina.mynews.model
+package com.bintina.mynews.model.news
 
 
 import com.google.gson.annotations.SerializedName
@@ -15,5 +15,7 @@ data class NewsResult(
     @SerializedName("section")
     val section: String?,
     @SerializedName("status")
-    val status: String?
+    val status: String?,
+    @SerializedName("response")
+    val response: List<News?>
 )

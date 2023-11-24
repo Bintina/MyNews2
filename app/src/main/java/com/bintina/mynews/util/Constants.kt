@@ -38,10 +38,11 @@ object Constants {
 
     //Search API....................................................................................
     const val SEARCH_BASE_URL = "https://api.nytimes.com/svc/search/v2/"
-    const val SEARCH_END_URL = "articlesearch.json?q="
-    const val SEARCH_API_END = "&api-key=$API_KEY"
+    const val SEARCH_END_URL = "articlesearch.json?"
     //+ $formattedQuery
     ///articlesearch.json?q={query}&fq={filter}
     //https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=yourkey
-
+//https://api.nytimes.com/svc/search/v2/articlesearch.json?q=olympics&api-key=zisbuhdclxat0g1lpmz0ynbagfhpkgqf
+//working link
+//https://api.nytimes.com/svc/search/v2/articlesearch.json?q=children&api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
 }

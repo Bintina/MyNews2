@@ -14,11 +14,12 @@ import com.bintina.mynews.news.adapter.Adapter
 import com.bintina.mynews.news.adapter.OnNewsClickedListener
 import com.bintina.mynews.news.data.DataSource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.invoke
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SearchResultsFragment : Fragment(), OnNewsClickedListener {
-    lateinit var adapter: com.bintina.mynews.news.adapter.Adapter
+    lateinit var adapter: com.bintina.mynews.search.adapter.Adapter
 
     private var _binding: FragmentSearchResultBinding? = null
     private val binding get() = _binding!!
@@ -42,13 +43,14 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
             val politics = it.getBoolean(SearchFragment.KEY_POLITICS)
 
             lifecycleScope.launch(Dispatchers.IO) {
-                val result = DataSource.loadSearchResults()
+                val result = DataSource.loadSearchResults(keyword)
+                Log.d("SearchResultFragLog", "$keyword")
+
+
                 withContext(Dispatchers.Main) {
-                    if (result != null) {
-                        adapter.storiesList = result
-                        adapter.notifyDataSetChanged()
-                    }
-                    Log.d("Result Fragment", "${result?.size}results")
+                    adapter.searchResultList = result
+                    adapter.notifyDataSetChanged()
+                    Log.d("Result Fragment", "${result.size} ")
                 }
             }
         }
@@ -65,7 +67,7 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
     }
 
     private fun initializeView() {
-        adapter = Adapter()
+        adapter = com.bintina.mynews.search.adapter.Adapter()
         binding.resultsRecyclerview.adapter = adapter
         adapter.listener = this
 
