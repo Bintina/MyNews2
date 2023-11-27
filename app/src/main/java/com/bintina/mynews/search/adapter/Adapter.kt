@@ -1,5 +1,6 @@
 package com.bintina.mynews.search.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,15 +12,17 @@ import com.bintina.mynews.news.adapter.Adapter
 import com.bintina.mynews.news.adapter.OnNewsClickedListener
 import com.bumptech.glide.Glide
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class Adapter() : RecyclerView.Adapter<com.bintina.mynews.search.adapter.Adapter.ItemViewHolder>() {
-    var searchResultList: List<Doc?> = mutableListOf<Doc>()
+    var searchResultList = mutableListOf<Doc?>()
     lateinit var listener: OnNewsClickedListener
 
     class ItemViewHolder(private val view: ItemRowBinding) : RecyclerView.ViewHolder(view.root) {
         fun bind(doc: Doc?, listener: OnNewsClickedListener) {
             //Image View
-            val newsUrl = doc?.multimedia?.first()?.url
+            val newsUrl = "https://www.nytimes.com/${doc?.multimedia?.firstOrNull()?.url}"
             Glide.with(view.newsImage.context)
                 .load(newsUrl)
                 .placeholder(R.drawable.ic_android_black_24dp)
@@ -30,7 +33,23 @@ class Adapter() : RecyclerView.Adapter<com.bintina.mynews.search.adapter.Adapter
             view.section.text = "${doc?.sectionName} > ${doc?.subsectionName}"
 
             //Date View
-            view.date.text = SimpleDateFormat("d/M/Y").format(doc?.pubDate).toString()
+            /*val formatOutputDate = SimpleDateFormat("d/M/Y", Locale.US)
+            val formatInputDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss+SSSX", Locale.US)
+
+            val inputDate = formatInputDate.parse(inputText)
+            val outputDate = formatOutputDate.format(inputDate)*/
+          /*  val stringDate =doc?.pubDate.toString()
+
+val date = SimpleDateFormat("d/M/Y").format(stringDate).toString()
+            Log.d("DateFormatAdapter", "The SimpleDateFormat output is $date")
+*/         //  2023-11-24T10:02:20+0000
+            //   view.date.text = DateTimeFormatter("d/M/Y").format(doc?.pubDate).toString()
+            //DateFormat outputFormat = new SimpleDateFormat("MM/yyyy", Locale.US);
+            //DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.US);
+            //
+            //String inputText = "2012-11-17T00:00:00.000-05:00";
+            //Date date = inputFormat.parse(inputText);
+            //String outputText = outputFormat.format(date);
 
             //Caption View
             view.caption.text = doc?.abstract

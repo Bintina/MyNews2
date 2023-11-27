@@ -10,11 +10,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.databinding.FragmentSearchResultBinding
-import com.bintina.mynews.news.adapter.Adapter
+import com.bintina.mynews.model.search.Doc
 import com.bintina.mynews.news.adapter.OnNewsClickedListener
 import com.bintina.mynews.news.data.DataSource
+import com.bintina.mynews.util.Constants.API_KEY
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.invoke
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -42,13 +42,20 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
             val sports = it.getBoolean(SearchFragment.KEY_SPORTS)
             val politics = it.getBoolean(SearchFragment.KEY_POLITICS)
 
+            val queryEnd = formatQuery("$keyword")
+
             lifecycleScope.launch(Dispatchers.IO) {
-                val result = DataSource.loadSearchResults(keyword)
+                val result = try {
+                    DataSource.loadSearchResults(keyword, API_KEY)
+                } catch (e: Exception){
+                    emptyList<Doc?>()
+                    Log.d("SearchResultTryCatch", "Error is $e")
+                }
                 Log.d("SearchResultFragLog", "$keyword")
 
 
                 withContext(Dispatchers.Main) {
-                    adapter.searchResultList = result
+                    adapter.searchResultList = result as MutableList<Doc?>
                     adapter.notifyDataSetChanged()
                     Log.d("Result Fragment", "${result.size} ")
                 }
@@ -78,5 +85,11 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         val intent = Intent(Intent.ACTION_VIEW, newsSite)
 
         startActivity(intent)
+    }
+
+    private fun formatQuery(query: String): String{
+        val formattedQuery = "$query&$API_KEY"
+
+        return formattedQuery
     }
 }

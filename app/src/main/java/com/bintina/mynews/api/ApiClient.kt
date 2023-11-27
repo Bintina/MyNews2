@@ -1,8 +1,11 @@
-package com.bintina.mynews.news.api
+package com.bintina.mynews.api
 
 import com.bintina.mynews.model.news.NewsResult
+import com.bintina.mynews.model.search.SearchResult
 import com.bintina.mynews.util.Constants
+import com.bintina.mynews.util.Constants.SEARCH_END_URL
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ApiClient {
     //Popular News Client
@@ -24,4 +27,11 @@ interface ApiClient {
     //Science Stories Client
     @GET(Constants.SCI_END_URL)
     suspend fun getScienceStories(): NewsResult?
+
+    //Search Screen
+    @GET(SEARCH_END_URL)
+    suspend fun getSearchedNews(
+        @Query("q", encoded = true)query: String?,
+        @Query("api-key")apiKey: String
+    ): SearchResult?
 }

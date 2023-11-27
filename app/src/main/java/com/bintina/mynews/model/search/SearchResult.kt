@@ -7,7 +7,7 @@ data class SearchResult(
     @SerializedName("copyright")
     val copyright: String?,
     @SerializedName("response")
-    val response: Response?,
+    val results: Result?,
     @SerializedName("status")
     val status: String?
 )

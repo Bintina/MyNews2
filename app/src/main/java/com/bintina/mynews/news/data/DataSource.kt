@@ -3,11 +3,8 @@ package com.bintina.mynews.news.data
 import android.util.Log
 import com.bintina.mynews.model.news.News
 import com.bintina.mynews.model.search.Doc
-import com.bintina.mynews.news.api.ApiService
-import com.bintina.mynews.util.Constants.API_KEY
+import com.bintina.mynews.api.ApiService
 import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
-import com.bintina.mynews.util.MyApp.Companion.QUERY_TERM
-import com.bintina.mynews.util.MyApp.Companion.savedQuery
 
 object DataSource {
     suspend fun loadNews(): List<News?>? {
@@ -59,23 +56,25 @@ object DataSource {
         }
     }
 
-    suspend fun loadSearchResults(keyword: String?): List<Doc?> {
+    suspend fun loadSearchResults(query: String?, apiKey: String): List<Doc?> {
 
      /*   val queryMap = mapOf(
-            QUERY_TERM to savedQuery,
+            QUERY_TERM to keyword,
             "API End Url" to API_KEY
         )*/
-        val formattedQuery = if (keyword != null) {
+
+//        val formattedQuery = formatQuery("$keyword", API_KEY)
+        /*val formattedQuery = if (keyword != null) {
             "q=$keyword&$API_KEY"
         } else {
             API_KEY
-        }
+        }*/
 
-        Log.d("SearchDataSourceLog", "query submitted is $formattedQuery")
-        val apiCall = com.bintina.mynews.search.api.ApiService.create()
-        val response = apiCall.getNews(formattedQuery)
+        Log.d("SearchDataSourceLog", "query submitted is $query")
+        val apiCall = com.bintina.mynews.api.ApiService.create()
+        val response = apiCall.getSearchedNews(query, apiKey)
 
-        val results: List<Doc?> = response?.results
+        val results: List<Doc?>? = response?.results?.docs
 
         Log.d("responseDataSource", "results has ${results?.size}")
 
