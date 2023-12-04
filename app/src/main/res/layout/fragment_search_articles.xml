@@ -37,11 +37,14 @@
                 android:layout_height="wrap_content"
                 android:text="Begin Date"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/start_date_et"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="200dp"
+                android:layout_height="30dp"
+                android:minWidth="190dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="showDatePickerDialog"
                 />
 
         </LinearLayout>
@@ -57,11 +60,14 @@
                 android:layout_height="wrap_content"
                 android:text="End Date"/>
 
-            <EditText
+            <TextView
                 android:id="@+id/end_date_et"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minWidth="200dp"/>
+                android:layout_height="30dp"
+                android:minWidth="190dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="showDatePickerDialog"/>
 
         </LinearLayout>
     </GridLayout>

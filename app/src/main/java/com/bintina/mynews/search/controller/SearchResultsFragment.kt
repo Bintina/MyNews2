@@ -39,6 +39,8 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         val bundle = arguments
         bundle?.let {
             val keyword = it.getString(SearchFragment.KEY_KEYWORD)
+            val startDate = it.getString(SearchFragment.START_DATE)
+            val endDate = it.getString(SearchFragment.END_DATE)
             val sports = it.getBoolean(SearchFragment.KEY_SPORTS)
             val politics = it.getBoolean(SearchFragment.KEY_POLITICS)
 
@@ -57,7 +59,7 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
                 withContext(Dispatchers.Main) {
                     adapter.searchResultList = result as MutableList<Doc?>
                     adapter.notifyDataSetChanged()
-                    Log.d("Result Fragment", "${result.size} ")
+                    Log.d("Result Fragment", "${result.size}, Start date is $startDate and End date is $endDate")
                 }
             }
         }

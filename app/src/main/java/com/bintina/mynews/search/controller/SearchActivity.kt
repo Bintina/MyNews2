@@ -1,7 +1,9 @@
 package com.bintina.mynews.search.controller
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.TextUtils.replace
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
@@ -33,6 +35,7 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         transaction.commit()
 
 
+
     }
 
 
@@ -49,4 +52,5 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         )
         transaction.commit()
     }
+
 }
