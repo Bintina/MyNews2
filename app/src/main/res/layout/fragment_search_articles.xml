@@ -44,7 +44,7 @@
                 android:minWidth="190dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="showDatePickerDialog"
+
                 />
 
         </LinearLayout>
@@ -67,7 +67,7 @@
                 android:minWidth="190dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="showDatePickerDialog"/>
+                />
 
         </LinearLayout>
     </GridLayout>

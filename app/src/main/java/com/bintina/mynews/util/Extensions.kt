@@ -12,59 +12,8 @@ import com.bintina.mynews.util.MyApp.Companion.savedQuery
 import java.util.Calendar
 
 
-fun showStartDatePicker(context: Context, view: TextView,): String{
-    val currentDate = Calendar.getInstance()
 
-    currentDate.add(Calendar.YEAR, -5)
-
-    val initialStartYear = currentDate.get(Calendar.YEAR)
-    val initialStartMonth = currentDate.get(Calendar.MONTH)
-    val initialStartDay = currentDate.get(Calendar.DAY_OF_MONTH)
-
-    var selectedDate = String.format("%d-%02d-%02d", initialStartYear, initialStartMonth + 1, initialStartDay)
-
-    val datePickerDialog = DatePickerDialog(
-        context,
-        { view, year, month, dayOfMonth ->
-            // Handle the selected date
-            selectedDate = String.format("%d-%02d-%02d", year, month + 1, dayOfMonth)
-            // Update the TextView or perform any other action
-        },
-        // Set initial date in the date picker
-                initialStartYear, initialStartMonth, initialStartDay
-    )
-
-    // Show the date picker dialog
-    datePickerDialog.show()
-
-    return selectedDate
-}
-fun showEndDatePicker(context: Context, view: View,): String{
-    val currentDate = Calendar.getInstance()
-    val initialEndYear = currentDate.get(Calendar.YEAR)
-    val initialEndMonth = currentDate.get(Calendar.MONTH)
-    val initialEndDay = currentDate.get(Calendar.DAY_OF_MONTH)
-
-    var selectedDate = String.format("%d-%02d-%02d", initialEndYear, initialEndMonth + 1, initialEndDay)
-
-    val datePickerDialog = DatePickerDialog(
-        context,
-        { view, year, month, dayOfMonth ->
-            // Handle the selected date
-            selectedDate = String.format("%d-%02d-%02d", year, month + 1, dayOfMonth)
-            // Update the TextView or perform any other action
-
-        },
-        // Set initial date in the date picker
-                initialEndYear, initialEndMonth, initialEndDay
-    )
-
-    // Show the date picker dialog
-    datePickerDialog.show()
-
-    return selectedDate
-}
-
+//Shared Preference Methods.........................................................................
 fun stringToPreference(context: Context, string: String, PREFERENCE_NAME: String) {
        newsSharedPref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
        val newsSharedPrefEditor = newsSharedPref.edit()
