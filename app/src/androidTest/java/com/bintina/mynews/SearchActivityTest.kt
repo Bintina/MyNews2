@@ -19,6 +19,7 @@ class SearchActivityTest {
 
     @Test
     fun user_can_enter_search_term(){
+        //check if exists or is displayed
         onView(withId(R.id.search_query_term_edit_text)).perform(typeText("children"))
         //Check query value matches entered text
     }
@@ -40,7 +41,10 @@ class SearchActivityTest {
     }
 
     @Test
-    fun user_can_select_check_box_and_reflects_in_api_call(){
+    fun user_can_select_check_box_works(){
+        onView(
+            withId(R.id.checkbox_arts))
+        //if clicked the box is checked.
         TODO("check if the filters checked are filtered")
     }
 

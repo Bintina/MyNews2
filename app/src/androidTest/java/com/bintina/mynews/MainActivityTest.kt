@@ -29,6 +29,7 @@ class MainActivityTest {
     fun forth_tab_api_call_is_art_stories(){
         TODO("checks api call matches")
         //https://api.nytimes.com/svc/topstories/v2/arts.json?api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
+        //assert =
     }
     @Test
     fun fifth_tab_api_call_is_science_stories(){
@@ -38,6 +39,11 @@ class MainActivityTest {
 
     @Test
     fun swiping_results_in_the_correct_screen(){
+        TODO("check that swiping results in the correct API calls")
+    }
+    @Test
+    fun magnifying_glass_opens_search_activity(){
+
         TODO("check that swiping results in the correct API calls")
     }
 

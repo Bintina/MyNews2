@@ -94,4 +94,11 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
 
         return formattedQuery
     }
+
+    private fun addFilter(filter: Boolean):String{
+
+        val filterFor = ""
+
+        return filterFor
+    }
 }
