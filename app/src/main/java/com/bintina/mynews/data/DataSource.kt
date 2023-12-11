@@ -1,4 +1,4 @@
-package com.bintina.mynews.news.data
+package com.bintina.mynews.data
 
 import android.util.Log
 import com.bintina.mynews.model.news.News

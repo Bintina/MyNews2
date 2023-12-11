@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.databinding.FragmentSearchResultBinding
 import com.bintina.mynews.model.search.Doc
 import com.bintina.mynews.news.adapter.OnNewsClickedListener
-import com.bintina.mynews.news.data.DataSource
+import com.bintina.mynews.data.DataSource
 import com.bintina.mynews.util.Constants.API_KEY
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
