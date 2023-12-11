@@ -20,6 +20,11 @@ object Constants {
     const val TOP_END_URL = "topstories/v2/world.json?api-key=$API_KEY"
     //https://api.nytimes.com/svc/topstories/v2/world.json?api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
 
+    // Business
+    //End Url: /world.json?api-key=yourkey
+    const val BUSINESS_END_URL = "topstories/v2/business.json?api-key=$API_KEY"
+    //https://api.nytimes.com/svc/topstories/v2/business.json?api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
+
     //Arts
     //End Url: /arts.json?api-key=yourkey
     const val ART_END_URL = "topstories/v2/arts.json?api-key=$API_KEY"
@@ -30,10 +35,6 @@ object Constants {
     const val SCI_END_URL = "topstories/v2/science.json?api-key=$API_KEY"
     //https://api.nytimes.com/svc/topstories/v2/science.json?api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
 
-    // Business
-    //End Url: /world.json?api-key=yourkey
-    const val BUSINESS_END_URL = "topstories/v2/business.json?api-key=$API_KEY"
-    //https://api.nytimes.com/svc/topstories/v2/business.json?api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
 
 
     //Search API....................................................................................

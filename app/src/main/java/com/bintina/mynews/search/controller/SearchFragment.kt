@@ -93,6 +93,7 @@ class SearchFragment : Fragment() {
                 // Handle the selected date
                 val selectedStartDate = String.format("%d-%02d-%02d", year, month + 1, dayOfMonth)
                 // Update the TextView or perform any other action
+
                 binding.startDateEt.text = selectedStartDate
                 enteredStartDate = selectedStartDate
             },
