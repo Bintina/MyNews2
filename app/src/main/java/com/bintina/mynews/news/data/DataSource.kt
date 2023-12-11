@@ -58,17 +58,6 @@ object DataSource {
 
     suspend fun loadSearchResults(query: String?, apiKey: String): List<Doc?> {
 
-     /*   val queryMap = mapOf(
-            QUERY_TERM to keyword,
-            "API End Url" to API_KEY
-        )*/
-
-//        val formattedQuery = formatQuery("$keyword", API_KEY)
-        /*val formattedQuery = if (keyword != null) {
-            "q=$keyword&$API_KEY"
-        } else {
-            API_KEY
-        }*/
 
         Log.d("SearchDataSourceLog", "query submitted is $query")
         val apiCall = com.bintina.mynews.api.ApiService.create()
