@@ -46,6 +46,8 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.test.ext:junit-ktx:1.1.5")
+    implementation("androidx.test.espresso:espresso-contrib:3.5.1")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -68,12 +70,21 @@ dependencies {
 
 //Fragments support
     //Java language implementation
-    implementation("androidx.fragment:fragment:1.6.1")
+    implementation("androidx.fragment:fragment:1.6.2")
     //Kotlin
-    implementation("androidx.fragment:fragment-ktx:1.6.1")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     //Gson dependancy
-    implementation("com.google.code.gson:gson:2.8.2")
+    implementation("com.google.code.gson:gson:2.9.1")
 
+//Esspresso Dependancies............................................................................
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation ("androidx.test:runner:1.5.2")
+    androidTestImplementation ("androidx.test:rules:1.5.0")
+    androidTestImplementation ("androidx.test.ext:junit-ktx:1.1.5")
+    androidTestImplementation ("androidx.test:core-ktx:1.5.0")
+    //Intent Dependency
+    androidTestImplementation ("androidx.test.espresso:espresso-intents:3.5.1")
+    testImplementation ("org.hamcrest:hamcrest-core:2.2")
 
 }

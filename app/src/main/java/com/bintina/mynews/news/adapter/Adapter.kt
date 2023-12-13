@@ -6,12 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bintina.mynews.R
 import com.bintina.mynews.databinding.ItemRowBinding
 import com.bintina.mynews.model.news.News
+import com.bintina.mynews.util.MyApp.Companion.newsInPossitionUrl
 import com.bumptech.glide.Glide
 import java.text.SimpleDateFormat
 
 class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
-    var storiesList: List<News?> = mutableListOf<News?>()
+    var storiesList: List<News?> = emptyList<News?>()
 
     lateinit var listener: OnNewsClickedListener
 
@@ -22,16 +23,17 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
     }
 
 
-    override fun getItemCount(): Int =storiesList.size
+    override fun getItemCount(): Int = storiesList.size
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(storiesList[position], listener)
     }
+
     class ItemViewHolder(private val view: ItemRowBinding) : RecyclerView.ViewHolder(view.root) {
         fun bind(news: News?, listener: OnNewsClickedListener) {
             //Image View
 
-            val newsUrl = if (news?.multimedia?.first()?.url != null){
+            val newsUrl = if (news?.multimedia?.first()?.url != null) {
                 news.multimedia.first().url
             } else {
                 news?.media?.firstOrNull()?.mediaMetadata?.firstOrNull()?.url
@@ -58,8 +60,13 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
             //News link linking
             val newsLink = news?.url.toString()
             view.cardContents.setOnClickListener { listener.openLink(newsLink) }
+getNewsUrl(news)
+        }
 
-
+        //Testing method
+        fun getNewsUrl(news: News?): String? {
+        newsInPossitionUrl = news?.url.toString()
+            return newsInPossitionUrl
         }
 
     }

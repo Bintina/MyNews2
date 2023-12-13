@@ -10,36 +10,19 @@ import com.google.gson.Gson
 
 class TempSpace {
 
-    //News isnt changing like it does for Github.
-    //Possible issue is the unification of the BASE_URL
-    // or, the CURRENT_NEWS_FRAGMENT isn't changing value, this needs a log to check
-    //
 
 
 
-    /*fun fragToPreference(context: Context, newsFragmentState: Int, PREFERENCE_NAME: String) {
-        newsSharedPref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
-        val newsSharedPrefEditor = newsSharedPref.edit()
-
-        newsFragmentString = newsFragmentState.toString()
-
-        newsSharedPrefEditor.putString(PREFERENCE_NAME, newsFragmentString).apply()
-    }
-
-
-    //------>>Object....................................................................................
-    fun preferenceToFrag(context: Context, PREFERENCE_NAME: String): Int {
-        newsSharedPref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
-
-        newsJson = newsSharedPref.getString(PREFERENCE_NAME, "").toString()
-
-        return newsJson.toInt()
-    }*/
 /*    val resultFragment = SearchResultsFragment()
     val transaction = fragmentManager?.beginTransaction()
     transaction?.replace(R.id.search_fragment_container, resultFragment)?.commit()*/
 
-
+/*// withId(R.id.my_view) is a ViewMatcher
+// click() is a ViewAction
+// matches(isDisplayed()) is a ViewAssertion
+    onView(withId(R.id.my_view))
+    .perform(click())
+    .check(matches(isDisplayed()))*/
 
 }
 //rerouting Science to top xml (recycler view)

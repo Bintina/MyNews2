@@ -32,6 +32,7 @@ class MyApp {
 
         lateinit var searchResults: List<News?>
 
+        var newsInPossitionUrl = ""
        //val var formattedQuery = "search/v2/articlesearch.json?q=$savedQuery&api-key=$API_KEY"
 //https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=yourkey
         //query and filter values
