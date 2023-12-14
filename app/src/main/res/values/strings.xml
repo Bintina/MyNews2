@@ -16,5 +16,6 @@
     <string name="about">About</string>
     <string name="help">Help</string>
     <string name="notifications">Notifications</string>
+    <string name="notification_toggle_text">Enable Notifications (once per day)</string>
 
 </resources>

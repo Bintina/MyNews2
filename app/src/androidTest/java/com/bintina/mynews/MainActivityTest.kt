@@ -59,7 +59,12 @@ class MainActivityTest {
 
     }
 
-
+@Test
+fun action_overflow_btns_exist(){
+    assertNotNull(withId(R.id.notifications_btn))
+    assertNotNull(withId(R.id.help_btn))
+    assertNotNull(withId(R.id.about_btn))
+}
     /*    @Test
         fun testLaunchSearchActivityOnButtonActionClicked() {
             assertNotNull(mMainActivity.findViewById(R.id.action_search))
