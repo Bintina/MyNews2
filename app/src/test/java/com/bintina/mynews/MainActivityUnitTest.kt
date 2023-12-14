@@ -1,6 +1,9 @@
 package com.bintina.mynews
 
 
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.swipeLeft
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
 import junit.framework.TestCase.assertTrue
@@ -27,25 +30,7 @@ class MainActivityUnitTest {
         assertTrue("CURRENT_NEWS_STATE = 0", CURRENT_NEWS_STATE == 0)
     }
 
-    @Test
-    fun swipes_from_topstories_to_popular_news() {
-       /* onView(withId(R.id.pager))
-            .perform(SwipeLeft())
-       */ //assertTrue("CURRENT_NEWS_STATE = 1", CURRENT_NEWS_STATE == 1)
-        //assertTrue("DataSource.loadNews() value is", DataSource.loadNews() == "https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf")
-        TODO(
-            "checks api call matches PagerAdapter.position" +
-                    "preconditions" +
-                    "CURRENT_NEWS_STATE = 0" +
-                    //DataSource.loadNews() = https://api.nytimes.com/svc/topstories/v2/world.json?api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
-                    "actions" +
-                    "SwipeLeft" +
-                    "expections" +
-                    "CURRENT_NEWS_STATE = 1" +
-                    //https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
-                    ""
-        )
-    }
+
 
     @Test
     fun second_tab_api_call_is_popular_news() {

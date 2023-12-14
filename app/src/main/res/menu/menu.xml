@@ -12,9 +12,15 @@
         app:showAsAction="always"
         />
 
-    <!-- Settings, must always be in the overflow. -->
-    <item android:id="@+id/action_settings"
-        android:title="Settings"
+
+    <item android:id="@+id/notifications_btn"
+        android:title="@string/notifications"
+        app:showAsAction="never"/>
+    <item android:id="@+id/help_btn"
+        android:title="@string/help"
+        app:showAsAction="never"/>
+    <item android:id="@+id/about_btn"
+        android:title="@string/about"
         app:showAsAction="never"/>
 
 </menu>

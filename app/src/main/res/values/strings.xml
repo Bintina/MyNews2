@@ -13,5 +13,8 @@
     <string name="bus_fragment">Business Stories</string>
     <string name="art_fragment">Art Stories</string>
     <string name="sci_fragment">Science Stories</string>
+    <string name="about">About</string>
+    <string name="help">Help</string>
+    <string name="notifications">Notifications</string>
 
 </resources>

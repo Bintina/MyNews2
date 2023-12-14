@@ -27,6 +27,7 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(storiesList[position], listener)
+
     }
 
     class ItemViewHolder(private val view: ItemRowBinding) : RecyclerView.ViewHolder(view.root) {
@@ -60,14 +61,10 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
             //News link linking
             val newsLink = news?.url.toString()
             view.cardContents.setOnClickListener { listener.openLink(newsLink) }
-getNewsUrl(news)
+
         }
 
         //Testing method
-        fun getNewsUrl(news: News?): String? {
-        newsInPossitionUrl = news?.url.toString()
-            return newsInPossitionUrl
-        }
 
     }
 
