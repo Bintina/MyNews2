@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
+import com.bintina.mynews.model.search.QueryDetails
+
+import com.bintina.mynews.util.MyApp.Companion.searchQueryObject
+import com.bintina.mynews.util.objectToPreference
 import java.util.Calendar
 
 class SearchFragment : Fragment() {
@@ -23,7 +27,12 @@ class SearchFragment : Fragment() {
         const val KEY_KEYWORD = "KEY_KEYWORD"
         const val START_DATE = "START_DATE"
         const val END_DATE = "END_DATE"
-
+        const val KEY_ARTS = "KEY_POLITICS"
+        const val KEY_BUSINESS = "KEY_BUSINESS"
+        const val KEY_ENTREPRENUERS = "KEY_ENTREPRENUERS"
+        const val KEY_POLITICS = "KEY_POLITICS"
+        const val KEY_SPORTS = "KEY_SPORTS"
+        const val KEY_TRAVEL = "KEY_TRAVEL"
 
 
     }
@@ -45,12 +54,12 @@ class SearchFragment : Fragment() {
         }
 
         binding.searchBtn.setOnClickListener {
-            extractFromData(requireContext())
+            extractFromData()
         }
         return binding.root
     }
 
-    private fun extractFromData(context: Context) {
+    private fun extractFromData() {
         val keyword = binding.searchQueryTermEditText.text.toString()
         val startDate = enteredStartDate
         val endDate = enteredEndDate
@@ -61,7 +70,20 @@ class SearchFragment : Fragment() {
         val sports = binding.checkboxSports.isChecked
         val travel = binding.checkboxTravel.isChecked
 
-        val bundle = Bundle()
+        editQueryObject(
+            keyword,
+            null,
+            startDate,
+            endDate,
+            arts,
+            business,
+            entreprenuers,
+            politics,
+            sports,
+            travel
+        )
+//        val bundle = Bundle()
+        /*
         bundle.putString(KEY_KEYWORD, keyword)
         bundle.putString(START_DATE, startDate)
         bundle.putString(END_DATE, endDate)
@@ -70,11 +92,65 @@ class SearchFragment : Fragment() {
         bundle.putBoolean(KEY_ENTREPRENUERS, entreprenuers)
         bundle.putBoolean(KEY_POLITICS, politics)
         bundle.putBoolean(KEY_SPORTS, sports)
-        bundle.putBoolean(KEY_TRAVEL, travel)
+        bundle.putBoolean(KEY_TRAVEL, travel)*/
 
+        /*
+        val artObject = editQueryObject("news_desk", "arts", arts)
+                objectToPreference(requireContext(), artObject, KEY_ARTS_PREF )
+        */
+        /*
+                listener.onSearchClick(bundle)*/
+    }
 
+    fun editQueryObject(
+        query: String,
+        query2: String?,
+        startDate: String,
+        endDate: String,
+        artsBoolean: Boolean,
+        businessBoolean: Boolean,
+        entreprenuersBoolean: Boolean,
+        politicsBoolean: Boolean,
+        sportsBoolean: Boolean,
+        travelBoolean: Boolean
+    ): QueryDetails {
+        searchQueryObject?.query = listOf(query, query2)
+        searchQueryObject?.startDate = startDate
+        searchQueryObject?.endDate = endDate
+        searchQueryObject?.checked = listOf(
+            if (artsBoolean) {
+                "arts"
+            } else {
+                null
+            },
+            if (businessBoolean) {
+                "business"
+            } else {
+                null
+            },
+            if (entreprenuersBoolean) {
+                "entreprenuers"
+            } else {
+                null
+            },
+            if (politicsBoolean) {
+                "politics"
+            } else {
+                null
+            },
+            if (sportsBoolean) {
+                "sports"
+            } else {
+                null
+            },
+            if (travelBoolean) {
+                "travel"
+            } else {
+                null
+            }
 
-        listener.onSearchClick(bundle)
+        )
+        return searchQueryObject!!
     }
 
 

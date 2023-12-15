@@ -2,6 +2,7 @@ package com.bintina.mynews.util
 
 import android.content.SharedPreferences
 import com.bintina.mynews.model.news.News
+import com.bintina.mynews.model.search.QueryDetails
 import com.bintina.mynews.util.Constants.API_KEY
 
 class MyApp {
@@ -13,13 +14,8 @@ class MyApp {
 
         //Shared Preference File Names
         const val FILE_NAME = "Query Preferences"
-        const val QUERY_TERM = "Query Term"
-        const val KEY_ARTS = "KEY_POLITICS"
-        const val KEY_BUSINESS = "KEY_BUSINESS"
-        const val KEY_ENTREPRENUERS = "KEY_ENTREPRENUERS"
-        const val KEY_POLITICS = "KEY_POLITICS"
-        const val KEY_SPORTS = "KEY_SPORTS"
-        const val KEY_TRAVEL = "KEY_TRAVEL"
+        const val QUERY_DETAILS = "Query Details"
+        var searchQueryObject: QueryDetails? = null
 
 
         var savedQuery = ""

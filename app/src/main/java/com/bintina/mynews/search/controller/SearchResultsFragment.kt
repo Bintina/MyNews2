@@ -1,5 +1,6 @@
 package com.bintina.mynews.search.controller
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,7 +14,9 @@ import com.bintina.mynews.databinding.FragmentSearchResultBinding
 import com.bintina.mynews.model.search.Doc
 import com.bintina.mynews.news.adapter.OnNewsClickedListener
 import com.bintina.mynews.data.DataSource
+import com.bintina.mynews.model.search.QueryDetails
 import com.bintina.mynews.util.Constants.API_KEY
+import com.bintina.mynews.util.queryPreferenceToObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -48,6 +51,7 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
             val sports = it.getBoolean(SearchFragment.KEY_SPORTS)
             val travel = it.getBoolean(SearchFragment.KEY_TRAVEL)
 
+
             //field-name-1:("value1") AND field-name-2:("value2", "value3")
 
             val filter = "arts:(\"arts\")"
@@ -55,8 +59,8 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
 
             lifecycleScope.launch(Dispatchers.IO) {
                 val result = try {
-                    DataSource.loadSearchResults(keyword, filter, API_KEY)
-                } catch (e: Exception){
+                    DataSource.loadSearchResults()
+                } catch (e: Exception) {
                     emptyList<Doc?>()
                     Log.d("SearchResultTryCatch", "Error is $e")
                 }
@@ -66,7 +70,10 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
                 withContext(Dispatchers.Main) {
                     adapter.searchResultList = result as MutableList<Doc?>
                     adapter.notifyDataSetChanged()
-                    Log.d("Result Fragment", "${result.size}, Start date is $startDate and End date is $endDate")
+                    Log.d(
+                        "Result Fragment",
+                        "${result.size}, Start date is $startDate and End date is $endDate"
+                    )
                 }
             }
         }
@@ -96,22 +103,12 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         startActivity(intent)
     }
 
-    private fun formatQuery(query: String): String{
+    private fun formatQuery(query: String): String {
         val formattedQuery = "$query&$API_KEY"
 
         return formattedQuery
     }
 
-    private fun addNewsDeskFilter(filter: Boolean):String{
-val filterValue = if (filter == false){
-    null
-} else {
-    "news_desk(\"$"
-}
-        val filterFor = ""
-
-        return filterFor
-    }
 
 
 }

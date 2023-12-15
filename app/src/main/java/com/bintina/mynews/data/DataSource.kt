@@ -1,10 +1,16 @@
 package com.bintina.mynews.data
 
+import android.content.Context
 import android.util.Log
 import com.bintina.mynews.model.news.News
 import com.bintina.mynews.model.search.Doc
 import com.bintina.mynews.api.ApiService
+import com.bintina.mynews.model.search.QueryDetails
+import com.bintina.mynews.util.Constants.API_KEY
+import com.bintina.mynews.util.MyApp
 import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
+import com.bintina.mynews.util.MyApp.Companion.searchQueryObject
+import com.bintina.mynews.util.queryPreferenceToObject
 
 object DataSource {
     suspend fun loadNews(): List<News?>? {
@@ -56,23 +62,17 @@ object DataSource {
         }
     }
 
-    suspend fun loadSearchResults(query: String?, filter: String, apiKey: String): List<Doc?> {
+    suspend fun loadSearchResults(): List<Doc?> {
+val query = searchQueryObject?.query
+        val startDate = searchQueryObject?.startDate
+        val endDate = searchQueryObject?.endDate
+        val checkedFilters = searchQueryObject?.checked
+        
 
-     /*   val queryMap = mapOf(
-            QUERY_TERM to keyword,
-            "API End Url" to API_KEY
-        )*/
-
-//        val formattedQuery = formatQuery("$keyword", API_KEY)
-        /*val formattedQuery = if (keyword != null) {
-            "q=$keyword&$API_KEY"
-        } else {
-            API_KEY
-        }*/
 
         Log.d("SearchDataSourceLog", "query submitted is $query")
         val apiCall = com.bintina.mynews.api.ApiService.create()
-        val response = apiCall.getSearchedNews(query, filter, apiKey)
+        val response = apiCall.getSearchedNews(query, checkedFilters, API_KEY)
 
         val results: List<Doc?>? = response?.results?.docs
 
@@ -86,5 +86,20 @@ object DataSource {
             emptyList()
         }
     }
+    private fun addNewsDeskFilters(context: Context): String? {
+        val artObject = getQueryFilterObject(context, MyApp.KEY_ARTS_PREF)
 
+        val filterValue = if (artObject?.checked == false) {
+            null
+        } else {
+            "news_desk(\"${artObject?.filterName}\")"
+        }
+
+        return filterValue
+    }
+
+    fun getQueryFilterObject(context: Context, PREFERENCE_NAME: String): QueryDetails? {
+        val queryObject = queryPreferenceToObject(context, PREFERENCE_NAME)
+        return queryObject
+    }
 }

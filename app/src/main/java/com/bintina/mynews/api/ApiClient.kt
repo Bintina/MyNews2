@@ -32,7 +32,6 @@ interface ApiClient {
     @GET(SEARCH_END_URL)
     suspend fun getSearchedNews(
         @Query("q", encoded = true)query: String?,
-        @Query("q", encoded = true)query2: String?,
         @Query("fq", encoded = true)filter: String?,
         @Query("api-key")apiKey: String
     ): SearchResult?

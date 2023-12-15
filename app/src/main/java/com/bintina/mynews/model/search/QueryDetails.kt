@@ -5,7 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class QueryDetails(
-    val fieldName: String?,
-    val filterName: String?,
-    var checked: Boolean
+    var query: List<String?>,
+    var startDate: String?,
+    var endDate: String?,
+    var checked: List<String?>?
 ): Parcelable
