@@ -41,14 +41,21 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
             val keyword = it.getString(SearchFragment.KEY_KEYWORD)
             val startDate = it.getString(SearchFragment.START_DATE)
             val endDate = it.getString(SearchFragment.END_DATE)
-            val sports = it.getBoolean(SearchFragment.KEY_SPORTS)
+            val arts = it.getBoolean(SearchFragment.KEY_ARTS)
+            val business = it.getBoolean(SearchFragment.KEY_BUSINESS)
+            val entreprenuers = it.getBoolean(SearchFragment.KEY_ENTREPRENUERS)
             val politics = it.getBoolean(SearchFragment.KEY_POLITICS)
+            val sports = it.getBoolean(SearchFragment.KEY_SPORTS)
+            val travel = it.getBoolean(SearchFragment.KEY_TRAVEL)
 
+            //field-name-1:("value1") AND field-name-2:("value2", "value3")
+
+            val filter = "arts:(\"arts\")"
             val queryEnd = formatQuery("$keyword")
 
             lifecycleScope.launch(Dispatchers.IO) {
                 val result = try {
-                    DataSource.loadSearchResults(keyword, API_KEY)
+                    DataSource.loadSearchResults(keyword, filter, API_KEY)
                 } catch (e: Exception){
                     emptyList<Doc?>()
                     Log.d("SearchResultTryCatch", "Error is $e")
@@ -95,10 +102,16 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         return formattedQuery
     }
 
-    private fun addFilter(filter: Boolean):String{
-
+    private fun addNewsDeskFilter(filter: Boolean):String{
+val filterValue = if (filter == false){
+    null
+} else {
+    "news_desk(\"$"
+}
         val filterFor = ""
 
         return filterFor
     }
+
+
 }

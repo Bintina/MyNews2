@@ -56,7 +56,7 @@ object DataSource {
         }
     }
 
-    suspend fun loadSearchResults(query: String?, apiKey: String): List<Doc?> {
+    suspend fun loadSearchResults(query: String?, filter: String, apiKey: String): List<Doc?> {
 
      /*   val queryMap = mapOf(
             QUERY_TERM to keyword,
@@ -72,7 +72,7 @@ object DataSource {
 
         Log.d("SearchDataSourceLog", "query submitted is $query")
         val apiCall = com.bintina.mynews.api.ApiService.create()
-        val response = apiCall.getSearchedNews(query, apiKey)
+        val response = apiCall.getSearchedNews(query, filter, apiKey)
 
         val results: List<Doc?>? = response?.results?.docs
 

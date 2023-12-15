@@ -23,8 +23,8 @@ class SearchFragment : Fragment() {
         const val KEY_KEYWORD = "KEY_KEYWORD"
         const val START_DATE = "START_DATE"
         const val END_DATE = "END_DATE"
-        const val KEY_SPORTS = "KEY_SPORTS"
-        const val KEY_POLITICS = "KEY_POLITICS"
+
+
 
     }
 
@@ -54,19 +54,25 @@ class SearchFragment : Fragment() {
         val keyword = binding.searchQueryTermEditText.text.toString()
         val startDate = enteredStartDate
         val endDate = enteredEndDate
-        val sports = binding.checkboxSports.isChecked
-        val politics = binding.checkboxPolitics.isChecked
         val arts = binding.checkboxArts.isChecked
-        val entreprenuers = binding.checkboxEntreprenuers.isChecked
         val business = binding.checkboxBusiness.isChecked
+        val entreprenuers = binding.checkboxEntreprenuers.isChecked
+        val politics = binding.checkboxPolitics.isChecked
+        val sports = binding.checkboxSports.isChecked
         val travel = binding.checkboxTravel.isChecked
 
         val bundle = Bundle()
         bundle.putString(KEY_KEYWORD, keyword)
         bundle.putString(START_DATE, startDate)
         bundle.putString(END_DATE, endDate)
-        bundle.putBoolean(KEY_SPORTS, sports)
+        bundle.putBoolean(KEY_ARTS, arts)
+        bundle.putBoolean(KEY_BUSINESS, business)
+        bundle.putBoolean(KEY_ENTREPRENUERS, entreprenuers)
         bundle.putBoolean(KEY_POLITICS, politics)
+        bundle.putBoolean(KEY_SPORTS, sports)
+        bundle.putBoolean(KEY_TRAVEL, travel)
+
+
 
         listener.onSearchClick(bundle)
     }

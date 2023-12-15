@@ -14,12 +14,12 @@ class MyApp {
         //Shared Preference File Names
         const val FILE_NAME = "Query Preferences"
         const val QUERY_TERM = "Query Term"
-        const val START_DATE = ""
-        const val END_DATE = ""
-        const val DATE_RANGE = "Date Range"
-        const val FILTERS = "Filters"
-        const val FORMATTED_QUERY = "Formatted Query"
-
+        const val KEY_ARTS = "KEY_POLITICS"
+        const val KEY_BUSINESS = "KEY_BUSINESS"
+        const val KEY_ENTREPRENUERS = "KEY_ENTREPRENUERS"
+        const val KEY_POLITICS = "KEY_POLITICS"
+        const val KEY_SPORTS = "KEY_SPORTS"
+        const val KEY_TRAVEL = "KEY_TRAVEL"
 
 
         var savedQuery = ""
