@@ -3,10 +3,12 @@ package com.bintina.mynews.search.controller
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
 import com.bintina.mynews.model.search.QueryDetails
@@ -70,20 +72,7 @@ class SearchFragment : Fragment() {
         val sports = binding.checkboxSports.isChecked
         val travel = binding.checkboxTravel.isChecked
 
-        editQueryObject(
-            keyword,
-            null,
-            startDate,
-            endDate,
-            arts,
-            business,
-            entreprenuers,
-            politics,
-            sports,
-            travel
-        )
-//        val bundle = Bundle()
-        /*
+              val bundle = Bundle()
         bundle.putString(KEY_KEYWORD, keyword)
         bundle.putString(START_DATE, startDate)
         bundle.putString(END_DATE, endDate)
@@ -92,19 +81,18 @@ class SearchFragment : Fragment() {
         bundle.putBoolean(KEY_ENTREPRENUERS, entreprenuers)
         bundle.putBoolean(KEY_POLITICS, politics)
         bundle.putBoolean(KEY_SPORTS, sports)
-        bundle.putBoolean(KEY_TRAVEL, travel)*/
+        bundle.putBoolean(KEY_TRAVEL, travel)
 
         /*
         val artObject = editQueryObject("news_desk", "arts", arts)
                 objectToPreference(requireContext(), artObject, KEY_ARTS_PREF )
         */
-        /*
-                listener.onSearchClick(bundle)*/
+                listener.onSearchClick(bundle)
     }
 
+/*
     fun editQueryObject(
         query: String,
-        query2: String?,
         startDate: String,
         endDate: String,
         artsBoolean: Boolean,
@@ -114,20 +102,17 @@ class SearchFragment : Fragment() {
         sportsBoolean: Boolean,
         travelBoolean: Boolean
     ): QueryDetails {
-        searchQueryObject?.query = listOf(query, query2)
+        searchQueryObject?.query = listOf(query)
+        Log.d("EditqueryObjectLog", searchQueryObject?.query.toString())
         searchQueryObject?.startDate = startDate
+        Log.d("EditsdateObjectLog", searchQueryObject?.startDate.toString())
         searchQueryObject?.endDate = endDate
+        Log.d("EditedateObjectLog", searchQueryObject?.endDate.toString())
         searchQueryObject?.checked = listOf(
-            if (artsBoolean) {
-                "arts"
-            } else {
-                null
-            },
-            if (businessBoolean) {
+           "arts"
+            ,
                 "business"
-            } else {
-                null
-            },
+           ,
             if (entreprenuersBoolean) {
                 "entreprenuers"
             } else {
@@ -150,8 +135,10 @@ class SearchFragment : Fragment() {
             }
 
         )
+        Log.d("EditfilterObjectLog", searchQueryObject?.checked.toString())
         return searchQueryObject!!
     }
+*/
 
 
     override fun onDestroy() {

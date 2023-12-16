@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.TextView
 import com.bintina.mynews.model.search.QueryDetails
 import com.bintina.mynews.util.MyApp.Companion.FILE_NAME
-import com.bintina.mynews.util.MyApp.Companion.QUERY_TERM
 import com.bintina.mynews.util.MyApp.Companion.newsJson
 import com.bintina.mynews.util.MyApp.Companion.newsSharedPref
 import com.bintina.mynews.util.MyApp.Companion.savedQuery

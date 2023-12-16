@@ -52,14 +52,12 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
             val travel = it.getBoolean(SearchFragment.KEY_TRAVEL)
 
 
-            //field-name-1:("value1") AND field-name-2:("value2", "value3")
-
-            val filter = "arts:(\"arts\")"
-            val queryEnd = formatQuery("$keyword")
+            val filters: String? =
+                getSelectedFilters(arts, business, entreprenuers, politics, sports, travel)
 
             lifecycleScope.launch(Dispatchers.IO) {
                 val result = try {
-                    DataSource.loadSearchResults()
+                    DataSource.loadSearchResults(keyword, startDate, endDate, filters)
                 } catch (e: Exception) {
                     emptyList<Doc?>()
                     Log.d("SearchResultTryCatch", "Error is $e")
@@ -77,6 +75,31 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
                 }
             }
         }
+    }
+
+
+
+
+    private fun getSelectedFilters(
+        artsBoolean: Boolean,
+        businessBoolean: Boolean,
+        entreprenuersBoolean: Boolean,
+        politicsBoolean: Boolean,
+        sportsBoolean: Boolean,
+        travelBoolean: Boolean
+    ): String? {
+        val filters = listOf("arts", "business", "entreprenuers", "politics", "sports", "travel")
+        val booleanList = listOf(
+            artsBoolean,
+            businessBoolean,
+            entreprenuersBoolean,
+            politicsBoolean,
+            sportsBoolean,
+            travelBoolean
+        )
+        val trueFiltersList = filters.filterIndexed { index, _ -> booleanList[index] }
+
+        return "news_desk(${trueFiltersList.joinToString(",")})"
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -103,11 +126,6 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         startActivity(intent)
     }
 
-    private fun formatQuery(query: String): String {
-        val formattedQuery = "$query&$API_KEY"
-
-        return formattedQuery
-    }
 
 
 

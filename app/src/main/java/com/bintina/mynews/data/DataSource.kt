@@ -1,16 +1,20 @@
 package com.bintina.mynews.data
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import com.bintina.mynews.model.news.News
 import com.bintina.mynews.model.search.Doc
 import com.bintina.mynews.api.ApiService
 import com.bintina.mynews.model.search.QueryDetails
+import com.bintina.mynews.search.controller.SearchFragment
 import com.bintina.mynews.util.Constants.API_KEY
 import com.bintina.mynews.util.MyApp
 import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
 import com.bintina.mynews.util.MyApp.Companion.searchQueryObject
 import com.bintina.mynews.util.queryPreferenceToObject
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 object DataSource {
     suspend fun loadNews(): List<News?>? {
@@ -62,44 +66,40 @@ object DataSource {
         }
     }
 
-    suspend fun loadSearchResults(): List<Doc?> {
-val query = searchQueryObject?.query
-        val startDate = searchQueryObject?.startDate
-        val endDate = searchQueryObject?.endDate
-        val checkedFilters = searchQueryObject?.checked
-        
+    suspend fun loadSearchResults(keyword: String?, startDate: String?, endDate: String?, filters: String?): List<Doc?> {
 
+Log.d("DataSourceQuery","DataSourceQuery = $keyword")
+Log.d("DataSourceFilter","DataSourceFilters = $filters")
 
+val filterList = listOf<String>()
+/*
         Log.d("SearchDataSourceLog", "query submitted is $query")
+*/
         val apiCall = com.bintina.mynews.api.ApiService.create()
-        val response = apiCall.getSearchedNews(query, checkedFilters, API_KEY)
+        val response = apiCall.getSearchedNews(keyword, filters, API_KEY)
 
         val results: List<Doc?>? = response?.results?.docs
 
         Log.d("responseDataSource", "results has ${results?.size}")
 
 
-        return if (results != null &&  results!!.isNotEmpty()) {
-            Log.d("filteredListDataSourceLog", "has ${results.size} results" )
-            results
+        var parameterToCheckForDate = "pub_date"
+      var filteredForDate = results?.filter { doc ->
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+          val newsDate = dateFormat.parse(doc?.pubDate)
+            val startDateObj = dateFormat.parse(startDate)
+            val endDateObj = dateFormat.parse(endDate)
+
+            newsDate in startDateObj..endDateObj
+        }
+
+        return if (filteredForDate != null &&  filteredForDate!!.isNotEmpty() ) {
+            Log.d("filteredListDataSourceLog", "has ${filteredForDate.size} results" )
+            filteredForDate
         } else {
             emptyList()
         }
     }
-    private fun addNewsDeskFilters(context: Context): String? {
-        val artObject = getQueryFilterObject(context, MyApp.KEY_ARTS_PREF)
 
-        val filterValue = if (artObject?.checked == false) {
-            null
-        } else {
-            "news_desk(\"${artObject?.filterName}\")"
-        }
-
-        return filterValue
-    }
-
-    fun getQueryFilterObject(context: Context, PREFERENCE_NAME: String): QueryDetails? {
-        val queryObject = queryPreferenceToObject(context, PREFERENCE_NAME)
-        return queryObject
-    }
 }
