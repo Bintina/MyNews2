@@ -90,55 +90,6 @@ class SearchFragment : Fragment() {
                 listener.onSearchClick(bundle)
     }
 
-/*
-    fun editQueryObject(
-        query: String,
-        startDate: String,
-        endDate: String,
-        artsBoolean: Boolean,
-        businessBoolean: Boolean,
-        entreprenuersBoolean: Boolean,
-        politicsBoolean: Boolean,
-        sportsBoolean: Boolean,
-        travelBoolean: Boolean
-    ): QueryDetails {
-        searchQueryObject?.query = listOf(query)
-        Log.d("EditqueryObjectLog", searchQueryObject?.query.toString())
-        searchQueryObject?.startDate = startDate
-        Log.d("EditsdateObjectLog", searchQueryObject?.startDate.toString())
-        searchQueryObject?.endDate = endDate
-        Log.d("EditedateObjectLog", searchQueryObject?.endDate.toString())
-        searchQueryObject?.checked = listOf(
-           "arts"
-            ,
-                "business"
-           ,
-            if (entreprenuersBoolean) {
-                "entreprenuers"
-            } else {
-                null
-            },
-            if (politicsBoolean) {
-                "politics"
-            } else {
-                null
-            },
-            if (sportsBoolean) {
-                "sports"
-            } else {
-                null
-            },
-            if (travelBoolean) {
-                "travel"
-            } else {
-                null
-            }
-
-        )
-        Log.d("EditfilterObjectLog", searchQueryObject?.checked.toString())
-        return searchQueryObject!!
-    }
-*/
 
 
     override fun onDestroy() {

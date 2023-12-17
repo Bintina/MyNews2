@@ -15,6 +15,7 @@ class SearchActivityUnitTest {
     val rule: ActivityScenarioRule<SearchActivity> =
         ActivityScenarioRule(SearchActivity::class.java)
 
+
     @Test
     fun check_that_the_query_is_formatted_correctly() {
         TODO("check that urlQuerySanitizer is implemented correctly once applied")
