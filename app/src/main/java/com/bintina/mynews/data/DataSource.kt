@@ -102,4 +102,19 @@ val filterList = listOf<String>()
         }
     }
 
+    suspend fun loadNotificationResults(notificationKeyword: String?, filters: String?): List<Doc?>{
+        val apiCall = com.bintina.mynews.api.ApiService.create()
+        val response = apiCall.getSearchedNews(notificationKeyword, filters, API_KEY)
+
+        val results: List<Doc?>? = response?.results?.docs
+
+        Log.d("responseDataSource", "results has ${results?.size}")
+        return if (results != null &&  results!!.isNotEmpty() ) {
+            Log.d("filteredListDataSourceLog", "has ${results.size} results" )
+            results
+        } else {
+            emptyList()
+        }
+
+    }
 }

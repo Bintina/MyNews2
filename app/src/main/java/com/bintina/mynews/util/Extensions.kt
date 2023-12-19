@@ -1,9 +1,11 @@
 package com.bintina.mynews.util
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
 import android.view.View
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.bintina.mynews.model.search.QueryDetails
 import com.bintina.mynews.util.MyApp.Companion.FILE_NAME
 import com.bintina.mynews.util.MyApp.Companion.newsJson
@@ -47,4 +49,26 @@ fun queryPreferenceToJson(context: Context, PREFERENCE_NAME: String): String {
     return queryJsonString
 }
 
+//Checked Boolean Filter............................................................................
+fun getSelectedFilters(
+    artsBoolean: Boolean,
+    businessBoolean: Boolean,
+    entreprenuersBoolean: Boolean,
+    politicsBoolean: Boolean,
+    sportsBoolean: Boolean,
+    travelBoolean: Boolean
+): String? {
+    val filters = listOf("arts", "business", "entreprenuers", "politics", "sports", "travel")
+    val booleanList = listOf(
+        artsBoolean,
+        businessBoolean,
+        entreprenuersBoolean,
+        politicsBoolean,
+        sportsBoolean,
+        travelBoolean
+    )
+    val trueFiltersList = filters.filterIndexed { index, _ -> booleanList[index] }
+
+    return "news_desk(${trueFiltersList.joinToString(",")})"
+}
 

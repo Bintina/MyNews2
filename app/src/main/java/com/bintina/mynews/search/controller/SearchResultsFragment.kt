@@ -16,6 +16,7 @@ import com.bintina.mynews.news.adapter.OnNewsClickedListener
 import com.bintina.mynews.data.DataSource
 import com.bintina.mynews.model.search.QueryDetails
 import com.bintina.mynews.util.Constants.API_KEY
+import com.bintina.mynews.util.getSelectedFilters
 import com.bintina.mynews.util.queryPreferenceToObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -80,27 +81,7 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
 
 
 
-    private fun getSelectedFilters(
-        artsBoolean: Boolean,
-        businessBoolean: Boolean,
-        entreprenuersBoolean: Boolean,
-        politicsBoolean: Boolean,
-        sportsBoolean: Boolean,
-        travelBoolean: Boolean
-    ): String? {
-        val filters = listOf("arts", "business", "entreprenuers", "politics", "sports", "travel")
-        val booleanList = listOf(
-            artsBoolean,
-            businessBoolean,
-            entreprenuersBoolean,
-            politicsBoolean,
-            sportsBoolean,
-            travelBoolean
-        )
-        val trueFiltersList = filters.filterIndexed { index, _ -> booleanList[index] }
 
-        return "news_desk(${trueFiltersList.joinToString(",")})"
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
