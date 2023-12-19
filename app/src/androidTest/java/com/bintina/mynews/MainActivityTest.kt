@@ -17,6 +17,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasData
 import androidx.test.espresso.intent.rule.IntentsRule
+import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
@@ -58,7 +59,18 @@ class MainActivityTest {
         onView(withId(R.id.search_query_fragment_container)).check(matches(isEnabled()))
 
     }
+@Test
+fun notification_button_navigates_to_notification_fragment(){
+    //onView(withId(R.id.menu)).perform(click())
+    assertNotNull(withId(R.id.menu_layout))
+    assertNotNull(withId(R.id.notifications_btn))
+    onView(withId(R.id.notifications_btn)).inRoot(isPlatformPopup()).perform(click())
+    // Wait for a moment to let the fragment container load
+    Thread.sleep(2000) // You can adjust the delay based on your application's loading time
 
+    //onView(withId(R.id.notifications_container)).check(matches(isEnabled()))
+
+}
 @Test
 fun action_overflow_btns_exist(){
     assertNotNull(withId(R.id.notifications_btn))

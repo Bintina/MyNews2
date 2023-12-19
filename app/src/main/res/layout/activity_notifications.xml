@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/overflow_fragment_container"
+        android:id="@+id/notification_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </com.google.android.material.appbar.AppBarLayout>
