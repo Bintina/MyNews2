@@ -75,7 +75,7 @@ val filterList = listOf<String>()
 /*
         Log.d("SearchDataSourceLog", "query submitted is $query")
 */
-        val apiCall = com.bintina.mynews.api.ApiService.create()
+        val apiCall = com.bintina.mynews.search.api.ApiService.create()
         val response = apiCall.getSearchedNews(keyword, filters, API_KEY)
 
         val results: List<Doc?>? = response?.results?.docs
@@ -103,7 +103,7 @@ val filterList = listOf<String>()
     }
 
     suspend fun loadNotificationResults(notificationKeyword: String?, filters: String?): List<Doc?>{
-        val apiCall = com.bintina.mynews.api.ApiService.create()
+        val apiCall = com.bintina.mynews.search.api.ApiService.create()
         val response = apiCall.getSearchedNews(notificationKeyword, filters, API_KEY)
 
         val results: List<Doc?>? = response?.results?.docs

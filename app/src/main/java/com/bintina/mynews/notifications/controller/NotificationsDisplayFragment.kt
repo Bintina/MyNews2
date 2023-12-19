@@ -71,6 +71,12 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initializeView()
+        Log.d("NotificationDisplayFragmentCreated", "Fragment created and views initialized")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
     private fun initializeView() {
         adapter = com.bintina.mynews.search.adapter.Adapter()
@@ -79,11 +85,6 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
 
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
     override fun openLink(clickedNewsLink: String) {
         val newsSite = Uri.parse(clickedNewsLink)

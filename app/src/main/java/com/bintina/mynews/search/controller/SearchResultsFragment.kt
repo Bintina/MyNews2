@@ -78,11 +78,6 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         }
     }
 
-
-
-
-
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initializeView()

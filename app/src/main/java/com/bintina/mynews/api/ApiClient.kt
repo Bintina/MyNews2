@@ -28,11 +28,5 @@ interface ApiClient {
     @GET(Constants.SCI_END_URL)
     suspend fun getScienceStories(): NewsResult?
 
-    //Search Screen
-    @GET(SEARCH_END_URL)
-    suspend fun getSearchedNews(
-        @Query("q", encoded = true)query: String?,
-        @Query("fq", encoded = true)filter: String?,
-        @Query("api-key")apiKey: String
-    ): SearchResult?
+
 }
