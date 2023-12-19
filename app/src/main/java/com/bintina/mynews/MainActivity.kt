@@ -13,9 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bintina.mynews.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.bintina.mynews.news.controller.PagerAdapter
-import com.bintina.mynews.notifications.NotificationsActivity
+import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.search.controller.SearchActivity
-import com.bintina.mynews.search.controller.SearchFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,4 +1,4 @@
-package com.bintina.mynews.notifications
+package com.bintina.mynews.notifications.controller
 
 import android.os.Bundle
 import android.os.PersistableBundle
