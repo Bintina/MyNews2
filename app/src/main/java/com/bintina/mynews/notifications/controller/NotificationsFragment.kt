@@ -34,6 +34,7 @@ class NotificationsFragment: Fragment() {
             extractNotificationData()
         }
 
+
         return binding.root
     }
 

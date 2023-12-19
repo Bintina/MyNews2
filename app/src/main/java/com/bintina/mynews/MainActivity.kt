@@ -9,12 +9,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
 import com.bintina.mynews.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.bintina.mynews.news.controller.PagerAdapter
 import com.bintina.mynews.notifications.controller.NotificationsActivity
-import com.bintina.mynews.search.controller.SearchActivity
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,8 +28,9 @@ class MainActivity : AppCompatActivity() {
         setupViewPager()
 
         searchBtn.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
+            val intent = Intent(this, NotificationsActivity::class.java)
             startActivity(intent)
+            Log.d("MagnifyingglassButtonClick","Magnifying button click method reached end")
         }
     }
 

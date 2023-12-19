@@ -65,9 +65,13 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
                 }
             }
         }
-        initializeView()
+
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initializeView()
+    }
     private fun initializeView() {
         adapter = com.bintina.mynews.search.adapter.Adapter()
         binding.resultsRecyclerview.adapter = adapter
