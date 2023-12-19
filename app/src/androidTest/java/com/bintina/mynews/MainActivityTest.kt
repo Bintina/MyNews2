@@ -17,7 +17,6 @@ import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasData
 import androidx.test.espresso.intent.rule.IntentsRule
-import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
@@ -26,7 +25,6 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitor
 import com.bintina.mynews.news.adapter.Adapter
-import com.bintina.mynews.R
 import com.bintina.mynews.util.MyApp
 import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
 import com.bintina.mynews.util.MyApp.Companion.newsInPossitionUrl
@@ -58,18 +56,6 @@ class MainActivityTest {
         Thread.sleep(2000) // You can adjust the delay based on your application's loading time
 
         onView(withId(R.id.search_query_fragment_container)).check(matches(isEnabled()))
-
-    }
-
-    @Test
-    fun notification_button_navigates_to_notification_fragment() {
-        onView(withId(com.google.android.material.R.id.expanded_menu)).perform(click())
-        assertNotNull(withId(R.id.notifications_btn))
-        onView(withId(R.id.notifications_btn)).inRoot(isPlatformPopup()).perform(click())
-        // Wait for a moment to let the fragment container load
-        Thread.sleep(2000) // You can adjust the delay based on your application's loading time
-
-        onView(withId(R.id.notifications_container)).check(matches(isEnabled()))
 
     }
 

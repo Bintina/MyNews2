@@ -30,13 +30,6 @@
         <category android:name="android.intent.category.ALTERNATIVE"/>
     </intent-filter>
 </activity>
-        <activity android:name=".notifications.NotificationsActivity"
-    android:exported="true">
-    <intent-filter>
-        <action android:name=".android.intent.action.NOTIFICATIONS"/>
-        <category android:name="android.intent.category.ALTERNATIVE"/>
-    </intent-filter>
-</activity>
     </application>
 
 </manifest>
