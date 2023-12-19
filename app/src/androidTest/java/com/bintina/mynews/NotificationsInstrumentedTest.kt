@@ -44,7 +44,10 @@ class NotificationsInstrumentedTest {
         onView(withId(com.bintina.mynews.R.id.toggle_btn)).perform(click())
         assertNotNull(withId(R.id.toggle_text))
         //assert Text matches Enable Notifications (once per day)
-        
 
+    }
+    @Test
+    fun notification_display_screen_views_exist(){
+        assertNotNull(withId(R.id.notification_display_fragment_container))
     }
 }
