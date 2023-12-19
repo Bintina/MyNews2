@@ -1,18 +1,19 @@
 package com.bintina.mynews.util
 
 import android.app.Activity
-import android.app.DatePickerDialog
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
-import android.view.View
-import android.widget.TextView
+import android.content.Context.*
+import android.content.Intent
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.bintina.mynews.model.search.QueryDetails
+import com.bintina.mynews.notifications.NotificationsReceiver
 import com.bintina.mynews.util.MyApp.Companion.FILE_NAME
-import com.bintina.mynews.util.MyApp.Companion.newsJson
 import com.bintina.mynews.util.MyApp.Companion.newsSharedPref
-import com.bintina.mynews.util.MyApp.Companion.savedQuery
 import com.google.gson.Gson
-import java.util.Calendar
 
 
 //Shared Preference Methods.........................................................................
@@ -20,7 +21,7 @@ import java.util.Calendar
 fun objectToPreference(context: Context, query: QueryDetails, PREFERENCE_NAME: String) {
     val queryJsonString = queryObjectToJson(context, query)
 
-    newsSharedPref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+    newsSharedPref = context.getSharedPreferences(FILE_NAME, MODE_PRIVATE)
     val newsSharedPrefEditor = newsSharedPref.edit()
 
 
@@ -43,13 +44,13 @@ fun queryPreferenceToObject(context: Context, PREFERENCE_NAME: String): QueryDet
 }
 
 fun queryPreferenceToJson(context: Context, PREFERENCE_NAME: String): String {
-    val querySharedPreferences = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+    val querySharedPreferences = context.getSharedPreferences(FILE_NAME, MODE_PRIVATE)
     val queryJsonString = querySharedPreferences.getString(PREFERENCE_NAME, "").toString()
 
     return queryJsonString
 }
 
-//Checked Boolean Filter............................................................................
+//Checked Boolean Filters............................................................................
 fun getSelectedFilters(
     artsBoolean: Boolean,
     businessBoolean: Boolean,
@@ -72,3 +73,30 @@ fun getSelectedFilters(
     return "news_desk(${trueFiltersList.joinToString(",")})"
 }
 
+public fun setAlarm(context: Context){
+    val alarmManager = getSystemService(android.content.Context.ALARM_SERVICE) as AlarmManager
+
+    val notificationRequestCode = 1001
+    val intent = Intent(context, NotificationsReceiver::class.java)
+    intent.action = "FOO"
+
+
+    val alarmStartDelay = 5L
+    val alarmIntervalInMillis = 20_000L
+    val alarmManagerTriggerTimeInMillis = System.currentTimeMillis() + alarmStartDelay * 1_000L
+    val pendingIntent = PendingIntent.getBroadcast(
+        context,
+        notificationRequestCode,
+        intent,
+        PendingIntent.FLAG_IMMUTABLE
+    )
+
+    alarmManager.setRepeating(
+        AlarmManager.RTC_WAKEUP,
+        alarmManagerTriggerTimeInMillis,
+        alarmIntervalInMillis,
+        pendingIntent
+    )
+
+    Toast.makeText(this, "Notification broadcast sent", Toast.LENGTH_LONG).show()
+}

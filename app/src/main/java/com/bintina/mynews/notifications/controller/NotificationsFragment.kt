@@ -32,6 +32,7 @@ class NotificationsFragment: Fragment() {
 
         binding.toggleBtn.setOnClickListener{
             extractNotificationData()
+            setAlarm()
         }
 
 
