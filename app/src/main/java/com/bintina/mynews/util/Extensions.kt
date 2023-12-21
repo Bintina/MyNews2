@@ -73,8 +73,8 @@ fun getSelectedFilters(
     return "news_desk(${trueFiltersList.joinToString(",")})"
 }
 
-public fun setAlarm(context: Context){
-    val alarmManager = getSystemService(android.content.Context.ALARM_SERVICE) as AlarmManager
+public fun setAlarm(context: Context) {
+    val alarmManager = context.getSystemService(ALARM_SERVICE) as? AlarmManager
 
     val notificationRequestCode = 1001
     val intent = Intent(context, NotificationsReceiver::class.java)
@@ -91,12 +91,12 @@ public fun setAlarm(context: Context){
         PendingIntent.FLAG_IMMUTABLE
     )
 
-    alarmManager.setRepeating(
+    alarmManager?.setRepeating(
         AlarmManager.RTC_WAKEUP,
         alarmManagerTriggerTimeInMillis,
         alarmIntervalInMillis,
         pendingIntent
     )
 
-    Toast.makeText(this, "Notification broadcast sent", Toast.LENGTH_LONG).show()
+    Toast.makeText(context, "Notification broadcast sent", Toast.LENGTH_LONG).show()
 }

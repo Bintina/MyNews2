@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -26,20 +27,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<activity android:name=".search.controller.SearchActivity"
-    android:exported="true">
-    <intent-filter>
-        <action android:name=".android.intent.action.SEARCH"/>
-        <category android:name="android.intent.category.ALTERNATIVE"/>
-    </intent-filter>
-</activity>
-    <activity android:name=".notifications.controller.NotificationsActivity"
-        android:exported="true">
-        <intent-filter>
-            <action android:name=".android.intent.action.NOTIFICATIONS"/>
-            <category android:name="android.intent.category.ALTERNATIVE"/>
-        </intent-filter>
-    </activity>
+        <activity
+            android:name=".search.controller.SearchActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name=".android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".notifications.controller.NotificationsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name=".android.intent.action.NOTIFICATIONS" />
+                <category android:name="android.intent.category.ALTERNATIVE" />
+            </intent-filter>
+        </activity>
+        <receiver
+            android:name=".notifications.NotificationsReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name=".notifications.NotificationService"
+            android:foregroundServiceType="dataSync"
+            android:exported="false">
+        </service>
     </application>
 
 </manifest>
