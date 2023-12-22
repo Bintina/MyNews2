@@ -17,9 +17,5 @@
     <string name="help">Help</string>
     <string name="notifications">Notifications</string>
     <string name="notification_toggle_text">Enable Notifications (once per day)</string>
-    <string name="notification_title">My News</string>
-    <string name="notification_text_content">notification_text_content</string>
-    <string name="channel_name" />
-    <string name="channel_description" />
 
 </resources>
