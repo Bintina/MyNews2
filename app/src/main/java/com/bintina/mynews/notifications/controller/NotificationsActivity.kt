@@ -65,27 +65,16 @@ class NotificationsActivity: AppCompatActivity(), OnNotificationsClickedListener
         val notificationWorkRequest: WorkRequest =
             OneTimeWorkRequestBuilder<NotificationWorker>()
                 .build()
-Log.d("NotificationClickLog","onNotificationsClick called")
+
         WorkManager
             .getInstance(applicationContext)
             .enqueue(notificationWorkRequest)
-
+Log.d("NotificationWorkerRequestLog", "Worker Request sent from Notification Activity")
     }
 
 
 
-    override fun notifyUser(bundle: Bundle) {
-        val intent = Intent(this, NotificationsActivity::class.java)
-        startActivity(intent)
 
-        val notificationsDisplayFragment = NotificationsDisplayFragment()
-
-
-        val fragmentManager = supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.notification_fragment_container, notificationsDisplayFragment, KEY_NOTIFICATION_DISPLAY_FRAGMENT)
-        transaction.commit()
-    }
 
 
 }

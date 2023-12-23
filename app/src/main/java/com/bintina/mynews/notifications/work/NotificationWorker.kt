@@ -48,11 +48,11 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
         val notificationId = Constants.NOTIFICATION_ID
 
         //Handle notification Click
-        val mainIntent = Intent(applicationContext, NotificationsActivity::class.java)
+        val mainIntent = Intent(applicationContext, NotificationsDisplayFragment::class.java)
         //to pass data in notification and get it in Activity
 //        mainIntent.putExtra("KEY_NAME","KEY_VALUE")
 
-        mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         val mainPendingIntent = PendingIntent.getActivity(
             applicationContext, 1, mainIntent,
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE

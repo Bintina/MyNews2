@@ -5,5 +5,5 @@ import android.os.Bundle
 interface OnNotificationsClickedListener {
     fun onNotificationsClick(bundle: Bundle)
 
-    fun notifyUser(bundle: Bundle)
+
 }
