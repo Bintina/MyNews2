@@ -5,8 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
+import com.bintina.mynews.MainActivity
 import com.bintina.mynews.databinding.FragmentNewsBinding
 import com.bintina.mynews.databinding.FragmentNotificationsBinding
+import com.bintina.mynews.notifications.work.NotificationWorker
+import java.util.concurrent.TimeUnit
 
 class NotificationsFragment: Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
@@ -32,7 +38,7 @@ class NotificationsFragment: Fragment() {
 
         binding.toggleBtn.setOnClickListener{
             extractNotificationData()
-            setAlarm()
+
         }
 
 
@@ -64,4 +70,6 @@ class NotificationsFragment: Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+        
 }

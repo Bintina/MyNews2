@@ -17,5 +17,9 @@
     <string name="help">Help</string>
     <string name="notifications">Notifications</string>
     <string name="notification_toggle_text">Enable Notifications (once per day)</string>
+    <string name="about_title">About My News</string>
+    <string name="about_content">My News is an Open Classrooms Application designed to demonstrate skill development in the areas of Api Calls, Retrofit, Recycler Views and Coroutines</string>
+    <string name="help_title">My News Help Desk</string>
+    <string name="help_content">Being a learning app, the best forms of help will come from the official documentation, linked in this text</string>
 
 </resources>

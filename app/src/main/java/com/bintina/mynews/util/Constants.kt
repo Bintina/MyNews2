@@ -47,4 +47,24 @@ object Constants {
 //working link
 //https://api.nytimes.com/svc/search/v2/articlesearch.json?q=children&api-key=zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
     //https://api.nytimes.com/svc/search/v2/articlesearch.json?q=children{%26}api-key{%3D}zISBuhDClXAT0G1Lpmz0YnbaGfhPkGqf
+
+    //Worker
+    @JvmField val NOTIFICATION_CHANNEL_NAME: CharSequence =
+        "WorkManager Notifications"
+    const val NOTIFICATION_CHANNEL_DESCRIPTION =
+        "Shows notifications whenever work starts"
+    @JvmField val NOTIFICATION_TITLE: CharSequence = "WorkRequest Starting"
+    const val CHANNEL_ID = "NOTIFICATION_CHANNEL"
+    const val NOTIFICATION_ID = 1
+
+    // The name of the image manipulation work
+    const val NOTIFICATIONS_WORK_NAME = "notification_work"
+
+
+    // Other keys
+    const val OUTPUT_PATH = "blur_filter_outputs"
+ //   const val KEY_IMAGE_URI = "KEY_IMAGE_URI"
+    const val TAG_OUTPUT = "OUTPUT"
+
+    const val DELAY_TIME_MILLIS: Long = 3000
 }

@@ -87,4 +87,26 @@ dependencies {
     androidTestImplementation ("androidx.test.espresso:espresso-intents:3.5.1")
     testImplementation ("org.hamcrest:hamcrest-core:2.2")
 
+    //WorkManager Dependencies......................................................................
+
+
+        // (Java only)
+        implementation("androidx.work:work-runtime:2.9.0")
+
+        // Kotlin + coroutines
+        implementation("androidx.work:work-runtime-ktx:2.9.0")
+
+        // optional - RxJava2 support
+        implementation("androidx.work:work-rxjava2:2.9.0")
+
+        // optional - GCMNetworkManager support
+        implementation("androidx.work:work-gcm:2.9.0")
+
+        // optional - Test helpers
+        androidTestImplementation("androidx.work:work-testing:2.9.0")
+
+        // optional - Multiprocess support
+        implementation ("androidx.work:work-multiprocess:2.9.0")
+
+
 }

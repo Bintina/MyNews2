@@ -1,7 +1,13 @@
 package com.bintina.mynews
 
 
+import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -9,10 +15,16 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.bintina.mynews.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.bintina.mynews.news.controller.PagerAdapter
 import com.bintina.mynews.notifications.controller.NotificationsActivity
+import com.bintina.mynews.overflow.AboutActivity
+import com.bintina.mynews.overflow.HelpActivity
+import com.bintina.mynews.util.Constants
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         searchBtn.setOnClickListener {
             val intent = Intent(this, NotificationsActivity::class.java)
             startActivity(intent)
-            Log.d("MagnifyingglassButtonClick","Magnifying button click method reached end")
+            Log.d("MagnifyingglassButtonClick", "Magnifying button click method reached end")
         }
     }
 
@@ -54,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.notifications_btn -> {
@@ -67,10 +80,26 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "notification item clicked", Toast.LENGTH_SHORT).show()
                 return true
             }
+
+            R.id.help_btn -> {
+                Log.d("HelpBtnLog", "Help button clicked")
+                val intent = Intent(this, HelpActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+
+            R.id.about_btn -> {
+                Log.d("AboutBtnLog", "About button clicked")
+                val intent = Intent(this, AboutActivity::class.java)
+                startActivity(intent)
+                return true
+            }
             // Add more cases for other menu items if needed
             // R.id.other_menu_item_id -> { /* Handle other menu items */ }
             else -> return super.onOptionsItemSelected(item)
 
         }
     }
+
+
 }
