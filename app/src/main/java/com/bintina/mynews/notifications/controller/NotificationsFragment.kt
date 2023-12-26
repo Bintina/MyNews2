@@ -1,10 +1,12 @@
 package com.bintina.mynews.notifications.controller
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.work.Data
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
@@ -12,6 +14,22 @@ import com.bintina.mynews.MainActivity
 import com.bintina.mynews.databinding.FragmentNewsBinding
 import com.bintina.mynews.databinding.FragmentNotificationsBinding
 import com.bintina.mynews.notifications.work.NotificationWorker
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_ARTS
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_BUSINESS
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_ENTREPRENUERS
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_KEYWORD
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_POLITICS
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_SPORTS
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_TRAVEL
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanArts
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanBusiness
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanEntreprenuers
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanPolitics
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanSports
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanTravel
+import com.bintina.mynews.util.MyApp.Companion.notificationKeyword
+import com.bintina.mynews.util.NotificationUtils.createNotificationIntent
+import com.bintina.mynews.util.NotificationUtils.createNotificationWorkerRequest
 import java.util.concurrent.TimeUnit
 
 class NotificationsFragment: Fragment() {
@@ -20,13 +38,7 @@ class NotificationsFragment: Fragment() {
     lateinit var listener: OnNotificationsClickedListener
 
     companion object {
-        const val NOTIFICATION_KEY_KEYWORD = "KEY_KEYWORD"
-        const val NOTIFICATION_KEY_ARTS = "KEY_POLITICS"
-        const val NOTIFICATION_KEY_BUSINESS = "KEY_BUSINESS"
-        const val NOTIFICATION_KEY_ENTREPRENUERS = "KEY_ENTREPRENUERS"
-        const val NOTIFICATION_KEY_POLITICS = "KEY_POLITICS"
-        const val NOTIFICATION_KEY_SPORTS = "KEY_SPORTS"
-        const val NOTIFICATION_KEY_TRAVEL = "KEY_TRAVEL"
+
     }
 
     override fun onCreateView(
@@ -46,24 +58,30 @@ class NotificationsFragment: Fragment() {
     }
 
     private fun extractNotificationData() {
-        val notificationKeyword = binding.notificationSearchQueryTermEditText.text.toString()
-        val arts = binding.notificationCheckboxArts.isChecked
-        val business = binding.notificationCheckboxBusiness.isChecked
-        val entreprenuers = binding.notificationCheckboxEntreprenuers.isChecked
-        val politics = binding.notificationCheckboxPolitics.isChecked
-        val sports = binding.notificationCheckboxSports.isChecked
-        val travel = binding.notificationCheckboxTravel.isChecked
 
-        val bundle: Bundle = Bundle()
-        bundle.putString(NOTIFICATION_KEY_KEYWORD, notificationKeyword)
-        bundle.putBoolean(NOTIFICATION_KEY_ARTS, arts)
-        bundle.putBoolean(NOTIFICATION_KEY_BUSINESS, business)
-        bundle.putBoolean(NOTIFICATION_KEY_ENTREPRENUERS, entreprenuers)
-        bundle.putBoolean(NOTIFICATION_KEY_POLITICS, politics)
-        bundle.putBoolean(NOTIFICATION_KEY_SPORTS, sports)
-        bundle.putBoolean(NOTIFICATION_KEY_TRAVEL, travel)
+        notificationKeyword = binding.notificationSearchQueryTermEditText.text.toString()
+        notificationBooleanArts = binding.notificationCheckboxArts.isChecked
+        notificationBooleanBusiness = binding.notificationCheckboxBusiness.isChecked
+        notificationBooleanEntreprenuers = binding.notificationCheckboxEntreprenuers.isChecked
+        notificationBooleanPolitics = binding.notificationCheckboxPolitics.isChecked
+        notificationBooleanSports = binding.notificationCheckboxSports.isChecked
+        notificationBooleanTravel = binding.notificationCheckboxTravel.isChecked
 
-        listener.onNotificationsClick(bundle)
+        Log.d("NFData", "Keyword = $notificationKeyword, art = $notificationBooleanArts, business = $notificationBooleanBusiness,entreprenuers = $notificationBooleanEntreprenuers, politics = $notificationBooleanPolitics, sports = $notificationBooleanSports, travel = $notificationBooleanTravel")
+        val data = Data.Builder()
+       .putString(NOTIFICATION_KEY_KEYWORD, notificationKeyword)
+        .putBoolean(NOTIFICATION_KEY_ARTS, notificationBooleanArts!!)
+        .putBoolean(NOTIFICATION_KEY_BUSINESS, notificationBooleanBusiness!!)
+        .putBoolean(NOTIFICATION_KEY_ENTREPRENUERS, notificationBooleanEntreprenuers!!)
+        .putBoolean(NOTIFICATION_KEY_POLITICS, notificationBooleanPolitics!!)
+        .putBoolean(NOTIFICATION_KEY_SPORTS, notificationBooleanSports!!)
+        .putBoolean(NOTIFICATION_KEY_TRAVEL, notificationBooleanTravel!!)
+            .build()
+
+        val intent = createNotificationIntent(data)
+        listener.onNotificationsClick(intent)
+
+        val workRequest = createNotificationWorkerRequest()
     }
 
     override fun onDestroy() {

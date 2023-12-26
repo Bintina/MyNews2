@@ -24,44 +24,59 @@ import com.bintina.mynews.util.Constants.CHANNEL_ID
 import com.bintina.mynews.util.Constants.NOTIFICATIONS_WORK_NAME
 import com.bintina.mynews.util.Constants.NOTIFICATION_CHANNEL_DESCRIPTION
 import com.bintina.mynews.util.Constants.NOTIFICATION_CHANNEL_NAME
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_ARTS
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_BUSINESS
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_ENTREPRENUERS
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_KEYWORD
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_POLITICS
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_SPORTS
+import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_TRAVEL
 import com.bintina.mynews.util.Constants.NOTIFICATION_TITLE
 import java.util.concurrent.TimeUnit
 
-class NotificationsActivity: AppCompatActivity(), OnNotificationsClickedListener {
+class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListener {
     lateinit var binding: ActivityNotificationsBinding
 
     companion object {
         const val KEY_NOTIFICATION_FRAGMENT = "KEY_NOTIFICATION_FRAGMENT"
         const val KEY_NOTIFICATION_DISPLAY_FRAGMENT = "KEY_NOTIFICATION_DISPLAY_FRAGMENT"
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNotificationsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
-        Log.d("NotificationOnCreateLog","Navigation Activity onCreate onCreated")
+        Log.d("NotificationOnCreateLog", "Navigation Activity onCreate onCreated")
         val notificationsFragment = NotificationsFragment()
         notificationsFragment.listener = this
 
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.notification_fragment_container, notificationsFragment, KEY_NOTIFICATION_FRAGMENT)
+        transaction.add(
+            R.id.notification_fragment_container,
+            notificationsFragment,
+            KEY_NOTIFICATION_FRAGMENT
+        )
         transaction.commit()
 
 
-    onNewIntent(intent)
+        onNewIntent(intent)
     }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         //get data from bundles using intent
         val bundle: Bundle? = intent!!.extras
-       /* if (bundle != null){
-            val name = getString("KEY_NAME")
-        }*/
+        /* if (bundle != null){
+             val name = getString("KEY_NAME")
+         }*/
     }
-    override fun onNotificationsClick(bundle: Bundle) {
+
+
+
+    override fun onNotificationsClick(intent: Intent) {
         val notificationWorkRequest: WorkRequest =
             OneTimeWorkRequestBuilder<NotificationWorker>()
                 .build()
@@ -69,12 +84,8 @@ class NotificationsActivity: AppCompatActivity(), OnNotificationsClickedListener
         WorkManager
             .getInstance(applicationContext)
             .enqueue(notificationWorkRequest)
-Log.d("NotificationWorkerRequestLog", "Worker Request sent from Notification Activity")
+        Log.d("NotificationWorkerRequestLog", "Worker Request sent from Notification Activity")
     }
-
-
-
-
 
 
 }

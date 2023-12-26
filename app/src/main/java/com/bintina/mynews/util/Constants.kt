@@ -59,7 +59,13 @@ object Constants {
 
     // The name of the image manipulation work
     const val NOTIFICATIONS_WORK_NAME = "notification_work"
-
+    const val NOTIFICATION_KEY_KEYWORD = "KEY_KEYWORD"
+    const val NOTIFICATION_KEY_ARTS = "KEY_POLITICS"
+    const val NOTIFICATION_KEY_BUSINESS = "KEY_BUSINESS"
+    const val NOTIFICATION_KEY_ENTREPRENUERS = "KEY_ENTREPRENUERS"
+    const val NOTIFICATION_KEY_POLITICS = "KEY_POLITICS"
+    const val NOTIFICATION_KEY_SPORTS = "KEY_SPORTS"
+    const val NOTIFICATION_KEY_TRAVEL = "KEY_TRAVEL"
 
     // Other keys
     const val OUTPUT_PATH = "blur_filter_outputs"

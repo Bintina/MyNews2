@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <application
+        android:name=".util.MyApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -42,6 +43,15 @@
             <category android:name="android.intent.category.ALTERNATIVE"/>
         </intent-filter>
     </activity>
+    <activity android:name=".notifications.controller.NotificationDisplayActivity"
+        android:exported="true"
+        >
+        <intent-filter>
+            <action android:name=".android.intent.action.NOTIFICATIONS"/>
+            <category android:name="android.intent.category.ALTERNATIVE"/>
+        </intent-filter>
+    </activity>
     </application>
 
 </manifest>
+        <!--android:usesCleartextTraffic="true"    to put in Notification display activity?-->

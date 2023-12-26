@@ -103,9 +103,10 @@ val filterList = listOf<String>()
     }
 
     suspend fun loadNotificationResults(notificationKeyword: String?, filters: String?): List<Doc?>{
+Log.d("DatasourceNotificationLog","before api call key = $notificationKeyword & filters = $filters")
         val apiCall = com.bintina.mynews.search.api.ApiService.create()
         val response = apiCall.getSearchedNews(notificationKeyword, filters, API_KEY)
-
+Log.d("DatasourceNotificationLog","key = $notificationKeyword & filters = $filters")
         val results: List<Doc?>? = response?.results?.docs
 
         Log.d("responseDataSource", "results has ${results?.size}")

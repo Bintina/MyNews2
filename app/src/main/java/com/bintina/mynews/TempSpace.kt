@@ -11,8 +11,17 @@ import com.google.gson.Gson
 class TempSpace {
 
 
-
-
+    /*  val bundle = arguments
+           Log.d("bundleNDFLog", "bundle = $bundle")
+           bundle?.let {
+               val notificationKeyword = it.getString(NOTIFICATION_KEY_KEYWORD)
+               val arts = it.getBoolean(NOTIFICATION_KEY_ARTS)
+               val business = it.getBoolean(NOTIFICATION_KEY_BUSINESS)
+               val entreprenuers = it.getBoolean(NOTIFICATION_KEY_ENTREPRENUERS)
+               val politics = it.getBoolean(NOTIFICATION_KEY_POLITICS)
+               val sports = it.getBoolean(NOTIFICATION_KEY_SPORTS)
+               val travel = it.getBoolean(NOTIFICATION_KEY_TRAVEL)
+   */
 /*    val resultFragment = SearchResultsFragment()
     val transaction = fragmentManager?.beginTransaction()
     transaction?.replace(R.id.search_fragment_container, resultFragment)?.commit()*/

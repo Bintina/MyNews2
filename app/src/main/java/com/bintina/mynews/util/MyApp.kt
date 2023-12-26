@@ -1,13 +1,19 @@
 package com.bintina.mynews.util
 
+import android.app.Application
 import android.content.SharedPreferences
 import com.bintina.mynews.model.news.News
 import com.bintina.mynews.model.search.QueryDetails
 import com.bintina.mynews.util.Constants.API_KEY
 
-class MyApp {
+class MyApp: Application() {
 
     companion object{
+
+        lateinit var instance: MyApp
+            private set
+
+
         //Fragment State
         var CURRENT_NEWS_STATE = 0
 
@@ -29,12 +35,20 @@ class MyApp {
         lateinit var searchResults: List<News?>
 
         var newsInPossitionUrl = ""
-       //val var formattedQuery = "search/v2/articlesearch.json?q=$savedQuery&api-key=$API_KEY"
-//https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=yourkey
-        //query and filter values
-        /*lateinit var query: String
-        val formattedQuery = "q=$query&api-key=$API_KEY"*/
-    }
 
+        //notification variables
+        var notificationKeyword: String = ""
+        var notificationBooleanArts : Boolean = false
+        var notificationBooleanBusiness : Boolean = false
+        var notificationBooleanEntreprenuers : Boolean = false
+        var notificationBooleanPolitics : Boolean = false
+        var notificationBooleanSports : Boolean = false
+        var notificationBooleanTravel : Boolean = false
+
+    }
+override fun onCreate(){
+    super.onCreate()
+    instance = this
+}
 
 }

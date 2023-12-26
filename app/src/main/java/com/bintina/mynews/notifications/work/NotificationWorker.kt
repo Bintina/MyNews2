@@ -25,11 +25,19 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.bintina.mynews.MainActivity
 import com.bintina.mynews.R
+import com.bintina.mynews.notifications.controller.NotificationDisplayActivity
 import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.notifications.controller.NotificationsDisplayFragment
 import com.bintina.mynews.util.Constants
 import com.bintina.mynews.util.Constants.CHANNEL_ID
 import com.bintina.mynews.util.Constants.NOTIFICATION_ID
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanArts
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanBusiness
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanEntreprenuers
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanPolitics
+import com.bintina.mynews.util.MyApp.Companion.notificationBooleanSports
+import com.bintina.mynews.util.MyApp.Companion.notificationKeyword
+import com.bintina.mynews.util.NotificationUtils.createNotificationIntent
 import java.util.concurrent.TimeUnit
 import javax.sql.DataSource
 
@@ -38,8 +46,8 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
 
 
     override fun doWork(): Result {
-        println("Hello from Worker!")
-        // Do the work here--in this case, upload the images.
+        val bundle = inputData
+        val intent = createNotificationIntent(bundle)
         //showNotification()
         Log.d("ShowNotificationLog", "showNotification() Triggered")
         createNotificationChannel()
@@ -48,9 +56,18 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
         val notificationId = Constants.NOTIFICATION_ID
 
         //Handle notification Click
-        val mainIntent = Intent(applicationContext, NotificationsDisplayFragment::class.java)
+        val mainIntent = Intent(applicationContext, NotificationDisplayActivity::class.java)
         //to pass data in notification and get it in Activity
 //        mainIntent.putExtra("KEY_NAME","KEY_VALUE")
+        mainIntent.putExtra(Constants.NOTIFICATION_KEY_KEYWORD, notificationKeyword!!)
+        Log.d("WorkerLog","keyword = $notificationKeyword")
+        mainIntent.putExtra(Constants.NOTIFICATION_KEY_ARTS, notificationBooleanArts!!)
+        Log.d("WorkerLog", "Art Boolean = $notificationBooleanArts")
+        mainIntent.putExtra(Constants.NOTIFICATION_KEY_BUSINESS, notificationBooleanBusiness!!)
+        mainIntent.putExtra(Constants.NOTIFICATION_KEY_ENTREPRENUERS, notificationBooleanEntreprenuers!!)
+        mainIntent.putExtra(Constants.NOTIFICATION_KEY_POLITICS, notificationBooleanPolitics!!)
+        mainIntent.putExtra(Constants.NOTIFICATION_KEY_SPORTS, notificationBooleanSports!!)
+        mainIntent.putExtra(Constants.NOTIFICATION_KEY_TRAVEL, notificationBooleanSports!!)
 
         mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         val mainPendingIntent = PendingIntent.getActivity(
