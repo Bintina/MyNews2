@@ -12,8 +12,10 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
 import com.bintina.mynews.model.search.QueryDetails
+import com.bintina.mynews.util.MyApp.Companion.searchEndDate
 
 import com.bintina.mynews.util.MyApp.Companion.searchQueryObject
+import com.bintina.mynews.util.MyApp.Companion.searchStartDate
 import com.bintina.mynews.util.objectToPreference
 import java.util.Calendar
 
@@ -22,9 +24,8 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
     lateinit var listener: OnSearchClicked
 
-    lateinit var enteredStartDate: String
-    lateinit var enteredEndDate: String
-
+    var enteredStartDate: String = searchStartDate
+    var enteredEndDate: String = searchEndDate
     companion object {
         const val KEY_KEYWORD = "KEY_KEYWORD"
         const val START_DATE = "START_DATE"
@@ -45,6 +46,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
+
 
         binding.startDateEt.setOnClickListener {
             showStartDatePicker(requireContext(), binding.startDateEt)
@@ -83,10 +85,7 @@ class SearchFragment : Fragment() {
         bundle.putBoolean(KEY_SPORTS, sports)
         bundle.putBoolean(KEY_TRAVEL, travel)
 
-        /*
-        val artObject = editQueryObject("news_desk", "arts", arts)
-                objectToPreference(requireContext(), artObject, KEY_ARTS_PREF )
-        */
+       
                 listener.onSearchClick(bundle)
     }
 

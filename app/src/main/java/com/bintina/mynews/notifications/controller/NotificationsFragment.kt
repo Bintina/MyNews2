@@ -28,7 +28,10 @@ import com.bintina.mynews.util.MyApp.Companion.notificationBooleanPolitics
 import com.bintina.mynews.util.MyApp.Companion.notificationBooleanSports
 import com.bintina.mynews.util.MyApp.Companion.notificationBooleanTravel
 import com.bintina.mynews.util.MyApp.Companion.notificationKeyword
-class NotificationsFragment: Fragment() {
+import com.bintina.mynews.util.getEndDate
+import com.bintina.mynews.util.getStartDate
+
+class NotificationsFragment : Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
     lateinit var listener: OnNotificationsClickedListener
@@ -44,9 +47,10 @@ class NotificationsFragment: Fragment() {
     ): View? {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
 
-        binding.toggleBtn.setOnClickListener{
+        binding.toggleBtn.setOnClickListener {
             extractNotificationData()
-
+            getStartDate()
+            getEndDate()
         }
 
 
@@ -73,5 +77,5 @@ class NotificationsFragment: Fragment() {
         _binding = null
     }
 
-        
+
 }

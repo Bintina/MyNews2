@@ -33,23 +33,7 @@ class Adapter() : RecyclerView.Adapter<com.bintina.mynews.search.adapter.Adapter
             view.section.text = "${doc?.sectionName} > ${doc?.subsectionName}"
 
             //Date View
-            /*val formatOutputDate = SimpleDateFormat("d/M/Y", Locale.US)
-            val formatInputDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss+SSSX", Locale.US)
-
-            val inputDate = formatInputDate.parse(inputText)
-            val outputDate = formatOutputDate.format(inputDate)*/
-          /*  val stringDate =doc?.pubDate.toString()
-
-val date = SimpleDateFormat("d/M/Y").format(stringDate).toString()
-            Log.d("DateFormatAdapter", "The SimpleDateFormat output is $date")
-*/         //  2023-11-24T10:02:20+0000
-            //   view.date.text = DateTimeFormatter("d/M/Y").format(doc?.pubDate).toString()
-            //DateFormat outputFormat = new SimpleDateFormat("MM/yyyy", Locale.US);
-            //DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.US);
-            //
-            //String inputText = "2012-11-17T00:00:00.000-05:00";
-            //Date date = inputFormat.parse(inputText);
-            //String outputText = outputFormat.format(date);
+            view.date.text = SimpleDateFormat("d/M/Y", Locale.US).format(doc?.pubDate).toString()
 
             //Caption View
             view.caption.text = doc?.abstract

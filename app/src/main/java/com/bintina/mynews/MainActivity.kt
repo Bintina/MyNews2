@@ -25,6 +25,8 @@ import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.overflow.AboutActivity
 import com.bintina.mynews.overflow.HelpActivity
 import com.bintina.mynews.util.Constants
+import com.bintina.mynews.util.getEndDate
+import com.bintina.mynews.util.getStartDate
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,6 +46,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             Log.d("MagnifyingglassButtonClick", "Magnifying button click method reached end")
         }
+        getStartDate()
+        getEndDate()
     }
 
     private fun setupViewPager() {

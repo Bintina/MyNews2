@@ -1,18 +1,11 @@
 package com.bintina.mynews.data
 
-import android.content.Context
-import android.net.Uri
 import android.util.Log
 import com.bintina.mynews.model.news.News
 import com.bintina.mynews.model.search.Doc
 import com.bintina.mynews.api.ApiService
-import com.bintina.mynews.model.search.QueryDetails
-import com.bintina.mynews.search.controller.SearchFragment
 import com.bintina.mynews.util.Constants.API_KEY
-import com.bintina.mynews.util.MyApp
 import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
-import com.bintina.mynews.util.MyApp.Companion.searchQueryObject
-import com.bintina.mynews.util.queryPreferenceToObject
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -66,17 +59,19 @@ object DataSource {
         }
     }
 
-    suspend fun loadSearchResults(keyword: String?, startDate: String?, endDate: String?, filters: String?): List<Doc?> {
+    suspend fun loadSearchResults(
+        keyword: String?,
+        startDate: String?,
+        endDate: String?,
+        filters: String?
+    ): List<Doc?> {
 
-Log.d("DataSourceQuery","DataSourceQuery = $keyword")
-Log.d("DataSourceFilter","DataSourceFilters = $filters")
+        Log.d("DataSourceQuery", "DataSourceQuery = $keyword")
+        Log.d("DataSourceFilter", "DataSourceFilters = $filters")
 
-val filterList = listOf<String>()
-/*
-        Log.d("SearchDataSourceLog", "query submitted is $query")
-*/
+
         val apiCall = com.bintina.mynews.search.api.ApiService.create()
-        val response = apiCall.getSearchedNews(keyword, filters, API_KEY)
+        val response = apiCall.getSearchedNews(keyword, filters, true, startDate, endDate, API_KEY)
 
         val results: List<Doc?>? = response?.results?.docs
 
@@ -84,38 +79,79 @@ val filterList = listOf<String>()
 
 
         var parameterToCheckForDate = "pub_date"
-      var filteredForDate = results?.filter { doc ->
+        var filteredForDate = results?.filter { doc ->
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
-          val newsDate = dateFormat.parse(doc?.pubDate)
+            val newsDate = dateFormat.parse(doc?.pubDate)
             val startDateObj = dateFormat.parse(startDate)
             val endDateObj = dateFormat.parse(endDate)
 
             newsDate in startDateObj..endDateObj
         }
 
-        return if (filteredForDate != null &&  filteredForDate!!.isNotEmpty() ) {
-            Log.d("filteredListDataSourceLog", "has ${filteredForDate.size} results" )
+        return if (filteredForDate != null && filteredForDate!!.isNotEmpty()) {
+            Log.d("filteredListDataSourceLog", "has ${filteredForDate.size} results")
             filteredForDate
         } else {
             emptyList()
         }
     }
 
-    suspend fun loadNotificationResults(notificationKeyword: String?, filters: String?): List<Doc?>{
-Log.d("DatasourceNotificationLog","before api call key = $notificationKeyword & filters = $filters")
+    suspend fun loadNotificationResults(
+        notificationKeyword: String?,
+        filters: String?
+    ): List<Doc?> {
+        Log.d(
+            "DatasourceNotificationLog",
+            "before api call key = $notificationKeyword & filters = $filters"
+        )
+        val startDate = "20230626"
+        val endDate = "20231227"
         val apiCall = com.bintina.mynews.search.api.ApiService.create()
-        val response = apiCall.getSearchedNews(notificationKeyword, filters, API_KEY)
-Log.d("DatasourceNotificationLog","key = $notificationKeyword & filters = $filters")
+        val response = apiCall.getSearchedNews(notificationKeyword, filters, true, startDate, endDate, API_KEY)
+        Log.d("DatasourceNotificationLog", "key = $notificationKeyword & filters = $filters")
         val results: List<Doc?>? = response?.results?.docs
 
-        Log.d("responseDataSource", "results has ${results?.size}")
-        return if (results != null &&  results!!.isNotEmpty() ) {
-            Log.d("filteredListDataSourceLog", "has ${results.size} results" )
-            results
-        } else {
-            emptyList()
+        var parameterToCheckForNull = "section"
+        val filteredForSection = results?.filterNot { Doc ->
+            when (parameterToCheckForNull) {
+                "section" -> Doc?.sectionName.isNullOrBlank()
+                else -> false
+            }
         }
 
+        parameterToCheckForNull = "subsection"
+        val filteredForSubsection = filteredForSection?.filterNot { Doc ->
+            when (parameterToCheckForNull) {
+                "subsection" -> Doc?.subsectionName.isNullOrBlank()
+                else -> false
+            }
+        }
+
+        parameterToCheckForNull = "abstract"
+        val filteredForAbstract = filteredForSubsection?.filterNot { Doc ->
+            when (parameterToCheckForNull) {
+                "abstract" -> Doc?.abstract.isNullOrBlank()
+                else -> false
+            }
+        }
+        parameterToCheckForNull = "multimedia"
+        val filteredForAll = filteredForAbstract!!.filterNot { Doc ->
+            when (parameterToCheckForNull) {
+                "multimedia" -> Doc?.multimedia!!.isEmpty()
+                else -> false
+            }
+        }
+        val filteredList: List<Doc?> = filteredForAll
+        if (filteredList == null) {
+            Log.d(
+                "EmptyFilteredList",
+                "You are all caught up. There is no recent news in your chosen categories."
+            )
+            // Toast.makeText(this,"You are all caught up. There is no recent news in your chosen categories.", Toast.LENGTH_LONG).Toast.Length
+        }
+
+        Log.d("responseDataSource", "results has ${filteredList?.size} after filter")
+        return filteredList
     }
 }

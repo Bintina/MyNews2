@@ -9,6 +9,8 @@ import com.bintina.mynews.databinding.ItemRowBinding
 import com.bintina.mynews.model.search.Doc
 import com.bintina.mynews.news.adapter.OnNewsClickedListener
 import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class Adapter(): RecyclerView.Adapter<com.bintina.mynews.notifications.adapter.Adapter.ItemViewHolder>() {
     var notificationsResultList = mutableListOf<Doc?>()
@@ -28,23 +30,10 @@ class Adapter(): RecyclerView.Adapter<com.bintina.mynews.notifications.adapter.A
             view.section.text = "${doc?.sectionName} > ${doc?.subsectionName}"
 
             //Date View
-            /*val formatOutputDate = SimpleDateFormat("d/M/Y", Locale.US)
-            val formatInputDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss+SSSX", Locale.US)
-
-            val inputDate = formatInputDate.parse(inputText)
-            val outputDate = formatOutputDate.format(inputDate)*/
-            /*  val stringDate =doc?.pubDate.toString()
-
-  val date = SimpleDateFormat("d/M/Y").format(stringDate).toString()
-              Log.d("DateFormatAdapter", "The SimpleDateFormat output is $date")
-  */         //  2023-11-24T10:02:20+0000
-            //   view.date.text = DateTimeFormatter("d/M/Y").format(doc?.pubDate).toString()
-            //DateFormat outputFormat = new SimpleDateFormat("MM/yyyy", Locale.US);
-            //DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.US);
-            //
-            //String inputText = "2012-11-17T00:00:00.000-05:00";
-            //Date date = inputFormat.parse(inputText);
-            //String outputText = outputFormat.format(date);
+            val apiDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US)
+            val parsedDate = apiDateFormat.parse(doc?.pubDate)
+            //Log.d("DateAdapterLog","date looks like $date")
+            view.date.text = SimpleDateFormat("d/M/Y", Locale.US).format(parsedDate)
 
             //Caption View
             view.caption.text = doc?.abstract

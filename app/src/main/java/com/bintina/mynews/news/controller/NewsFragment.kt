@@ -13,6 +13,7 @@ import com.bintina.mynews.databinding.FragmentNewsBinding
 import com.bintina.mynews.news.adapter.Adapter
 import com.bintina.mynews.news.adapter.OnNewsClickedListener
 import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
+import com.bintina.mynews.util.MyApp.Companion.clickedArticles
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -57,6 +58,9 @@ class NewsFragment: Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
     override fun openLink(clickedNewsLink: String) {
         val newsSite = Uri.parse(clickedNewsLink)
         val intent = Intent(Intent.ACTION_VIEW, newsSite)
+
+        clickedArticles.add(clickedNewsLink)
+        adapter.notifyDataSetChanged()
 
         startActivity(intent)
     }

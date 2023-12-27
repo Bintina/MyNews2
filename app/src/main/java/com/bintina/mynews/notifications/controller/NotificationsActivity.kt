@@ -39,7 +39,6 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
 
     companion object {
         const val KEY_NOTIFICATION_FRAGMENT = "KEY_NOTIFICATION_FRAGMENT"
-        const val KEY_NOTIFICATION_DISPLAY_FRAGMENT = "KEY_NOTIFICATION_DISPLAY_FRAGMENT"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,16 +61,12 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
         transaction.commit()
 
 
-
     }
-
-
-
 
 
     override fun onNotificationsClick() {
         val notificationWorkRequest: WorkRequest =
-            OneTimeWorkRequestBuilder<NotificationWorker>()
+            PeriodicWorkRequestBuilder<NotificationWorker>(1, TimeUnit.HOURS)
                 .build()
 
         WorkManager
@@ -79,14 +74,6 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
             .enqueue(notificationWorkRequest)
         Log.d("NotificationWorkerRequestLog", "Worker Request sent from Notification Activity")
     }
-/*    val periodicWorkRequest = PeriodicWorkRequestBuilder<NotificationWorker>(
-            1, TimeUnit.HOURS
-        ).build()*//*
-
-
-        */
-/*        WorkManager.getInstance(MyApp.instance).enqueue(periodicWorkRequest)
-                return periodicWorkRequest*/
 
 
 }

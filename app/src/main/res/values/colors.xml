@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#4C4C4C</color>
+    <color name="clicked_article_color">#009688</color>
 
     <!-- Style color values -->
     <color name="textColorPrimary">#42000000</color>
