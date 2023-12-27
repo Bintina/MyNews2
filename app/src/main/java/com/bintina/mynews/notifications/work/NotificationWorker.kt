@@ -37,7 +37,7 @@ import com.bintina.mynews.util.MyApp.Companion.notificationBooleanEntreprenuers
 import com.bintina.mynews.util.MyApp.Companion.notificationBooleanPolitics
 import com.bintina.mynews.util.MyApp.Companion.notificationBooleanSports
 import com.bintina.mynews.util.MyApp.Companion.notificationKeyword
-import com.bintina.mynews.util.NotificationUtils.createNotificationIntent
+
 import java.util.concurrent.TimeUnit
 import javax.sql.DataSource
 
@@ -47,7 +47,7 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
 
     override fun doWork(): Result {
         val bundle = inputData
-        val intent = createNotificationIntent(bundle)
+       // val intent = createNotificationIntent(bundle)
         //showNotification()
         Log.d("ShowNotificationLog", "showNotification() Triggered")
         createNotificationChannel()
@@ -59,16 +59,8 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
         val mainIntent = Intent(applicationContext, NotificationDisplayActivity::class.java)
         //to pass data in notification and get it in Activity
 //        mainIntent.putExtra("KEY_NAME","KEY_VALUE")
-        mainIntent.putExtra(Constants.NOTIFICATION_KEY_KEYWORD, notificationKeyword!!)
-        Log.d("WorkerLog","keyword = $notificationKeyword")
-        mainIntent.putExtra(Constants.NOTIFICATION_KEY_ARTS, notificationBooleanArts!!)
-        Log.d("WorkerLog", "Art Boolean = $notificationBooleanArts")
-        mainIntent.putExtra(Constants.NOTIFICATION_KEY_BUSINESS, notificationBooleanBusiness!!)
-        mainIntent.putExtra(Constants.NOTIFICATION_KEY_ENTREPRENUERS, notificationBooleanEntreprenuers!!)
-        mainIntent.putExtra(Constants.NOTIFICATION_KEY_POLITICS, notificationBooleanPolitics!!)
-        mainIntent.putExtra(Constants.NOTIFICATION_KEY_SPORTS, notificationBooleanSports!!)
-        mainIntent.putExtra(Constants.NOTIFICATION_KEY_TRAVEL, notificationBooleanSports!!)
 
+        Log.d("WorkerLog","notificationKeyword = $notificationKeyword, artBoolean = $notificationBooleanArts")
         mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         val mainPendingIntent = PendingIntent.getActivity(
             applicationContext, 1, mainIntent,

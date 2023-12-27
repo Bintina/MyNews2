@@ -36,7 +36,7 @@ import com.bintina.mynews.util.MyApp.Companion.notificationBooleanPolitics
 import com.bintina.mynews.util.MyApp.Companion.notificationBooleanSports
 import com.bintina.mynews.util.MyApp.Companion.notificationBooleanTravel
 import com.bintina.mynews.util.MyApp.Companion.notificationKeyword
-import com.bintina.mynews.util.NotificationUtils.createNotificationIntent
+
 
 class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
     lateinit var adapter: com.bintina.mynews.notifications.adapter.Adapter
@@ -44,23 +44,6 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
 
     private val binding get() = _binding!!
 
-    companion object {
-        fun newInstance(data: Data?): NotificationsDisplayFragment {
-            val fragment = NotificationsDisplayFragment()
-            val args = Bundle()
-
-            data?.let {
-                for ((key, value) in it.keyValueMap) {
-                    when (value) {
-                        is String -> args.putString(key, value)
-                        is Boolean -> args.putBoolean(key, value)
-                    }
-                }
-            }
-            fragment.arguments = args
-            return fragment
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 
 interface OnNotificationsClickedListener {
-    fun onNotificationsClick(intent: Intent)
+    fun onNotificationsClick()
 
 
 }

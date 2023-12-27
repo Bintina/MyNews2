@@ -62,21 +62,14 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
         transaction.commit()
 
 
-        onNewIntent(intent)
-    }
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        //get data from bundles using intent
-        val bundle: Bundle? = intent!!.extras
-        /* if (bundle != null){
-             val name = getString("KEY_NAME")
-         }*/
     }
 
 
 
-    override fun onNotificationsClick(intent: Intent) {
+
+
+    override fun onNotificationsClick() {
         val notificationWorkRequest: WorkRequest =
             OneTimeWorkRequestBuilder<NotificationWorker>()
                 .build()
@@ -86,6 +79,14 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
             .enqueue(notificationWorkRequest)
         Log.d("NotificationWorkerRequestLog", "Worker Request sent from Notification Activity")
     }
+/*    val periodicWorkRequest = PeriodicWorkRequestBuilder<NotificationWorker>(
+            1, TimeUnit.HOURS
+        ).build()*//*
+
+
+        */
+/*        WorkManager.getInstance(MyApp.instance).enqueue(periodicWorkRequest)
+                return periodicWorkRequest*/
 
 
 }

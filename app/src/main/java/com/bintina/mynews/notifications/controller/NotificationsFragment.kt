@@ -28,10 +28,6 @@ import com.bintina.mynews.util.MyApp.Companion.notificationBooleanPolitics
 import com.bintina.mynews.util.MyApp.Companion.notificationBooleanSports
 import com.bintina.mynews.util.MyApp.Companion.notificationBooleanTravel
 import com.bintina.mynews.util.MyApp.Companion.notificationKeyword
-import com.bintina.mynews.util.NotificationUtils.createNotificationIntent
-import com.bintina.mynews.util.NotificationUtils.createNotificationWorkerRequest
-import java.util.concurrent.TimeUnit
-
 class NotificationsFragment: Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
     private val binding get() = _binding!!
@@ -67,21 +63,9 @@ class NotificationsFragment: Fragment() {
         notificationBooleanSports = binding.notificationCheckboxSports.isChecked
         notificationBooleanTravel = binding.notificationCheckboxTravel.isChecked
 
-        Log.d("NFData", "Keyword = $notificationKeyword, art = $notificationBooleanArts, business = $notificationBooleanBusiness,entreprenuers = $notificationBooleanEntreprenuers, politics = $notificationBooleanPolitics, sports = $notificationBooleanSports, travel = $notificationBooleanTravel")
-        val data = Data.Builder()
-       .putString(NOTIFICATION_KEY_KEYWORD, notificationKeyword)
-        .putBoolean(NOTIFICATION_KEY_ARTS, notificationBooleanArts!!)
-        .putBoolean(NOTIFICATION_KEY_BUSINESS, notificationBooleanBusiness!!)
-        .putBoolean(NOTIFICATION_KEY_ENTREPRENUERS, notificationBooleanEntreprenuers!!)
-        .putBoolean(NOTIFICATION_KEY_POLITICS, notificationBooleanPolitics!!)
-        .putBoolean(NOTIFICATION_KEY_SPORTS, notificationBooleanSports!!)
-        .putBoolean(NOTIFICATION_KEY_TRAVEL, notificationBooleanTravel!!)
-            .build()
+        listener.onNotificationsClick()
 
-        val intent = createNotificationIntent(data)
-        listener.onNotificationsClick(intent)
 
-        val workRequest = createNotificationWorkerRequest()
     }
 
     override fun onDestroy() {

@@ -34,7 +34,7 @@ class MyApp: Application() {
 
         lateinit var searchResults: List<News?>
 
-        var newsInPossitionUrl = ""
+        var newsInPositionUrl = ""
 
         //notification variables
         var notificationKeyword: String = ""
