@@ -1,7 +1,7 @@
 package com.bintina.mynews
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.bintina.mynews.search.controller.SearchActivity
+import com.bintina.mynews.features.search.controller.SearchActivity
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

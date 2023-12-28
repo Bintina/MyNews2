@@ -1,45 +1,14 @@
 package com.bintina.mynews.util
 
-import android.Manifest
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
 import android.content.Context.*
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.os.Build
-import android.os.Bundle
-import android.util.Log
-import androidx.core.app.ActivityCompat
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.WorkRequest
-import com.bintina.mynews.R
-import com.bintina.mynews.model.search.QueryDetails
-import com.bintina.mynews.notifications.controller.NotificationDisplayActivity
-import com.bintina.mynews.notifications.work.NotificationWorker
-import com.bintina.mynews.util.Constants.CHANNEL_ID
-import com.bintina.mynews.util.Constants.NOTIFICATION_CHANNEL_DESCRIPTION
-import com.bintina.mynews.util.Constants.NOTIFICATION_CHANNEL_NAME
-import com.bintina.mynews.util.Constants.NOTIFICATION_ID
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_ARTS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_BUSINESS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_ENTREPRENUERS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_KEYWORD
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_POLITICS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_SPORTS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_TRAVEL
-import com.bintina.mynews.util.Constants.NOTIFICATION_TITLE
-import com.bintina.mynews.util.MyApp.Companion.FILE_NAME
-import com.bintina.mynews.util.MyApp.Companion.newsSharedPref
-import com.bintina.mynews.util.MyApp.Companion.notificationEndDate
+import com.bintina.mynews.MyApp
+import com.bintina.mynews.data.model.search.QueryDetails
+import com.bintina.mynews.MyApp.Companion.FILE_NAME
+import com.bintina.mynews.MyApp.Companion.newsSharedPref
+import com.bintina.mynews.MyApp.Companion.notificationEndDate
 import com.google.gson.Gson
 import java.util.Calendar
-import java.util.concurrent.TimeUnit
 
 
 //Shared Preference Methods.........................................................................

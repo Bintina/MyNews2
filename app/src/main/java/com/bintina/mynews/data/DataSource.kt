@@ -1,11 +1,11 @@
 package com.bintina.mynews.data
 
 import android.util.Log
-import com.bintina.mynews.model.news.News
-import com.bintina.mynews.model.search.Doc
-import com.bintina.mynews.api.ApiService
+import com.bintina.mynews.data.model.news.News
+import com.bintina.mynews.data.model.search.Doc
+import com.bintina.mynews.data.network.api.news.ApiService
 import com.bintina.mynews.util.Constants.API_KEY
-import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
+import com.bintina.mynews.MyApp.Companion.CURRENT_NEWS_STATE
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -70,7 +70,7 @@ object DataSource {
         Log.d("DataSourceFilter", "DataSourceFilters = $filters")
 
 
-        val apiCall = com.bintina.mynews.search.api.ApiService.create()
+        val apiCall = com.bintina.mynews.data.network.api.search.ApiService.create()
         val response = apiCall.getSearchedNews(keyword, filters, true, startDate, endDate, API_KEY)
 
         val results: List<Doc?>? = response?.results?.docs
@@ -107,7 +107,7 @@ object DataSource {
         )
         val startDate = "20230626"
         val endDate = "20231227"
-        val apiCall = com.bintina.mynews.search.api.ApiService.create()
+        val apiCall = com.bintina.mynews.data.network.api.search.ApiService.create()
         val response = apiCall.getSearchedNews(notificationKeyword, filters, true, startDate, endDate, API_KEY)
         Log.d("DatasourceNotificationLog", "key = $notificationKeyword & filters = $filters")
         val results: List<Doc?>? = response?.results?.docs

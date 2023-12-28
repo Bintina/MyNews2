@@ -6,7 +6,7 @@ import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.bintina.mynews.search.controller.SearchActivity
+import com.bintina.mynews.features.search.controller.SearchActivity
 import junit.framework.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test

@@ -5,7 +5,7 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.bintina.mynews.notifications.controller.NotificationsActivity
+import com.bintina.mynews.features.notifications.controller.NotificationsActivity
 import junit.framework.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test

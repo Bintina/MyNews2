@@ -20,10 +20,10 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.bintina.mynews.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import com.bintina.mynews.news.controller.PagerAdapter
-import com.bintina.mynews.notifications.controller.NotificationsActivity
-import com.bintina.mynews.overflow.AboutActivity
-import com.bintina.mynews.overflow.HelpActivity
+import com.bintina.mynews.features.news.controller.PagerAdapter
+import com.bintina.mynews.features.notifications.controller.NotificationsActivity
+import com.bintina.mynews.features.overflow.AboutActivity
+import com.bintina.mynews.features.overflow.HelpActivity
 import com.bintina.mynews.util.Constants
 import com.bintina.mynews.util.getEndDate
 import com.bintina.mynews.util.getStartDate
