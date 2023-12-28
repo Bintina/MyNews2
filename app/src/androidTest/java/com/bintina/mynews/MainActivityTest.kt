@@ -25,10 +25,10 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitor
-import com.bintina.mynews.news.adapter.Adapter
-import com.bintina.mynews.util.MyApp
-import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
-import com.bintina.mynews.util.MyApp.Companion.newsInPossitionUrl
+import com.bintina.mynews.news.view.adapter.Adapter
+import com.bintina.mynews.common.util.MyApp
+import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
+import com.bintina.mynews.common.util.MyApp.Companion.newsInPossitionUrl
 import junit.framework.Assert.assertTrue
 import junit.framework.TestCase
 import junit.framework.TestCase.assertNotNull

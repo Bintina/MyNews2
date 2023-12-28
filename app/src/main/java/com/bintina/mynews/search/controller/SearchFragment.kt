@@ -11,12 +11,12 @@ import android.widget.TextView
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
-import com.bintina.mynews.model.search.QueryDetails
-import com.bintina.mynews.util.MyApp.Companion.searchEndDate
+import com.bintina.mynews.common.model.search.QueryDetails
+import com.bintina.mynews.common.util.MyApp.Companion.searchEndDate
 
-import com.bintina.mynews.util.MyApp.Companion.searchQueryObject
-import com.bintina.mynews.util.MyApp.Companion.searchStartDate
-import com.bintina.mynews.util.objectToPreference
+import com.bintina.mynews.common.util.MyApp.Companion.searchQueryObject
+import com.bintina.mynews.common.util.MyApp.Companion.searchStartDate
+import com.bintina.mynews.common.util.objectToPreference
 import java.util.Calendar
 
 class SearchFragment : Fragment() {

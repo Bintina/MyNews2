@@ -1,6 +1,5 @@
 package com.bintina.mynews.search.controller
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,19 +10,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.databinding.FragmentSearchResultBinding
-import com.bintina.mynews.model.search.Doc
-import com.bintina.mynews.news.adapter.OnNewsClickedListener
-import com.bintina.mynews.data.DataSource
-import com.bintina.mynews.model.search.QueryDetails
-import com.bintina.mynews.util.Constants.API_KEY
-import com.bintina.mynews.util.getSelectedFilters
-import com.bintina.mynews.util.queryPreferenceToObject
+import com.bintina.mynews.common.model.search.Doc
+import com.bintina.mynews.news.controller.OnNewsClickedListener
+import com.bintina.mynews.common.data.DataSource
+import com.bintina.mynews.common.util.getSelectedFilters
+import com.bintina.mynews.search.view.adapter.Adapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SearchResultsFragment : Fragment(), OnNewsClickedListener {
-    lateinit var adapter: com.bintina.mynews.search.adapter.Adapter
+    lateinit var adapter: Adapter
 
     private var _binding: FragmentSearchResultBinding? = null
     private val binding get() = _binding!!
@@ -89,7 +86,7 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
     }
 
     private fun initializeView() {
-        adapter = com.bintina.mynews.search.adapter.Adapter()
+        adapter = Adapter()
         binding.resultsRecyclerview.adapter = adapter
         adapter.listener = this
 

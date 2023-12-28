@@ -18,20 +18,20 @@ import androidx.work.WorkManager
 import androidx.work.WorkRequest
 import com.bintina.mynews.R
 import com.bintina.mynews.databinding.ActivityNotificationsBinding
-import com.bintina.mynews.notifications.work.NotificationWorker
-import com.bintina.mynews.util.Constants
-import com.bintina.mynews.util.Constants.CHANNEL_ID
-import com.bintina.mynews.util.Constants.NOTIFICATIONS_WORK_NAME
-import com.bintina.mynews.util.Constants.NOTIFICATION_CHANNEL_DESCRIPTION
-import com.bintina.mynews.util.Constants.NOTIFICATION_CHANNEL_NAME
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_ARTS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_BUSINESS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_ENTREPRENUERS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_KEYWORD
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_POLITICS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_SPORTS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_TRAVEL
-import com.bintina.mynews.util.Constants.NOTIFICATION_TITLE
+import com.bintina.mynews.notifications.controller.work.NotificationWorker
+import com.bintina.mynews.common.util.Constants
+import com.bintina.mynews.common.util.Constants.CHANNEL_ID
+import com.bintina.mynews.common.util.Constants.NOTIFICATIONS_WORK_NAME
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_CHANNEL_DESCRIPTION
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_CHANNEL_NAME
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_ARTS
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_BUSINESS
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_ENTREPRENUERS
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_KEYWORD
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_POLITICS
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_SPORTS
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_TRAVEL
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_TITLE
 import java.util.concurrent.TimeUnit
 
 class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListener {
