@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.lifecycle.ViewModelProvider
 import com.bintina.mynews.R
 import com.bintina.mynews.databinding.ActivitySearchBinding
+import com.bintina.mynews.features.search.SearchViewModel
 import com.bintina.mynews.features.search.controller.SearchActivity.Companion.KEY_SEARCH_FRAGMENT_RESULTS
 
 class SearchActivity : AppCompatActivity(), OnSearchClicked {
+    lateinit var viewModel: SearchViewModel
     lateinit var binding: ActivitySearchBinding
 
     companion object {
@@ -25,6 +28,7 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
 
         val searchFragment = SearchFragment()
         searchFragment.listener = this

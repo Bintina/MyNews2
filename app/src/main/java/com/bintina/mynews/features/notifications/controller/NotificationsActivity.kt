@@ -12,12 +12,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
 import com.bintina.mynews.R
 import com.bintina.mynews.databinding.ActivityNotificationsBinding
+import com.bintina.mynews.features.notifications.NotificationsViewModel
 import com.bintina.mynews.features.notifications.work.NotificationWorker
 import com.bintina.mynews.util.Constants
 import com.bintina.mynews.util.Constants.CHANNEL_ID
@@ -35,6 +37,7 @@ import com.bintina.mynews.util.Constants.NOTIFICATION_TITLE
 import java.util.concurrent.TimeUnit
 
 class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListener {
+    lateinit var viewModel: NotificationsViewModel
     lateinit var binding: ActivityNotificationsBinding
 
     companion object {
@@ -45,6 +48,7 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
         super.onCreate(savedInstanceState)
         binding = ActivityNotificationsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(this).get(NotificationsViewModel::class.java)
 
 
         Log.d("NotificationOnCreateLog", "Navigation Activity onCreate onCreated")

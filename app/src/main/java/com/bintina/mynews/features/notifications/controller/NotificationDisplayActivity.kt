@@ -3,10 +3,14 @@ package com.bintina.mynews.features.notifications.controller
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import com.bintina.mynews.R
 import com.bintina.mynews.databinding.ActivityDisplayNotificationsBinding
+import com.bintina.mynews.features.notifications.NotificationsDisplayViewModel
 
 class NotificationDisplayActivity : AppCompatActivity() {
+    lateinit var viewModel: NotificationsDisplayViewModel
     lateinit var binding: ActivityDisplayNotificationsBinding
 
     companion object {
@@ -17,6 +21,7 @@ class NotificationDisplayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDisplayNotificationsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(this).get(NotificationsDisplayViewModel::class.java)
 
         Log.d("NotificationDisplayActivityLog", "Activity Notifications Display created")
         val notificationDisplayFragment = NotificationsDisplayFragment()
