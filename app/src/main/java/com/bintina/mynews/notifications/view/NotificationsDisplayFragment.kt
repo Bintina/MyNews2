@@ -13,29 +13,29 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.work.Data
 import com.bintina.mynews.databinding.FragmentDisplayNotificationsBinding
-import com.bintina.mynews.model.search.Doc
+import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.news.adapter.OnNewsClickedListener
 import com.bintina.mynews.search.adapter.Adapter
-import com.bintina.mynews.util.objectToPreference
-import com.bintina.mynews.util.getSelectedFilters
+import com.bintina.mynews.common.util.objectToPreference
+import com.bintina.mynews.common.util.getSelectedFilters
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import com.bintina.mynews.data.DataSource
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_KEYWORD
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_ARTS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_BUSINESS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_ENTREPRENUERS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_POLITICS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_SPORTS
-import com.bintina.mynews.util.Constants.NOTIFICATION_KEY_TRAVEL
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanArts
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanBusiness
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanEntreprenuers
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanPolitics
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanSports
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanTravel
-import com.bintina.mynews.util.MyApp.Companion.notificationKeyword
+import com.bintina.mynews.common.data.DataSource
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_KEYWORD
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_ARTS
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_BUSINESS
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_ENTREPRENUERS
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_POLITICS
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_SPORTS
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_TRAVEL
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanBusiness
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanEntreprenuers
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanPolitics
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanSports
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanTravel
+import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
 
 
 class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {

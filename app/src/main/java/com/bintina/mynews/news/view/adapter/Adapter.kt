@@ -7,8 +7,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bintina.mynews.R
 import com.bintina.mynews.databinding.ItemRowBinding
-import com.bintina.mynews.model.news.News
-import com.bintina.mynews.util.MyApp.Companion.clickedArticles
+import com.bintina.mynews.common.model.news.News
+import com.bintina.mynews.common.util.MyApp.Companion.clickedArticles
 
 import com.bumptech.glide.Glide
 import java.text.SimpleDateFormat

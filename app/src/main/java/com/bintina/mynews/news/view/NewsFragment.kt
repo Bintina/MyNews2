@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.bintina.mynews.data.DataSource
+import com.bintina.mynews.common.data.DataSource
 import com.bintina.mynews.databinding.FragmentNewsBinding
 import com.bintina.mynews.news.adapter.Adapter
 import com.bintina.mynews.news.adapter.OnNewsClickedListener
-import com.bintina.mynews.util.MyApp.Companion.CURRENT_NEWS_STATE
-import com.bintina.mynews.util.MyApp.Companion.clickedArticles
+import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
+import com.bintina.mynews.common.util.MyApp.Companion.clickedArticles
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

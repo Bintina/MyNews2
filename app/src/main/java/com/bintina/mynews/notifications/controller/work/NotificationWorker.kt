@@ -28,15 +28,15 @@ import com.bintina.mynews.R
 import com.bintina.mynews.notifications.controller.NotificationDisplayActivity
 import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.notifications.controller.NotificationsDisplayFragment
-import com.bintina.mynews.util.Constants
-import com.bintina.mynews.util.Constants.CHANNEL_ID
-import com.bintina.mynews.util.Constants.NOTIFICATION_ID
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanArts
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanBusiness
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanEntreprenuers
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanPolitics
-import com.bintina.mynews.util.MyApp.Companion.notificationBooleanSports
-import com.bintina.mynews.util.MyApp.Companion.notificationKeyword
+import com.bintina.mynews.common.util.Constants
+import com.bintina.mynews.common.util.Constants.CHANNEL_ID
+import com.bintina.mynews.common.util.Constants.NOTIFICATION_ID
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanBusiness
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanEntreprenuers
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanPolitics
+import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanSports
+import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
 
 import java.util.concurrent.TimeUnit
 import javax.sql.DataSource
