@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             Log.d("MagnifyingglassButtonClick", "Magnifying button click method reached end")
         }
+
+        setSupportActionBar(findViewById(R.id.my_toolbar))
         getStartDate()
         getEndDate()
     }

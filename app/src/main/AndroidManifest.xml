@@ -43,11 +43,28 @@
             <category android:name="android.intent.category.ALTERNATIVE"/>
         </intent-filter>
     </activity>
+
     <activity android:name=".notifications.view.NotificationDisplayActivity"
         android:exported="true"
         >
         <intent-filter>
-            <action android:name=".android.intent.action.NOTIFICATIONS"/>
+            <action android:name=".android.intent.action.NOTIFICATIONS_DISPLAY"/>
+            <category android:name="android.intent.category.ALTERNATIVE"/>
+        </intent-filter>
+    </activity>
+    <activity android:name=".overflow.view.HelpActivity"
+        android:exported="true"
+        >
+        <intent-filter>
+            <action android:name=".android.intent.action.HELP"/>
+            <category android:name="android.intent.category.ALTERNATIVE"/>
+        </intent-filter>
+    </activity>
+    <activity android:name=".overflow.view.AboutActivity"
+        android:exported="true"
+        >
+        <intent-filter>
+            <action android:name=".android.intent.action.ABOUT"/>
             <category android:name="android.intent.category.ALTERNATIVE"/>
         </intent-filter>
     </activity>
