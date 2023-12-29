@@ -17,6 +17,7 @@ import com.bintina.mynews.overflow.view.AboutActivity
 import com.bintina.mynews.overflow.view.HelpActivity
 import com.bintina.mynews.common.util.getEndDate
 import com.bintina.mynews.common.util.getStartDate
+import com.bintina.mynews.search.controller.SearchActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         setupViewPager()
 
         searchBtn.setOnClickListener {
-            val intent = Intent(this, NotificationsActivity::class.java)
+            val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
             Log.d("MagnifyingglassButtonClick", "Magnifying button click method reached end")
         }
@@ -88,6 +89,8 @@ class MainActivity : AppCompatActivity() {
                 Log.d("AboutBtnLog", "About button clicked")
                 val intent = Intent(this, AboutActivity::class.java)
                 startActivity(intent)
+                Log.d("AboutBtnLog", "Intent Passed")
+
                 return true
             }
             // Add more cases for other menu items if needed

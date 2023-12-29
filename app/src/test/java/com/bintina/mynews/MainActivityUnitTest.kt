@@ -2,10 +2,14 @@ package com.bintina.mynews
 
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
+import junit.framework.Assert
+import junit.framework.TestCase
 import junit.framework.TestCase.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -101,5 +105,14 @@ class MainActivityUnitTest {
         )
     }
 
-
+    @Before
+    fun position_and_current_news_state_at_starting_value(){
+        TestCase.assertTrue("CURRENT_NEWS_STATE = 0", MyApp.CURRENT_NEWS_STATE == 0)
+    }
+    @Test
+    fun swipes_first_left_successfully() {
+        //first Swipe
+        onView(withId(R.id.pager)).perform(ViewActions.swipeLeft())
+        Assert.assertTrue(CURRENT_NEWS_STATE == 1)
+    }
 }

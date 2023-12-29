@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.bintina.mynews">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -33,14 +34,14 @@
     android:exported="true">
     <intent-filter>
         <action android:name=".android.intent.action.SEARCH"/>
-        <category android:name="android.intent.category.ALTERNATIVE"/>
+        <category android:name="android.intent.category.DEFAULT"/>
     </intent-filter>
 </activity>
     <activity android:name=".notifications.controller.NotificationsActivity"
         android:exported="true">
         <intent-filter>
             <action android:name=".android.intent.action.NOTIFICATIONS"/>
-            <category android:name="android.intent.category.ALTERNATIVE"/>
+            <category android:name="android.intent.category.DEFAULT"/>
         </intent-filter>
     </activity>
 
@@ -49,7 +50,7 @@
         >
         <intent-filter>
             <action android:name=".android.intent.action.NOTIFICATIONS_DISPLAY"/>
-            <category android:name="android.intent.category.ALTERNATIVE"/>
+            <category android:name="android.intent.category.DEFAULT"/>
         </intent-filter>
     </activity>
     <activity android:name=".overflow.view.HelpActivity"
@@ -57,7 +58,7 @@
         >
         <intent-filter>
             <action android:name=".android.intent.action.HELP"/>
-            <category android:name="android.intent.category.ALTERNATIVE"/>
+            <category android:name="android.intent.category.DEFAULT"/>
         </intent-filter>
     </activity>
     <activity android:name=".overflow.view.AboutActivity"
@@ -65,7 +66,7 @@
         >
         <intent-filter>
             <action android:name=".android.intent.action.ABOUT"/>
-            <category android:name="android.intent.category.ALTERNATIVE"/>
+            <category android:name="android.intent.category.DEFAULT"/>
         </intent-filter>
     </activity>
     </application>
