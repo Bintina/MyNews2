@@ -44,10 +44,10 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
             // Set background color or any other visual indicator
             if (isClicked) {
-                view.cardContainer.setBackgroundColor(ContextCompat.getColor(context, R.color.clicked_article_color))
+                view.cardContainer.setBackgroundColor(ContextCompat.getColor(context, androidx.cardview.R.color.cardview_shadow_start_color))
             } else {
                 // Reset background to default if not clicked
-                view.cardContainer.setBackgroundColor(ContextCompat.getColor(context, R.color.white))
+                view.cardContainer.setBackgroundColor(ContextCompat.getColor(context, androidx.cardview.R.color.cardview_shadow_end_color))
             }
 
             //Image View
