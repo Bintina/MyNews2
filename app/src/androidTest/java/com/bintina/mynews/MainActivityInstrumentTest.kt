@@ -1,26 +1,16 @@
 package com.bintina.mynews
 
-import androidx.appcompat.widget.Toolbar
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
-import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
-import com.bintina.mynews.common.util.MyApp
-import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
-import junit.framework.Assert.assertTrue
-import junit.framework.TestCase
 import junit.framework.TestCase.assertNotNull
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -28,7 +18,7 @@ import org.junit.runners.JUnit4
 
 
 @RunWith(JUnit4::class)
-class MainActivityTest {
+class MainActivityInstrumentTest {
 
     @Rule
     @JvmField

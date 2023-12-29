@@ -25,7 +25,7 @@ class NotificationsInstrumentedTest {
     }
 
     @Test
-    fun notification_screen_views_exist(){
+    fun notification_screen_views_function_as_expected(){
         assertNotNull(withId(R.id.notification_search_query_term_edit_text))
         onView(withId(R.id.notification_search_query_term_edit_text)).perform(typeText("kenya"))
         assertNotNull(withId(R.id.notification_checkbox_arts))
@@ -46,8 +46,9 @@ class NotificationsInstrumentedTest {
         //assert Text matches Enable Notifications (once per day)
 
     }
-    @Test
-    fun notification_display_screen_views_exist(){
-        assertNotNull(withId(R.id.notification_display_fragment_container))
-    }
+  @Test
+  fun toggle_button_is_clickable(){
+      assertNotNull(withId(R.id.toggle_btn))
+      onView(withId(R.id.toggle_btn)).perform(click())
+  }
 }

@@ -1,3 +1,5 @@
+import org.gradle.internal.classpath.Instrumented.systemProperty
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -36,6 +38,14 @@ android {
     }
     buildFeatures {
         viewBinding = true
+    }
+    testOptions {
+        unitTests {
+            // Disable StrictMode for instrumented tests
+            all {
+                systemProperty("org.junit.runners.JUnitCore.defaultResourceName", "JUnit3")
+            }
+        }
     }
 }
 
@@ -78,35 +88,35 @@ dependencies {
     implementation("com.google.code.gson:gson:2.9.1")
 
 //Esspresso Dependancies............................................................................
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation ("androidx.test:runner:1.5.2")
-    androidTestImplementation ("androidx.test:rules:1.5.0")
-    androidTestImplementation ("androidx.test.ext:junit-ktx:1.1.5")
-    androidTestImplementation ("androidx.test:core-ktx:1.5.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.test:rules:1.5.0")
+    androidTestImplementation("androidx.test.ext:junit-ktx:1.1.5")
+    androidTestImplementation("androidx.test:core-ktx:1.5.0")
     //Intent Dependency
-    androidTestImplementation ("androidx.test.espresso:espresso-intents:3.5.1")
-    testImplementation ("org.hamcrest:hamcrest-core:2.2")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
+    testImplementation("org.hamcrest:hamcrest-core:2.2")
 
     //WorkManager Dependencies......................................................................
 
 
-        // (Java only)
-        implementation("androidx.work:work-runtime:2.9.0")
+    // (Java only)
+    implementation("androidx.work:work-runtime:2.9.0")
 
-        // Kotlin + coroutines
-        implementation("androidx.work:work-runtime-ktx:2.9.0")
+    // Kotlin + coroutines
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
 
-        // optional - RxJava2 support
-        implementation("androidx.work:work-rxjava2:2.9.0")
+    // optional - RxJava2 support
+    implementation("androidx.work:work-rxjava2:2.9.0")
 
-        // optional - GCMNetworkManager support
-        implementation("androidx.work:work-gcm:2.9.0")
+    // optional - GCMNetworkManager support
+    implementation("androidx.work:work-gcm:2.9.0")
 
-        // optional - Test helpers
-        androidTestImplementation("androidx.work:work-testing:2.9.0")
+    // optional - Test helpers
+    androidTestImplementation("androidx.work:work-testing:2.9.0")
 
-        // optional - Multiprocess support
-        implementation ("androidx.work:work-multiprocess:2.9.0")
+    // optional - Multiprocess support
+    implementation("androidx.work:work-multiprocess:2.9.0")
 
 
 }
