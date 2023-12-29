@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.bintina.mynews.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import com.bintina.mynews.news.controller.PagerAdapter
@@ -39,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         setSupportActionBar(findViewById(R.id.my_toolbar))
+        val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        toolbar.setBackgroundColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary))
+
+
         getStartDate()
         getEndDate()
     }
@@ -55,6 +61,9 @@ class MainActivity : AppCompatActivity() {
                 4 -> "Science"
                 else -> throw IllegalStateException("Unexpected position $position")
             }
+            tab.view.setBackgroundColor(getColor(com.google.android.material.R.color.design_default_color_secondary))
+            
+
         }
             .attach()
     }
