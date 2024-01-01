@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                 else -> throw IllegalStateException("Unexpected position $position")
             }
             tab.view.setBackgroundColor(getColor(com.google.android.material.R.color.design_default_color_secondary))
-
+            
 
         }
             .attach()

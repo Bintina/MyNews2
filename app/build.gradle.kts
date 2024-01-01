@@ -70,7 +70,7 @@ dependencies {
     //Glide Image dependancy
     implementation("com.github.bumptech.glide:glide:4.15.1")
 
-    //coroutine dependencies
+//coroutine dependencies
     //comes with main dispatcher
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     //comes with the core functions that the language provides
@@ -78,7 +78,7 @@ dependencies {
     //lifecycledependency
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
-    //Fragments support
+//Fragments support
     //Java language implementation
     implementation("androidx.fragment:fragment:1.6.2")
     //Kotlin
@@ -87,7 +87,7 @@ dependencies {
     //Gson dependancy
     implementation("com.google.code.gson:gson:2.9.1")
 
-    //Esspresso Dependancies............................................................................
+//Esspresso Dependancies............................................................................
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")
@@ -98,6 +98,8 @@ dependencies {
     testImplementation("org.hamcrest:hamcrest-core:2.2")
 
     //WorkManager Dependencies......................................................................
+
+
     // (Java only)
     implementation("androidx.work:work-runtime:2.9.0")
 
