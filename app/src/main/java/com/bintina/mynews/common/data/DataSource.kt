@@ -6,6 +6,9 @@ import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.common.api.news.ApiService
 import com.bintina.mynews.common.util.Constants.API_KEY
 import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
+import com.bintina.mynews.common.util.MyApp.Companion.defaultNotificationEndDate
+import com.bintina.mynews.common.util.MyApp.Companion.defaultNotificationStartDate
+
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -68,10 +71,21 @@ object DataSource {
 
         Log.d("DataSourceQuery", "DataSourceQuery = $keyword")
         Log.d("DataSourceFilter", "DataSourceFilters = $filters")
+        Log.d("DataSourceDates", "before parsing startDate = $startDate & endDate = $endDate")
 
+        //Format Dates to api date format
+        val appDateFormat = SimpleDateFormat("d/M/y", Locale.US)
+
+        val parsedStartDate = appDateFormat.parse(startDate)
+        val apiStartDate = SimpleDateFormat("yyyyMMdd", Locale.US).format(parsedStartDate).replace("-", "")
+
+        val parsedEndDate = appDateFormat.parse(endDate)
+        val apiEndDate = SimpleDateFormat("yyyyMMdd", Locale.US).format(parsedEndDate).replace("-", "")
+
+        Log.d("DataSourceDates", "after parsing startDate = $apiStartDate & endDate = $apiEndDate")
 
         val apiCall = com.bintina.mynews.common.api.search.ApiService.create()
-        val response = apiCall.getSearchedNews(keyword, filters, true, startDate, endDate, API_KEY)
+        val response = apiCall.getSearchedNews(keyword, filters, true, true, apiStartDate, apiEndDate, "newest", API_KEY)
 
         val results: List<Doc?>? = response?.results?.docs
 
@@ -105,11 +119,12 @@ object DataSource {
             "DatasourceNotificationLog",
             "before api call key = $notificationKeyword & filters = $filters"
         )
-        val startDate = "20230626"
-        val endDate = "20231227"
+        val startDate = defaultNotificationStartDate
+
+        val endDate = defaultNotificationEndDate
         val apiCall = com.bintina.mynews.common.api.search.ApiService.create()
-        val response = apiCall.getSearchedNews(notificationKeyword, filters, true, startDate, endDate, API_KEY)
-        Log.d("DatasourceNotificationLog", "key = $notificationKeyword & filters = $filters")
+        val response = apiCall.getSearchedNews(notificationKeyword, filters, true, true, startDate, endDate,"newest", API_KEY)
+        Log.d("DatasourceNotificationLog", "key = $notificationKeyword & filters = $filters, startDate = $startDate and endDate = $endDate")
         val results: List<Doc?>? = response?.results?.docs
 
         var parameterToCheckForNull = "section"

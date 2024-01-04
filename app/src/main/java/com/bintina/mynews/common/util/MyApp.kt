@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.QueryDetails
-import com.bintina.mynews.common.util.Constants.API_KEY
 
 class MyApp: Application() {
 
@@ -36,14 +35,23 @@ class MyApp: Application() {
         lateinit var newsSharedPref: SharedPreferences
 
         //search variables
-        var searchStartDate = "20181227"
-        var searchEndDate = "20231227"
+        var defaultSearchStartDate = "20181227"
+        var defaultSearchEndDate = "20231227"
+        var searchKeyword: String = ""
+        var enteredSearchStartDate = ""
+        var enteredSearchEndDate = ""
+        var searchBooleanArts : Boolean = false
+        var searchBooleanBusiness : Boolean = false
+        var searchBooleanEntreprenuers : Boolean = false
+        var searchBooleanPolitics : Boolean = false
+        var searchBooleanSports : Boolean = false
+        var searchBooleanTravel : Boolean = false
         lateinit var searchResults: List<News?>
 
 
         //notification variables
-        var notificationStartDate = "20230627"
-        var notificationEndDate = "20231227"
+        var defaultNotificationStartDate = "20230627"
+        var defaultNotificationEndDate = "20231227"
         var notificationKeyword: String = ""
         var notificationBooleanArts : Boolean = false
         var notificationBooleanBusiness : Boolean = false

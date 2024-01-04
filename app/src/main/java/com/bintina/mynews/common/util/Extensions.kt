@@ -1,11 +1,12 @@
 package com.bintina.mynews.common.util
 
 import android.content.Context
-import android.content.Context.*
+import android.content.Context.MODE_PRIVATE
 import com.bintina.mynews.common.model.search.QueryDetails
 import com.bintina.mynews.common.util.MyApp.Companion.FILE_NAME
+import com.bintina.mynews.common.util.MyApp.Companion.defaultNotificationEndDate
+import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchEndDate
 import com.bintina.mynews.common.util.MyApp.Companion.newsSharedPref
-import com.bintina.mynews.common.util.MyApp.Companion.notificationEndDate
 import com.google.gson.Gson
 import java.util.Calendar
 
@@ -68,12 +69,24 @@ fun getSelectedFilters(
         null
     } else {
         "news_desk(${trueFiltersList.joinToString(",")})"
-    }}
+    }
+}
 
 //Default date methods..............................................................................
-fun getStartDate() {
+fun getDefaultDates() {
+//set end dates to current Date
     val currentDate = Calendar.getInstance()
 
+    val endYear = currentDate.get(Calendar.YEAR)
+    val endMonth = currentDate.get(Calendar.MONTH)
+    val endDay = currentDate.get(Calendar.DAY_OF_MONTH)
+
+    val defaultEndDate = String.format("", endYear, endMonth, endDay)
+
+    defaultNotificationEndDate = defaultEndDate
+    defaultSearchEndDate = defaultEndDate
+
+    //Set default search start date
     currentDate.add(Calendar.YEAR, -5)
 
     val initialStartYear = currentDate.get(Calendar.YEAR)
@@ -82,9 +95,9 @@ fun getStartDate() {
 
     val selectedFiveYearStartDate =
         String.format("%d-%02d-%02d", initialStartYear, initialStartMonth, initialStartDay)
-    MyApp.searchStartDate = selectedFiveYearStartDate
+    MyApp.defaultSearchStartDate = selectedFiveYearStartDate
 
-    //notification start date
+    //set default notification start date
     currentDate.add(Calendar.MONTH, -6)
 
     val initialNotificationStartYear = currentDate.get(Calendar.YEAR)
@@ -98,19 +111,6 @@ fun getStartDate() {
             initialNotificationStartMonth,
             initialNotificationStartDay
         )
-    MyApp.searchStartDate = selectedSixMonthStartDate
-
-}
-
-fun getEndDate() {
-    val currentDate = Calendar.getInstance()
-    val initialEndYear = currentDate.get(Calendar.YEAR)
-    val initialEndMonth = currentDate.get(Calendar.MONTH)
-    val initialEndDay = currentDate.get(Calendar.DAY_OF_MONTH)
-
-    val selectedEndDate =
-        String.format("%d-%02d-%02d", initialEndYear, initialEndMonth, initialEndDay)
-    MyApp.searchEndDate = selectedEndDate
-    notificationEndDate = selectedEndDate
+    MyApp.defaultNotificationStartDate = selectedSixMonthStartDate
 
 }

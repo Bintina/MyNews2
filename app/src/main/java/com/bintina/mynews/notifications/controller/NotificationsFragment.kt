@@ -1,26 +1,11 @@
 package com.bintina.mynews.notifications.controller
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.work.Data
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.WorkRequest
-import com.bintina.mynews.MainActivity
-import com.bintina.mynews.databinding.FragmentNewsBinding
 import com.bintina.mynews.databinding.FragmentNotificationsBinding
-import com.bintina.mynews.notifications.controller.work.NotificationWorker
-import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_ARTS
-import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_BUSINESS
-import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_ENTREPRENUERS
-import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_KEYWORD
-import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_POLITICS
-import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_SPORTS
-import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_TRAVEL
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanBusiness
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanEntreprenuers
@@ -28,8 +13,8 @@ import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanPolitic
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanSports
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanTravel
 import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
-import com.bintina.mynews.common.util.getEndDate
-import com.bintina.mynews.common.util.getStartDate
+
+import com.bintina.mynews.common.util.getDefaultDates
 
 class NotificationsFragment : Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
@@ -49,8 +34,8 @@ class NotificationsFragment : Fragment() {
 
         binding.toggleBtn.setOnClickListener {
             extractNotificationData()
-            getStartDate()
-            getEndDate()
+            getDefaultDates()
+
         }
 
 

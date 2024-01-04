@@ -3,6 +3,7 @@ package com.bintina.mynews.search.controller
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.TextUtils.replace
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -39,10 +40,8 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
     }
 
 
-    override fun onSearchClick(bundle: Bundle) {
+    override fun onSearchClick() {
         val searchResultsFragment = SearchResultsFragment()
-        searchResultsFragment.arguments = bundle
-
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         transaction.replace(
@@ -51,6 +50,7 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
             KEY_SEARCH_FRAGMENT_RESULTS
         )
         transaction.commit()
+        Log.d("onSearchClickLog","transaction commited")
     }
 
 }

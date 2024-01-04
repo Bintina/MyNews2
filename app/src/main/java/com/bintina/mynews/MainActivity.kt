@@ -17,8 +17,7 @@ import com.bintina.mynews.news.controller.PagerAdapter
 import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.overflow.view.AboutActivity
 import com.bintina.mynews.overflow.view.HelpActivity
-import com.bintina.mynews.common.util.getEndDate
-import com.bintina.mynews.common.util.getStartDate
+import com.bintina.mynews.common.util.getDefaultDates
 import com.bintina.mynews.search.controller.SearchActivity
 
 
@@ -45,8 +44,8 @@ class MainActivity : AppCompatActivity() {
         toolbar.setBackgroundColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary))
 
 
-        getStartDate()
-        getEndDate()
+        getDefaultDates()
+
     }
 
     private fun setupViewPager() {

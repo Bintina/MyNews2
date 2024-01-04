@@ -44,7 +44,9 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
             view.section.text = "${doc?.sectionName} > ${doc?.subsectionName}"
 
             //Date View
-            view.date.text = SimpleDateFormat("d/M/Y", Locale.US).format(doc?.pubDate).toString()
+            val apiDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US)
+            val parsedDate = apiDateFormat.parse(doc?.pubDate)
+            view.date.text = SimpleDateFormat("d/M/Y", Locale.US).format(parsedDate).toString()
 
             //Caption View
             view.caption.text = doc?.abstract

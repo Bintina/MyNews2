@@ -9,11 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.bintina.mynews.databinding.FragmentSearchResultBinding
-import com.bintina.mynews.common.model.search.Doc
-import com.bintina.mynews.news.controller.OnNewsClickedListener
 import com.bintina.mynews.common.data.DataSource
+import com.bintina.mynews.common.model.search.Doc
+import com.bintina.mynews.common.util.MyApp.Companion.enteredSearchEndDate
+import com.bintina.mynews.common.util.MyApp.Companion.enteredSearchStartDate
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanArts
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanBusiness
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanEntreprenuers
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanPolitics
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanSports
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanTravel
+import com.bintina.mynews.common.util.MyApp.Companion.searchKeyword
 import com.bintina.mynews.common.util.getSelectedFilters
+import com.bintina.mynews.databinding.FragmentSearchResultBinding
+import com.bintina.mynews.news.controller.OnNewsClickedListener
 import com.bintina.mynews.search.view.adapter.Adapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,47 +40,51 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
     ): View? {
         _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
 
+        Log.d("SearchResFragLog", "onCreate called")
 
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        val bundle = arguments
-        bundle?.let {
-            val keyword = it.getString(SearchFragment.KEY_KEYWORD)
-            val startDate = it.getString(SearchFragment.START_DATE)
-            val endDate = it.getString(SearchFragment.END_DATE)
-            val arts = it.getBoolean(SearchFragment.KEY_ARTS)
-            val business = it.getBoolean(SearchFragment.KEY_BUSINESS)
-            val entreprenuers = it.getBoolean(SearchFragment.KEY_ENTREPRENUERS)
-            val politics = it.getBoolean(SearchFragment.KEY_POLITICS)
-            val sports = it.getBoolean(SearchFragment.KEY_SPORTS)
-            val travel = it.getBoolean(SearchFragment.KEY_TRAVEL)
 
 
-            val filters: String? =
-                getSelectedFilters(arts, business, entreprenuers, politics, sports, travel)
+        Log.d("SearchResFragLog", "onResume called")
 
-            lifecycleScope.launch(Dispatchers.IO) {
-                val result = try {
-                    DataSource.loadSearchResults(keyword, startDate, endDate, filters)
-                } catch (e: Exception) {
-                    emptyList<Doc?>()
-                    Log.d("SearchResultTryCatch", "Error is $e")
-                }
-                Log.d("SearchResultFragLog", "$keyword")
+        val keyword = searchKeyword
+        val startDate = enteredSearchStartDate
+        val endDate = enteredSearchEndDate
+        val arts = searchBooleanArts
+        val business = searchBooleanBusiness
+        val entreprenuers = searchBooleanEntreprenuers
+        val politics = searchBooleanPolitics
+        val sports = searchBooleanSports
+        val travel = searchBooleanTravel
 
 
-                withContext(Dispatchers.Main) {
-                    adapter.searchResultList = result as MutableList<Doc?>
-                    adapter.notifyDataSetChanged()
-                    Log.d(
-                        "Result Fragment",
-                        "${result.size}, Start date is $startDate and End date is $endDate"
-                    )
-                }
+        val filters: String? =
+            getSelectedFilters(arts, business, entreprenuers, politics, sports, travel)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            val result = try {
+                DataSource.loadSearchResults(keyword, startDate, endDate, filters)
+            } catch (e: Exception) {
+                emptyList<Doc?>()
+                Log.d("SearchResultTryCatch", "Error is $e")
+                //Toast.makeText(requireContext(),"Sorry, we do not have results for this search at the moment. Please try a wider search.", Toast.LENGTH_LONG)
             }
+            Log.d("SearchResultFragLog", "$keyword")
+
+
+            withContext(Dispatchers.Main) {
+                adapter.searchResultList = result as MutableList<Doc?>
+                adapter.notifyDataSetChanged()
+                Log.d(
+                    "Result Fragment",
+                    "${result.size}, Start date is $startDate and End date is $endDate"
+                )
+            }
+
         }
     }
 
@@ -98,8 +111,6 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
 
         startActivity(intent)
     }
-
-
 
 
 }

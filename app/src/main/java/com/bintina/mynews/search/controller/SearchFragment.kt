@@ -8,15 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchEndDate
+import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchStartDate
+import com.bintina.mynews.common.util.MyApp.Companion.enteredSearchEndDate
+import com.bintina.mynews.common.util.MyApp.Companion.enteredSearchStartDate
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanArts
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanBusiness
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanEntreprenuers
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanPolitics
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanSports
+import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanTravel
+import com.bintina.mynews.common.util.MyApp.Companion.searchKeyword
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
-import com.bintina.mynews.common.model.search.QueryDetails
-import com.bintina.mynews.common.util.MyApp.Companion.searchEndDate
-
-import com.bintina.mynews.common.util.MyApp.Companion.searchQueryObject
-import com.bintina.mynews.common.util.MyApp.Companion.searchStartDate
-import com.bintina.mynews.common.util.objectToPreference
 import java.util.Calendar
 
 class SearchFragment : Fragment() {
@@ -24,21 +28,6 @@ class SearchFragment : Fragment() {
     private val binding get() = _binding!!
     lateinit var listener: OnSearchClicked
 
-    var enteredStartDate: String = searchStartDate
-    var enteredEndDate: String = searchEndDate
-    companion object {
-        const val KEY_KEYWORD = "KEY_KEYWORD"
-        const val START_DATE = "START_DATE"
-        const val END_DATE = "END_DATE"
-        const val KEY_ARTS = "KEY_POLITICS"
-        const val KEY_BUSINESS = "KEY_BUSINESS"
-        const val KEY_ENTREPRENUERS = "KEY_ENTREPRENUERS"
-        const val KEY_POLITICS = "KEY_POLITICS"
-        const val KEY_SPORTS = "KEY_SPORTS"
-        const val KEY_TRAVEL = "KEY_TRAVEL"
-
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,35 +47,30 @@ class SearchFragment : Fragment() {
         }
 
         binding.searchBtn.setOnClickListener {
-            extractFromData()
+            extractData()
         }
         return binding.root
     }
 
-    private fun extractFromData() {
-        val keyword = binding.searchQueryTermEditText.text.toString()
-        val startDate = enteredStartDate
-        val endDate = enteredEndDate
-        val arts = binding.checkboxArts.isChecked
-        val business = binding.checkboxBusiness.isChecked
-        val entreprenuers = binding.checkboxEntreprenuers.isChecked
-        val politics = binding.checkboxPolitics.isChecked
-        val sports = binding.checkboxSports.isChecked
-        val travel = binding.checkboxTravel.isChecked
+    private fun extractData() {
+        searchKeyword = binding.searchQueryTermEditText.text.toString()
+        //Check for null startDate entry
+        if (enteredSearchStartDate.isNullOrBlank()) {
+            defaultSearchStartDate
+        }
+        //Check for null endDate entry
+        if (enteredSearchEndDate.isNullOrBlank()) {
+            defaultSearchEndDate
+        }
+        //Checkbox values
+        searchBooleanArts = binding.checkboxArts.isChecked
+        searchBooleanBusiness = binding.checkboxBusiness.isChecked
+        searchBooleanEntreprenuers = binding.checkboxEntreprenuers.isChecked
+        searchBooleanPolitics = binding.checkboxPolitics.isChecked
+        searchBooleanSports = binding.checkboxSports.isChecked
+        searchBooleanTravel = binding.checkboxTravel.isChecked
 
-              val bundle = Bundle()
-        bundle.putString(KEY_KEYWORD, keyword)
-        bundle.putString(START_DATE, startDate)
-        bundle.putString(END_DATE, endDate)
-        bundle.putBoolean(KEY_ARTS, arts)
-        bundle.putBoolean(KEY_BUSINESS, business)
-        bundle.putBoolean(KEY_ENTREPRENUERS, entreprenuers)
-        bundle.putBoolean(KEY_POLITICS, politics)
-        bundle.putBoolean(KEY_SPORTS, sports)
-        bundle.putBoolean(KEY_TRAVEL, travel)
-
-       
-                listener.onSearchClick(bundle)
+        listener.onSearchClick()
     }
 
     override fun onDestroy() {
@@ -112,7 +96,8 @@ class SearchFragment : Fragment() {
                 // Update the TextView or perform any other action
 
                 binding.startDateEt.text = selectedStartDate
-                enteredStartDate = selectedStartDate
+                enteredSearchStartDate = selectedStartDate
+                Log.d("SearchFragLog","entered start day = $enteredSearchStartDate")
             },
             // Set initial date in the date picker
             initialStartYear, initialStartMonth, initialStartDay
@@ -138,7 +123,8 @@ class SearchFragment : Fragment() {
                 val selectedEndDate = String.format("%d-%02d-%02d", year, month + 1, dayOfMonth)
                 // Update the TextView or perform any other action
                 binding.endDateEt.text = selectedEndDate
-                enteredEndDate = selectedEndDate
+                enteredSearchEndDate = selectedEndDate
+                Log.d("SearchFragLog","entered end day = $enteredSearchEndDate")
 
             },
             // Set initial date in the date picker
