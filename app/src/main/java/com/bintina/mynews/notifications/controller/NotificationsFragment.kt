@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bintina.mynews.common.util.MyApp.Companion.currentDate
 import com.bintina.mynews.databinding.FragmentNotificationsBinding
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanBusiness
@@ -13,8 +14,7 @@ import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanPolitic
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanSports
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanTravel
 import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
-
-import com.bintina.mynews.common.util.getDefaultDates
+import com.bintina.mynews.common.util.getDefaultNotificationStartDate
 
 class NotificationsFragment : Fragment() {
     private var _binding: FragmentNotificationsBinding? = null
@@ -32,10 +32,10 @@ class NotificationsFragment : Fragment() {
     ): View? {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
 
+        getDefaultNotificationStartDate(currentDate)
+
         binding.toggleBtn.setOnClickListener {
             extractNotificationData()
-            getDefaultDates()
-
         }
 
 

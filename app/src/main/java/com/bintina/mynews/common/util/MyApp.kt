@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.QueryDetails
+import java.util.Date
 
 class MyApp: Application() {
 
@@ -33,6 +34,12 @@ class MyApp: Application() {
         lateinit var newsFragmentString: String
         lateinit var newsJson: String
         lateinit var newsSharedPref: SharedPreferences
+
+        //Date instances
+        lateinit var currentDate: Date
+        lateinit var notificationStartDate: Date
+        lateinit var searchStartDate: Date
+        lateinit var searchEndDate: Date
 
         //search variables
         var defaultSearchStartDate = "20181227"

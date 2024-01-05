@@ -1,15 +1,21 @@
 package com.bintina.mynews.common.data
 
 import android.util.Log
+import com.bintina.mynews.common.api.news.ApiService
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.Doc
-import com.bintina.mynews.common.api.news.ApiService
 import com.bintina.mynews.common.util.Constants.API_KEY
 import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
+import com.bintina.mynews.common.util.MyApp.Companion.currentDate
 import com.bintina.mynews.common.util.MyApp.Companion.defaultNotificationEndDate
 import com.bintina.mynews.common.util.MyApp.Companion.defaultNotificationStartDate
-
+import com.bintina.mynews.common.util.MyApp.Companion.enteredSearchEndDate
+import com.bintina.mynews.common.util.MyApp.Companion.enteredSearchStartDate
+import com.bintina.mynews.common.util.MyApp.Companion.notificationStartDate
+import com.bintina.mynews.common.util.getApiDates
+import com.bintina.mynews.common.util.getStringDates
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 object DataSource {
@@ -64,8 +70,8 @@ object DataSource {
 
     suspend fun loadSearchResults(
         keyword: String?,
-        startDate: String?,
-        endDate: String?,
+        startDate: Date,
+        endDate: Date,
         filters: String?
     ): List<Doc?> {
 
@@ -74,38 +80,31 @@ object DataSource {
         Log.d("DataSourceDates", "before parsing startDate = $startDate & endDate = $endDate")
 
         //Format Dates to api date format
-        val appDateFormat = SimpleDateFormat("d/M/y", Locale.US)
+       val formattedStartDate = getApiDates(startDate,"yyyyMMdd")
+       val formattedEndDate = getApiDates(endDate,"yyyyMMdd")
 
-        val parsedStartDate = appDateFormat.parse(startDate)
-        val apiStartDate = SimpleDateFormat("yyyyMMdd", Locale.US).format(parsedStartDate).replace("-", "")
-
-        val parsedEndDate = appDateFormat.parse(endDate)
-        val apiEndDate = SimpleDateFormat("yyyyMMdd", Locale.US).format(parsedEndDate).replace("-", "")
-
-        Log.d("DataSourceDates", "after parsing startDate = $apiStartDate & endDate = $apiEndDate")
+        Log.d("DataSourceDates", "after parsing startDate = $formattedStartDate & endDate = $formattedEndDate")
 
         val apiCall = com.bintina.mynews.common.api.search.ApiService.create()
-        val response = apiCall.getSearchedNews(keyword, filters, true, true, apiStartDate, apiEndDate, "newest", API_KEY)
+        val response = apiCall.getSearchedNews(
+            keyword,
+            filters,
+            true,
+            false,
+            formattedStartDate,
+            formattedEndDate,
+            "newest",
+            API_KEY
+        )
 
         val results: List<Doc?>? = response?.results?.docs
 
         Log.d("responseDataSource", "results has ${results?.size}")
 
 
-        var parameterToCheckForDate = "pub_date"
-        var filteredForDate = results?.filter { doc ->
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-
-            val newsDate = dateFormat.parse(doc?.pubDate)
-            val startDateObj = dateFormat.parse(startDate)
-            val endDateObj = dateFormat.parse(endDate)
-
-            newsDate in startDateObj..endDateObj
-        }
-
-        return if (filteredForDate != null && filteredForDate!!.isNotEmpty()) {
-            Log.d("filteredListDataSourceLog", "has ${filteredForDate.size} results")
-            filteredForDate
+        return if (results != null && results!!.isNotEmpty()) {
+            Log.d("filteredListDataSourceLog", "has ${results.size} results")
+            results
         } else {
             emptyList()
         }
@@ -119,12 +118,28 @@ object DataSource {
             "DatasourceNotificationLog",
             "before api call key = $notificationKeyword & filters = $filters"
         )
-        val startDate = defaultNotificationStartDate
+        val startDate = notificationStartDate
 
-        val endDate = defaultNotificationEndDate
+        val endDate = currentDate
+        //format dates
+        val formattedStartDate = getApiDates(startDate, "yyyyMMdd")
+        val formattedEndDate = getApiDates(endDate, "yyyyMMdd")
+
         val apiCall = com.bintina.mynews.common.api.search.ApiService.create()
-        val response = apiCall.getSearchedNews(notificationKeyword, filters, true, true, startDate, endDate,"newest", API_KEY)
-        Log.d("DatasourceNotificationLog", "key = $notificationKeyword & filters = $filters, startDate = $startDate and endDate = $endDate")
+        val response = apiCall.getSearchedNews(
+            notificationKeyword,
+            filters,
+            true,
+            true,
+            formattedStartDate,
+            formattedEndDate,
+            "newest",
+            API_KEY
+        )
+        Log.d(
+            "DatasourceNotificationLog",
+            "key = $notificationKeyword & filters = $filters, startDate = $startDate and endDate = $endDate"
+        )
         val results: List<Doc?>? = response?.results?.docs
 
         var parameterToCheckForNull = "section"

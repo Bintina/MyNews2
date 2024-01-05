@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.bintina.mynews.common.util.MyApp.Companion.currentDate
 import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchEndDate
 import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchStartDate
 import com.bintina.mynews.common.util.MyApp.Companion.enteredSearchEndDate
@@ -19,9 +20,16 @@ import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanEntreprenuers
 import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanPolitics
 import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanSports
 import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanTravel
+import com.bintina.mynews.common.util.MyApp.Companion.searchEndDate
 import com.bintina.mynews.common.util.MyApp.Companion.searchKeyword
+import com.bintina.mynews.common.util.MyApp.Companion.searchStartDate
+import com.bintina.mynews.common.util.getDefaultSearchStartDate
+import com.bintina.mynews.common.util.getStringDates
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
+import java.sql.Date
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchArticlesBinding? = null
@@ -36,6 +44,7 @@ class SearchFragment : Fragment() {
     ): View? {
         _binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
 
+        getDefaultSearchStartDate(currentDate)
 
         binding.startDateEt.setOnClickListener {
             showStartDatePicker(requireContext(), binding.startDateEt)
@@ -58,10 +67,12 @@ class SearchFragment : Fragment() {
         if (enteredSearchStartDate.isNullOrBlank()) {
             defaultSearchStartDate
         }
+        Log.d("SearchFragLog","Start time entered date is $enteredSearchStartDate and default is $defaultSearchStartDate")
         //Check for null endDate entry
         if (enteredSearchEndDate.isNullOrBlank()) {
             defaultSearchEndDate
         }
+        Log.d("SearchFragLog","End time entered date is $enteredSearchEndDate and default is $defaultSearchEndDate")
         //Checkbox values
         searchBooleanArts = binding.checkboxArts.isChecked
         searchBooleanBusiness = binding.checkboxBusiness.isChecked
@@ -92,11 +103,11 @@ class SearchFragment : Fragment() {
             requireContext(),
             { view, year, month, dayOfMonth ->
                 // Handle the selected date
-                val selectedStartDate = String.format("%d-%02d-%02d", year, month + 1, dayOfMonth)
+                val selectedStartDate = Date( year-1900, month, dayOfMonth -1)
                 // Update the TextView or perform any other action
-
-                binding.startDateEt.text = selectedStartDate
-                enteredSearchStartDate = selectedStartDate
+                val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+                binding.startDateEt.text = getStringDates(selectedStartDate, "dd/MM/yy")
+                searchStartDate = selectedStartDate
                 Log.d("SearchFragLog","entered start day = $enteredSearchStartDate")
             },
             // Set initial date in the date picker
@@ -120,10 +131,10 @@ class SearchFragment : Fragment() {
             requireContext(),
             { view, year, month, dayOfMonth ->
                 // Handle the selected date
-                val selectedEndDate = String.format("%d-%02d-%02d", year, month + 1, dayOfMonth)
+                val selectedEndDate = java.util.Date( year -1900, month, dayOfMonth-1)
                 // Update the TextView or perform any other action
-                binding.endDateEt.text = selectedEndDate
-                enteredSearchEndDate = selectedEndDate
+                binding.endDateEt.text = getStringDates(selectedEndDate, "dd/MM/yy")
+                searchEndDate = selectedEndDate
                 Log.d("SearchFragLog","entered end day = $enteredSearchEndDate")
 
             },

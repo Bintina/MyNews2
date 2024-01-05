@@ -17,7 +17,8 @@ import com.bintina.mynews.news.controller.PagerAdapter
 import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.overflow.view.AboutActivity
 import com.bintina.mynews.overflow.view.HelpActivity
-import com.bintina.mynews.common.util.getDefaultDates
+
+import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.search.controller.SearchActivity
 
 
@@ -43,8 +44,8 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         toolbar.setBackgroundColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary))
 
+instantiateTodaysDate()
 
-        getDefaultDates()
 
     }
 

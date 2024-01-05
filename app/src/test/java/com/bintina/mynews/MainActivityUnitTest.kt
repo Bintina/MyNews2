@@ -1,23 +1,16 @@
 package com.bintina.mynews
 
 
-import android.os.StrictMode
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
-import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.bintina.mynews.common.util.MyApp
-import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
-import junit.framework.Assert
-import junit.framework.TestCase
+import com.bintina.mynews.common.util.MyApp.Companion.currentDate
+import com.bintina.mynews.common.util.MyApp.Companion.defaultNotificationEndDate
+import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchEndDate
 import junit.framework.TestCase.assertTrue
-import org.junit.AfterClass
-import org.junit.Before
-import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -44,5 +37,11 @@ class MainActivityUnitTest {
         onView(withText("Business")).check(matches(isDisplayed()))
         onView(withText("Arts")).check(matches(isDisplayed()))
         onView(withText("Science")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun check_date_is_current(){
+        assertTrue(defaultSearchEndDate == currentDate.toString())
+        assertTrue(defaultNotificationEndDate == currentDate.toString())
     }
 }

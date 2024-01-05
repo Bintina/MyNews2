@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.common.data.DataSource
@@ -19,7 +20,9 @@ import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanEntreprenuers
 import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanPolitics
 import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanSports
 import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanTravel
+import com.bintina.mynews.common.util.MyApp.Companion.searchEndDate
 import com.bintina.mynews.common.util.MyApp.Companion.searchKeyword
+import com.bintina.mynews.common.util.MyApp.Companion.searchStartDate
 import com.bintina.mynews.common.util.getSelectedFilters
 import com.bintina.mynews.databinding.FragmentSearchResultBinding
 import com.bintina.mynews.news.controller.OnNewsClickedListener
@@ -52,8 +55,8 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         Log.d("SearchResFragLog", "onResume called")
 
         val keyword = searchKeyword
-        val startDate = enteredSearchStartDate
-        val endDate = enteredSearchEndDate
+        val startDate = searchStartDate
+        val endDate = searchEndDate
         val arts = searchBooleanArts
         val business = searchBooleanBusiness
         val entreprenuers = searchBooleanEntreprenuers
@@ -73,6 +76,7 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
                 Log.d("SearchResultTryCatch", "Error is $e")
                 //Toast.makeText(requireContext(),"Sorry, we do not have results for this search at the moment. Please try a wider search.", Toast.LENGTH_LONG)
             }
+            //Deal with errors here!!
             Log.d("SearchResultFragLog", "$keyword")
 
 
