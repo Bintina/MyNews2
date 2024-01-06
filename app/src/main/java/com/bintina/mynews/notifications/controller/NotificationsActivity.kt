@@ -9,9 +9,14 @@ import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
@@ -32,6 +37,11 @@ import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_POLITICS
 import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_SPORTS
 import com.bintina.mynews.common.util.Constants.NOTIFICATION_KEY_TRAVEL
 import com.bintina.mynews.common.util.Constants.NOTIFICATION_TITLE
+import com.bintina.mynews.common.util.MyApp
+import com.bintina.mynews.common.util.openAboutActivity
+import com.bintina.mynews.common.util.openHelpActivity
+import com.bintina.mynews.common.util.openNotificationsActivity
+import com.bintina.mynews.common.util.openSearchActivity
 import java.util.concurrent.TimeUnit
 
 class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListener {
@@ -46,6 +56,15 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
         binding = ActivityNotificationsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        setSupportActionBar(findViewById(R.id.my_toolbar))
+        val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        toolbar.setBackgroundColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary))
+
+        val searchBtn = findViewById<View>(R.id.search_btn)
+        searchBtn.setOnClickListener {
+            openSearchActivity()
+        }
 
         Log.d("NotificationOnCreateLog", "Navigation Activity onCreate onCreated")
         val notificationsFragment = NotificationsFragment()
@@ -75,5 +94,28 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
         Log.d("NotificationWorkerRequestLog", "Worker Request sent from Notification Activity")
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.notifications_btn -> {
+                openNotificationsActivity()
+                return true
+            }
+
+            R.id.help_btn -> {
+                openHelpActivity()
+                return true
+            }
+
+            R.id.about_btn -> {
+                openAboutActivity()
+                return true
+            }
+
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
 
 }

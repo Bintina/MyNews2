@@ -1,25 +1,21 @@
 package com.bintina.mynews
 
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import com.bintina.mynews.databinding.ActivityMainBinding
-import com.google.android.material.tabs.TabLayoutMediator
-import com.bintina.mynews.news.controller.PagerAdapter
-import com.bintina.mynews.notifications.controller.NotificationsActivity
-import com.bintina.mynews.overflow.view.AboutActivity
-import com.bintina.mynews.overflow.view.HelpActivity
-
 import com.bintina.mynews.common.util.instantiateTodaysDate
-import com.bintina.mynews.search.controller.SearchActivity
+import com.bintina.mynews.common.util.openAboutActivity
+import com.bintina.mynews.common.util.openHelpActivity
+import com.bintina.mynews.common.util.openNotificationsActivity
+import com.bintina.mynews.common.util.openSearchActivity
+import com.bintina.mynews.databinding.ActivityMainBinding
+import com.bintina.mynews.news.controller.PagerAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,21 +26,23 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(findViewById(R.id.my_toolbar))
+        val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        toolbar.setBackgroundColor(
+            ContextCompat.getColor(
+                this,
+                com.google.android.material.R.color.design_default_color_secondary
+            )
+        )
+
         val searchBtn = findViewById<View>(R.id.search_btn)
+        searchBtn.setOnClickListener {
+            openSearchActivity()
+        }
 
         setupViewPager()
 
-        searchBtn.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
-            startActivity(intent)
-            Log.d("MagnifyingglassButtonClick", "Magnifying button click method reached end")
-        }
-
-        setSupportActionBar(findViewById(R.id.my_toolbar))
-        val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
-        toolbar.setBackgroundColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary))
-
-instantiateTodaysDate()
+        instantiateTodaysDate()
 
 
     }
@@ -62,7 +60,7 @@ instantiateTodaysDate()
                 else -> throw IllegalStateException("Unexpected position $position")
             }
             tab.view.setBackgroundColor(getColor(com.google.android.material.R.color.design_default_color_secondary))
-            
+
 
         }
             .attach()
@@ -76,34 +74,20 @@ instantiateTodaysDate()
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.notifications_btn -> {
-                Log.d("MainActivityBeforeAction Log", "Notifications button clicked")
-                val intent = Intent(this, NotificationsActivity::class.java)
-                startActivity(intent)
-
-                Log.d("MainActivity", "Notifications button clicked")
-
-
-                Toast.makeText(this, "notification item clicked", Toast.LENGTH_SHORT).show()
+                openNotificationsActivity()
                 return true
             }
 
             R.id.help_btn -> {
-                Log.d("HelpBtnLog", "Help button clicked")
-                val intent = Intent(this, HelpActivity::class.java)
-                startActivity(intent)
+                openHelpActivity()
                 return true
             }
 
             R.id.about_btn -> {
-                Log.d("AboutBtnLog", "About button clicked")
-                val intent = Intent(this, AboutActivity::class.java)
-                startActivity(intent)
-                Log.d("AboutBtnLog", "Intent Passed")
-
+                openAboutActivity()
                 return true
             }
-            // Add more cases for other menu items if needed
-            // R.id.other_menu_item_id -> { /* Handle other menu items */ }
+
             else -> return super.onOptionsItemSelected(item)
 
         }

@@ -55,11 +55,11 @@ class NewsFragment: Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
         adapter.listener = this
 
     }
-    override fun openLink(clickedNewsLink: String) {
-        val newsSite = Uri.parse(clickedNewsLink)
+    override fun openLink(link: String) {
+        val newsSite = Uri.parse(link)
         val intent = Intent(Intent.ACTION_VIEW, newsSite)
 
-        clickedArticles.add(clickedNewsLink)
+        clickedArticles.add(link)
         adapter.notifyDataSetChanged()
 
         startActivity(intent)

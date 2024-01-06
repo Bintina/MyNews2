@@ -130,7 +130,7 @@ object DataSource {
             notificationKeyword,
             filters,
             true,
-            true,
+            false,
             formattedStartDate,
             formattedEndDate,
             "newest",

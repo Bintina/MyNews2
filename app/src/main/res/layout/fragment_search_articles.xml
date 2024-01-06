@@ -9,8 +9,8 @@
     <EditText
         android:id="@+id/search_query_term_edit_text"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Search query term"
+        android:layout_height="48dp"
+        android:hint="@string/search_query_et"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
+        android:padding="5dp"
         android:stretchMode="columnWidth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,45 +30,40 @@
             android:id="@+id/date_linear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Begin Date"/>
+                android:text="@string/begin_date_title" />
 
             <TextView
                 android:id="@+id/start_date_et"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:minWidth="190dp"
+                android:layout_height="48dp"
                 android:clickable="true"
                 android:focusable="true"
-
-                />
+                android:minWidth="190dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="End Date"/>
+                android:text="@string/end_date_title" />
 
             <TextView
                 android:id="@+id/end_date_et"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:minWidth="190dp"
+                android:layout_height="48dp"
                 android:clickable="true"
                 android:focusable="true"
-                />
+                android:minWidth="190dp" />
 
         </LinearLayout>
     </GridLayout>
@@ -79,6 +74,7 @@
         android:layout_height="wrap_content"
         android:columnCount="2"
         android:numColumns="2"
+        android:padding="5dp"
         android:stretchMode="columnWidth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,67 +82,73 @@
 
         <CheckBox
             android:id="@+id/checkbox_arts"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Arts"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_columnWeight="1"
+            android:text="@string/arts_checkbox_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_query_details" />
 
         <CheckBox
             android:id="@+id/checkbox_business"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Business"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_columnWeight="1"
+            android:text="@string/business_checkbox_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_query_details" />
 
         <CheckBox
             android:id="@+id/checkbox_entreprenuers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Entreprenuers"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_columnWeight="1"
+            android:text="@string/entreprenuers_checkbox_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_query_details" />
 
         <CheckBox
             android:id="@+id/checkbox_politics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Politics"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_columnWeight="1"
+            android:text="@string/politics_checkbox_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_query_details" />
 
         <CheckBox
             android:id="@+id/checkbox_sports"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sports"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_columnWeight="1"
+            android:text="@string/sports_checkbox_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_query_details" />
 
         <CheckBox
             android:id="@+id/checkbox_travel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Travel"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_columnWeight="1"
+            android:text="@string/travel_checkbox_txt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date_query_details" />
 
     </GridLayout>
+
     <Button
         android:id="@+id/search_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search"
-        app:layout_constraintTop_toBottomOf="@id/checkbox_grid"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/search_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/checkbox_grid" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

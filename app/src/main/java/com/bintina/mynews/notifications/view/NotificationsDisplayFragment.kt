@@ -80,13 +80,14 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
             } catch (e: Exception) {
                 emptyList<Doc?>()
                 Log.d("NotificationsResultsTryCatch", "Error is $e")
+
             }
 
         }
     }
 
-    override fun openLink(clickedNewsLink: String) {
-        val newsSite = Uri.parse(clickedNewsLink)
+    override fun openLink(link: String) {
+        val newsSite = Uri.parse(link)
         val intent = Intent(Intent.ACTION_VIEW, newsSite)
 
         // ContextCompat.startActivity(intent)

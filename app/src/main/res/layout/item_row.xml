@@ -8,7 +8,6 @@
     app:cardBackgroundColor="@color/cardview_light_background"
     app:cardCornerRadius="@dimen/cardview_compat_inset_shadow">
 
-
     <LinearLayout
         android:id="@+id/card_container"
         android:layout_width="match_parent"
@@ -35,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
 
@@ -64,7 +63,6 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="@string/date_placeholder"
-
                     app:layout_constraintBottom_toTopOf="@id/caption"
                     app:layout_constraintEnd_toEndOf="@id/card_container"
                     app:layout_constraintStart_toEndOf="@id/news_image"
@@ -79,10 +77,9 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@string/news_caption_placeholder"
-
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/card_container"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/news_image"
                 app:layout_constraintTop_toBottomOf="@id/section" />
 

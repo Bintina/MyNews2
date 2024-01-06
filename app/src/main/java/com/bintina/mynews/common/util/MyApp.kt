@@ -3,6 +3,8 @@ package com.bintina.mynews.common.util
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.view.View
+import com.bintina.mynews.R
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.QueryDetails
 import java.util.Date

@@ -2,6 +2,9 @@ package com.bintina.mynews.common.util
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
+import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
 import com.bintina.mynews.common.model.search.QueryDetails
 import com.bintina.mynews.common.util.MyApp.Companion.FILE_NAME
 import com.bintina.mynews.common.util.MyApp.Companion.currentDate
@@ -10,6 +13,10 @@ import com.bintina.mynews.common.util.MyApp.Companion.newsSharedPref
 import com.bintina.mynews.common.util.MyApp.Companion.notificationStartDate
 import com.bintina.mynews.common.util.MyApp.Companion.searchEndDate
 import com.bintina.mynews.common.util.MyApp.Companion.searchStartDate
+import com.bintina.mynews.notifications.controller.NotificationsActivity
+import com.bintina.mynews.overflow.view.AboutActivity
+import com.bintina.mynews.overflow.view.HelpActivity
+import com.bintina.mynews.search.controller.SearchActivity
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -129,43 +136,23 @@ fun getApiDates(date: Date, format: String): String {
     val dateFormat = SimpleDateFormat(format, Locale.US)
     return dateFormat.format(date)
 }
-/*
-//set end dates to current Date
-    val currentDatePlaceholder = Calendar.getInstance()
 
-    val endYear = currentDatePlaceholder.get(Calendar.YEAR)
-    val endMonth = currentDatePlaceholder.get(Calendar.MONTH)
-    val endDay = currentDatePlaceholder.get(Calendar.DAY_OF_MONTH)
-
-    val defaultEndDate = String.format("%d%02d%02d", endYear, endMonth, endDay)
-
-    defaultNotificationEndDate = defaultEndDate
-    defaultSearchEndDate = defaultEndDate
-
-    //Set default search start date
-    currentDatePlaceholder.add(Calendar.YEAR, -5)
-
-    val initialStartYear = currentDatePlaceholder.get(Calendar.YEAR)
-    val initialStartMonth = currentDatePlaceholder.get(Calendar.MONTH)
-    val initialStartDay = currentDatePlaceholder.get(Calendar.DAY_OF_MONTH)
-
-    val selectedFiveYearStartDate =
-        String.format("%d%02d%02d", initialStartYear, initialStartMonth, initialStartDay)
-    MyApp.defaultSearchStartDate = selectedFiveYearStartDate
-
-    //set default notification start date
-    currentDatePlaceholder.add(Calendar.MONTH, -6)
-
-    val initialNotificationStartYear = currentDatePlaceholder.get(Calendar.YEAR)
-    val initialNotificationStartMonth = currentDatePlaceholder.get(Calendar.MONTH)
-    val initialNotificationStartDay = currentDatePlaceholder.get(Calendar.DAY_OF_MONTH)
-
-    val selectedSixMonthStartDate =
-        String.format(
-            "%d%02d%02d",
-            initialNotificationStartYear,
-            initialNotificationStartMonth,
-            initialNotificationStartDay
-        )
-    MyApp.defaultNotificationStartDate = selectedSixMonthStartDate
-*/
+//AppBar Methods
+fun Context.openSearchActivity(){
+    val intent = Intent(this, SearchActivity::class.java)
+    startActivity(intent)
+    Log.d("MagnifyingglassButtonClick", "Magnifying button click method reached end")
+}
+fun Context.openNotificationsActivity(){
+    val intent = Intent(this, NotificationsActivity::class.java)
+    startActivity(intent)
+    Log.d("NavigateToNotificationAct", "Notifications button clicked")
+}
+fun Context.openHelpActivity(){
+    val intent = Intent(this, HelpActivity::class.java)
+    startActivity(intent)
+}
+fun Context.openAboutActivity(){
+    val intent = Intent(this, AboutActivity::class.java)
+    startActivity(intent)
+}

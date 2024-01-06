@@ -19,7 +19,18 @@
     <string name="notification_toggle_text">Enable Notifications (once per day)</string>
     <string name="about_title">About My News</string>
     <string name="about_content">My News is an Open Classrooms Application designed to demonstrate skill development in the areas of Api Calls, Retrofit, Recycler Views and Coroutines</string>
-    <string name="help_title">My News Help Desk</string>
+    <string name="help_title">Help Desk</string>
     <string name="help_content">Being a learning app, the best forms of help will come from the official documentation, linked in this text</string>
-
+    <string name="arts_checkbox_txt">Arts</string>
+    <string name="business_checkbox_txt">Business</string>
+    <string name="entreprenuers_checkbox_txt">Entreprenuers</string>
+    <string name="politics_checkbox_txt">Politics</string>
+    <string name="sports_checkbox_txt">Sports</string>
+    <string name="travel_checkbox_txt">Travel</string>
+    <string name="search_query_et">Search query term</string>
+    <string name="begin_date_title">Begin Date</string>
+    <string name="end_date_title">End Date</string>
+    <string name="search_btn">Search</string>
+<string name="android_developers_link">https://developer.android.com/</string>
+    <string name="open_classrooms_link">https://openclassrooms.com/en/paths</string>
 </resources>
