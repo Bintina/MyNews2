@@ -5,6 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.util.Log
 import androidx.core.content.ContextCompat.startActivity
+import com.bintina.mynews.MainActivity
 import com.bintina.mynews.common.model.search.QueryDetails
 import com.bintina.mynews.common.util.MyApp.Companion.FILE_NAME
 import com.bintina.mynews.common.util.MyApp.Companion.currentDate
@@ -154,5 +155,9 @@ fun Context.openHelpActivity(){
 }
 fun Context.openAboutActivity(){
     val intent = Intent(this, AboutActivity::class.java)
+    startActivity(intent)
+}
+fun Context.goHome(){
+    val intent = Intent(this, MainActivity::class.java)
     startActivity(intent)
 }

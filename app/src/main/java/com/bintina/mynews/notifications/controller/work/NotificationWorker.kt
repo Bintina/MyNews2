@@ -24,52 +24,48 @@ import com.bintina.mynews.common.util.Constants.CHANNEL_ID
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
 import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
 
+/**
+ * Worker class responsible for handling background work related to notifications.
+ */
 class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
     Worker(appContext, workerParams) {
 
-
+    /**
+     * Executes the background work for the notification.
+     */
     override fun doWork(): Result {
-        val bundle = inputData
-       // val intent = createNotificationIntent(bundle)
-        //showNotification()
-        Log.d("ShowNotificationLog", "showNotification() Triggered")
+        // Create notification channel
         createNotificationChannel()
 
+        // Set notification channel and ID
         val notificationChannelId = Constants.CHANNEL_ID
         val notificationId = Constants.NOTIFICATION_ID
 
         //Handle notification Click
         val mainIntent = Intent(applicationContext, NotificationDisplayActivity::class.java)
-        //to pass data in notification and get it in Activity
-//        mainIntent.putExtra("KEY_NAME","KEY_VALUE")
-
-        Log.d("WorkerLog","notificationKeyword = $notificationKeyword, artBoolean = $notificationBooleanArts")
-        mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         val mainPendingIntent = PendingIntent.getActivity(
             applicationContext, 1, mainIntent,
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        //secondBtnIntent....
+        // Set up second button intent
         val secondBtnIntent = Intent(applicationContext, NotificationsActivity::class.java)
-        //to pass data in notification and get it in Activity
-        //        secondBtnIntent.putExtra("KE_NAME","KEY_VALUE")
         val secondBtPendingIntent = PendingIntent.getActivity(
             applicationContext, 2, secondBtnIntent,
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
-        //thirdBtnIntent....
+
+        // Set up third button intent
         val thirdBtnIntent = Intent(applicationContext, NotificationsActivity::class.java)
-        //to pass data in notification and get it in Activity
-        //        thirdBtnIntent.putExtra("KE_NAME","KEY_VALUE")
         val thirdBtPendingIntent = PendingIntent.getActivity(
             applicationContext, 3, thirdBtnIntent,
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
 
+        // Build the notification
         val notificationBuilder =
             NotificationCompat.Builder(applicationContext, notificationChannelId)
-
         notificationBuilder.setSmallIcon(R.drawable.small_notifications_active_24)
         notificationBuilder.setContentTitle(Constants.NOTIFICATION_TITLE)
         notificationBuilder.priority = NotificationCompat.PRIORITY_DEFAULT
@@ -84,6 +80,7 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
             secondBtPendingIntent
         )
 
+        // Notify using NotificationManagerCompat
         val notificationManagerCompat = NotificationManagerCompat.from(applicationContext)
         if (ActivityCompat.checkSelfPermission(
                 applicationContext,
@@ -107,9 +104,12 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
     }
 
     fun showNotification() {
-
+TODO("add implementaiion if needed")
     }
 
+    /**
+     * Creates a notification channel for Android Oreo (API level 26) and above.
+     */
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = Constants.NOTIFICATION_CHANNEL_NAME

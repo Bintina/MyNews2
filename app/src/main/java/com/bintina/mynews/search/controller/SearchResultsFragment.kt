@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.common.data.DataSource
 import com.bintina.mynews.common.model.search.Doc
+import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanArts
 import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanBusiness
 import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanEntreprenuers
@@ -29,11 +30,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Fragment responsible for displaying search results based on user input.
+ */
 class SearchResultsFragment : Fragment(), OnNewsClickedListener {
+
+    // Adapter for displaying search results
     lateinit var adapter: Adapter
 
+    // Binding for the fragment
     private var _binding: FragmentSearchResultBinding? = null
     private val binding get() = _binding!!
+
+    /**
+     * Called to create and return the view hierarchy associated with the fragment.
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,17 +52,16 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
     ): View? {
         _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
 
-        Log.d("SearchResFragLog", "onCreate called")
-
         return binding.root
     }
 
+    /**
+     * Called when the fragment is resumed.
+     */
     override fun onResume() {
         super.onResume()
 
-
-        Log.d("SearchResFragLog", "onResume called")
-
+        // Retrieve search parameters from global variables
         val keyword = searchKeyword
         val startDate = searchStartDate
         val endDate = searchEndDate
@@ -62,22 +72,25 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         val sports = searchBooleanSports
         val travel = searchBooleanTravel
 
-
+        // Get selected filters
         val filters: String? =
             getSelectedFilters(arts, business, entreprenuers, politics, sports, travel)
 
+        // Use coroutines to perform the search operation in the background
         lifecycleScope.launch(Dispatchers.IO) {
             val result = try {
                 DataSource.loadSearchResults(keyword, startDate, endDate, filters)
             } catch (e: Exception) {
                 emptyList<Doc?>()
                 Log.d("SearchResultTryCatch", "Error is $e")
-                Toast.makeText(requireContext(),"Sorry, we do not have results for this search at the moment. Please try a wider search.", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Sorry, we do not have results for this search at the moment. Please try a wider search.",
+                    Toast.LENGTH_LONG
+                ).show()
             }
-            //Deal with errors here!!
-            Log.d("SearchResultFragLog", "$keyword")
 
-
+            // Update the UI with the search results
             withContext(Dispatchers.Main) {
                 adapter.searchResultList = result as MutableList<Doc?>
                 adapter.notifyDataSetChanged()
@@ -90,16 +103,26 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         }
     }
 
+    /**
+     * Called when the fragment's activity has been created and the fragment's view hierarchy
+     * is about to be created.
+     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initializeView()
     }
 
+    /**
+     * Called when the fragment is being destroyed.
+     */
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
+    /**
+     * Initializes the view components, including the adapter for the RecyclerView.
+     */
     private fun initializeView() {
         adapter = Adapter()
         binding.resultsRecyclerview.adapter = adapter
@@ -107,9 +130,16 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
 
     }
 
+    /**
+     * Opens the link in a web browser when a search result item is clicked.
+     */
     override fun openLink(link: String) {
         val newsSite = Uri.parse(link)
         val intent = Intent(Intent.ACTION_VIEW, newsSite)
+
+        // Add the clicked article to the clickedArticles list and update the adapter
+        MyApp.clickedArticles.add(link)
+        adapter.notifyDataSetChanged()
 
         startActivity(intent)
     }

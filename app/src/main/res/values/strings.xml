@@ -33,4 +33,5 @@
     <string name="search_btn">Search</string>
 <string name="android_developers_link">https://developer.android.com/</string>
     <string name="open_classrooms_link">https://openclassrooms.com/en/paths</string>
+    <string name="home_btn">Home</string>
 </resources>

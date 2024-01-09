@@ -1,4 +1,4 @@
-package com.bintina.mynews.news.view
+package com.bintina.mynews.news.controller
 
 import android.content.Intent
 import android.net.Uri
@@ -18,6 +18,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Fragment displaying news articles
+ */
 class NewsFragment: Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
 
     lateinit var adapter: Adapter
@@ -25,6 +28,9 @@ class NewsFragment: Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
+    /**
+     * Called to create the view for this fragment
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,6 +39,7 @@ class NewsFragment: Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
      initializeList()
 
+        // Asynchronously load news data
      lifecycleScope.launch(Dispatchers.IO) {
          val result = DataSource.loadNews()
          withContext(Dispatchers.Main){
@@ -45,20 +52,34 @@ class NewsFragment: Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
         return binding.root
     }
 
+    /**
+     * Called when the fragment is no longer in use.
+     */
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
+
+    /**
+     * Initializes the RecyclerView and its Adapter.
+     */
     private fun initializeList() {
         adapter = Adapter()
         binding.recyclerview.adapter = adapter
         adapter.listener = this
 
     }
+
+    /**
+     * Opens the provided link in a browser.
+     *
+     * @param link The link to be opened.
+     */
     override fun openLink(link: String) {
         val newsSite = Uri.parse(link)
         val intent = Intent(Intent.ACTION_VIEW, newsSite)
 
+        // Add the clicked article to the clickedArticles list and update the adapter
         clickedArticles.add(link)
         adapter.notifyDataSetChanged()
 

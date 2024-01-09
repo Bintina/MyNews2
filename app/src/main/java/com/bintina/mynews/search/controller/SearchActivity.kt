@@ -9,13 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.bintina.mynews.R
-import com.bintina.mynews.common.util.MyApp
+import com.bintina.mynews.common.util.goHome
 import com.bintina.mynews.common.util.openAboutActivity
 import com.bintina.mynews.common.util.openHelpActivity
 import com.bintina.mynews.common.util.openNotificationsActivity
 import com.bintina.mynews.common.util.openSearchActivity
 import com.bintina.mynews.databinding.ActivitySearchBinding
 
+/**
+ * Activity for handling search functionality.
+ */
 class SearchActivity : AppCompatActivity(), OnSearchClicked {
     lateinit var binding: ActivitySearchBinding
 
@@ -24,17 +27,21 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         const val KEY_SEARCH_FRAGMENT_RESULTS = "KEY_SEARCH_FRAGMENT_RESULTS"
     }
 
+    /**
+     * Called when the activity is first created.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Set up the search button click listener
         val searchBtn = findViewById<View>(R.id.search_btn)
-
         searchBtn.setOnClickListener {
             openSearchActivity()
         }
 
+        // Set up the toolbar
         setSupportActionBar(findViewById(R.id.my_toolbar))
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         toolbar.setBackgroundColor(
@@ -44,6 +51,7 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
             )
         )
 
+        // Create and initialize the initial search fragment
         val searchFragment = SearchFragment()
         searchFragment.listener = this
 
@@ -51,12 +59,13 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         val transaction = fragmentManager.beginTransaction()
         transaction.add(R.id.search_fragment_container, searchFragment, KEY_SEARCH_FRAGMENT)
         transaction.commit()
-
-
     }
 
-
+    /**
+     * Called when the search button is clicked.
+     */
     override fun onSearchClick() {
+        // Replace the search fragment with the search results fragment
         val searchResultsFragment = SearchResultsFragment()
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
@@ -69,10 +78,17 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         Log.d("onSearchClickLog", "transaction commited")
     }
 
+    /**
+     * Initialize the options menu.
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         return true
     }
+
+    /**
+     * Handle options menu item selection.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.notifications_btn -> {
@@ -87,6 +103,11 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
 
             R.id.about_btn -> {
                 openAboutActivity()
+                return true
+            }
+
+            R.id.home_btn -> {
+                goHome()
                 return true
             }
 
