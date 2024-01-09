@@ -50,18 +50,12 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
         )
 
         // Set up second button intent
-        val secondBtnIntent = Intent(applicationContext, NotificationsActivity::class.java)
+        val secondBtnIntent = Intent(applicationContext, DismissNotificationReceiver::class.java)
         val secondBtPendingIntent = PendingIntent.getActivity(
             applicationContext, 2, secondBtnIntent,
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // Set up third button intent
-        val thirdBtnIntent = Intent(applicationContext, NotificationsActivity::class.java)
-        val thirdBtPendingIntent = PendingIntent.getActivity(
-            applicationContext, 3, thirdBtnIntent,
-            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
-        )
 
         // Build the notification
         val notificationBuilder =
@@ -87,13 +81,7 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
                 Manifest.permission.POST_NOTIFICATIONS
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+         
             return ListenableWorker.Result.success()
         }
         notificationManagerCompat.notify(notificationId, notificationBuilder.build())
@@ -103,9 +91,6 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
         return Result.success()
     }
 
-    fun showNotification() {
-TODO("add implementaiion if needed")
-    }
 
     /**
      * Creates a notification channel for Android Oreo (API level 26) and above.

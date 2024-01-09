@@ -53,7 +53,7 @@ object Constants {
         "WorkManager Notifications"
     const val NOTIFICATION_CHANNEL_DESCRIPTION =
         "Shows notifications whenever work starts"
-    @JvmField val NOTIFICATION_TITLE: CharSequence = "WorkRequest Starting"
+    @JvmField val NOTIFICATION_TITLE: CharSequence = "You have news!"
     const val CHANNEL_ID = "NOTIFICATION_CHANNEL"
     const val NOTIFICATION_ID = 1
 
