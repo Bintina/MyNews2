@@ -8,6 +8,31 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import java.util.Date
+
+/**
+ * Data class representing a news article.
+ *
+ * @param `abstract` Summary or abstract of the news article.
+ * @param byline Author information.
+ * @param createdDate Date when the news article was created.
+ * @param desFacet List of descriptors related to the article.
+ * @param geoFacet List of geographic facets related to the article.
+ * @param itemType Type of the news article.
+ * @param kicker Kicker information.
+ * @param materialTypeFacet Material type facet of the article.
+ * @param orgFacet List of organizational facets related to the article.
+ * @param perFacet List of person facets related to the article.
+ * @param publishedDate Date when the news article was published.
+ * @param section Section to which the article belongs.
+ * @param shortUrl Shortened URL of the article.
+ * @param subsection Subsection to which the article belongs.
+ * @param title Title of the news article.
+ * @param updatedDate Date when the news article was last updated.
+ * @param uri URI of the article.
+ * @param url URL of the article.
+ * @param media List of [Media] objects associated with the article.
+ * @param multimedia List of [Multimedia] objects associated with the article.
+ */
 @Parcelize
 data class News(
     @SerializedName("abstract")

@@ -3,6 +3,30 @@ package com.bintina.mynews.common.model.search
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Data class representing a document (Doc) in the search result.
+ *
+ * @param `abstract` The abstract or summary of the document.
+ * @param byline Information about the author(s) of the document.
+ * @param documentType Type of the document.
+ * @param headline The headline of the document.
+ * @param id The unique identifier of the document.
+ * @param keywords List of keywords associated with the document.
+ * @param leadParagraph The lead paragraph or the first paragraph of the document.
+ * @param multimedia List of multimedia items associated with the document.
+ * @param newsDesk The news desk or category of the document.
+ * @param printPage The print page of the document.
+ * @param printSection The print section of the document.
+ * @param pubDate The publication date of the document.
+ * @param sectionName The section name of the document.
+ * @param snippet A short snippet or preview of the document.
+ * @param source The source or origin of the document.
+ * @param subsectionName The subsection name of the document.
+ * @param typeOfMaterial The type of material of the document.
+ * @param uri The URI (Uniform Resource Identifier) of the document.
+ * @param webUrl The web URL of the document.
+ * @param wordCount The word count of the document.
+ */
 data class Doc(
     @SerializedName("abstract")
     val `abstract`: String?,

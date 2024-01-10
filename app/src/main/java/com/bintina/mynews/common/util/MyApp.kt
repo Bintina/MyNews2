@@ -8,11 +8,14 @@ import com.bintina.mynews.R
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.QueryDetails
 import java.util.Date
-
+/**
+ * Custom Application class for MyApp.
+ */
 class MyApp: Application() {
 
     companion object{
 
+        // Application instance
         lateinit var instance: MyApp
             private set
 
@@ -23,20 +26,6 @@ class MyApp: Application() {
         //Clicked Articles list
         val clickedArticles: MutableSet<String> = HashSet()
 
-        //Shared Preference File Names
-        const val FILE_NAME = "Query Preferences"
-        const val QUERY_DETAILS = "Query Details"
-        var searchQueryObject: QueryDetails? = null
-
-
-        var savedQuery = ""
-        var savedDateRange = ""
-        var savedFilters = ""
-
-        lateinit var newsFragmentString: String
-        lateinit var newsJson: String
-        lateinit var newsSharedPref: SharedPreferences
-
         //Date instances
         lateinit var currentDate: Date
         lateinit var notificationStartDate: Date
@@ -44,8 +33,8 @@ class MyApp: Application() {
         lateinit var searchEndDate: Date
 
         //search variables
-        var defaultSearchStartDate = "20181227"
-        var defaultSearchEndDate = "20231227"
+        var defaultSearchStartDate = ""
+        var defaultSearchEndDate = ""
         var searchKeyword: String = ""
         var enteredSearchStartDate = ""
         var enteredSearchEndDate = ""
@@ -59,8 +48,8 @@ class MyApp: Application() {
 
 
         //notification variables
-        var defaultNotificationStartDate = "20230627"
-        var defaultNotificationEndDate = "20231227"
+        var defaultNotificationStartDate = ""
+        var defaultNotificationEndDate = ""
         var notificationKeyword: String = ""
         var notificationBooleanArts : Boolean = false
         var notificationBooleanBusiness : Boolean = false
@@ -70,6 +59,10 @@ class MyApp: Application() {
         var notificationBooleanTravel : Boolean = false
 
     }
+    /**
+     * Called when the application is starting. Initializes the application instance
+     * and obtains a reference to the application's context.
+     */
 override fun onCreate(){
     super.onCreate()
     instance = this

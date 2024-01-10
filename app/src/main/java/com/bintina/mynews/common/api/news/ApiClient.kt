@@ -7,6 +7,9 @@ import com.bintina.mynews.common.util.Constants.SEARCH_END_URL
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Retrofit interface defining API endpoints for fetching news data.
+ */
 interface ApiClient {
     //Popular News Client
     @GET(Constants.POP_END_URL)

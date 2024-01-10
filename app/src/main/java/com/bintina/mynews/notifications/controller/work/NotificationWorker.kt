@@ -81,7 +81,7 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
                 Manifest.permission.POST_NOTIFICATIONS
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-         
+
             return ListenableWorker.Result.success()
         }
         notificationManagerCompat.notify(notificationId, notificationBuilder.build())
