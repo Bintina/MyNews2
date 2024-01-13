@@ -1,5 +1,7 @@
 import org.gradle.internal.classpath.Instrumented.systemProperty
 
+
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -48,10 +50,9 @@ android {
         }
     }
 }
-
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.core:core-ktx:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -61,7 +62,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
+    implementation ("androidx.activity:activity:1.7.2")
 
 //Retrofit implementations
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -101,22 +102,22 @@ dependencies {
 
 
     // (Java only)
-    implementation("androidx.work:work-runtime:2.9.0")
+    implementation("androidx.work:work-runtime:2.8.1")
 
     // Kotlin + coroutines
-    implementation("androidx.work:work-runtime-ktx:2.9.0")
+    implementation("androidx.work:work-runtime-ktx:2.8.1")
 
     // optional - RxJava2 support
-    implementation("androidx.work:work-rxjava2:2.9.0")
+    implementation("androidx.work:work-rxjava2:2.8.1")
 
     // optional - GCMNetworkManager support
-    implementation("androidx.work:work-gcm:2.9.0")
+    implementation("androidx.work:work-gcm:2.8.1")
 
     // optional - Test helpers
-    androidTestImplementation("androidx.work:work-testing:2.9.0")
+    androidTestImplementation("androidx.work:work-testing:2.8.1")
 
     // optional - Multiprocess support
-    implementation("androidx.work:work-multiprocess:2.9.0")
+    implementation("androidx.work:work-multiprocess:2.8.1")
 
 
 }
