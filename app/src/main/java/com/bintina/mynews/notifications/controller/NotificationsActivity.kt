@@ -77,7 +77,7 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
      */
     override fun onNotificationsClick() {
         val notificationWorkRequest: WorkRequest =
-            PeriodicWorkRequestBuilder<NotificationWorker>(1, TimeUnit.HOURS)
+            PeriodicWorkRequestBuilder<NotificationWorker>(24, TimeUnit.HOURS)
                 .build()
 
         WorkManager
