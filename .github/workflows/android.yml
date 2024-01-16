@@ -17,10 +17,22 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '21'
-        distribution: 'temurin'
+        distribution: 'oracle'
         cache: gradle
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+
+      - name: Lint and Code Quality
+      run: ./gradlew lint
+
+    - name: Run Unit Tests
+      run: ./gradlew test
+
+    - name: Run UI Tests
+      run: ./gradlew connectedAndroidTest
+
+    - name: Package APK or Bundle
+      run: ./gradlew bundleRelease
