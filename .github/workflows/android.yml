@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  lint:
 
     runs-on: ubuntu-latest
 
@@ -25,7 +25,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-      - name: Lint and Code Quality
+    - name: Lint and Code Quality
       run: ./gradlew lint
 
     - name: Run Unit Tests
