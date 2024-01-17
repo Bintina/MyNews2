@@ -24,12 +24,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 class MainActivity : AppCompatActivity() {
 
     //set view binding variable
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     /**
      * Called when the activity is starting
      */
-    public override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Set up ViewPager with TabLayoutMediator attached.
-    fun setupViewPager() {
+    private fun setupViewPager() {
         binding.pager.adapter = PagerAdapter(this)
 
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->

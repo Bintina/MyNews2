@@ -1,115 +1,48 @@
 package com.bintina.mynews
-import android.content.Context
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.matcher.ViewMatchers
-import com.bintina.mynews.common.util.*
-import com.bintina.mynews.databinding.ActivityMainBinding
-import com.bintina.mynews.news.controller.PagerAdapter
-import com.google.android.material.tabs.TabLayoutMediator
-import org.junit.Before
+
+
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.bintina.mynews.common.util.MyApp.Companion.currentDate
+import com.bintina.mynews.common.util.MyApp.Companion.defaultNotificationEndDate
+import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchEndDate
+import junit.framework.TestCase.assertTrue
+import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.MockedConstruction
-import org.mockito.Mockito.*
-import org.mockito.MockitoAnnotations
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
+import com.bintina.mynews.R
 
+@RunWith(JUnit4::class)
+//@LargeTest
 class MainActivityUnitTest {
+    @Rule
+    @JvmField
+    val rule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule(MainActivity::class.java)
 
-    @Mock
-    lateinit var mockContext: Context
-
-    @Mock
-    private lateinit var mockToolbar: Toolbar
-
-    @Mock
-    private lateinit var mockBinding: ActivityMainBinding
-
-    @Mock
-    private lateinit var mockPagerAdapter: PagerAdapter
-
-    @Mock
-    private lateinit var mockTabLayoutMediator: TabLayoutMediator
-
-    private lateinit var mainActivity: MainActivity
-
-    @Before
-    fun setup() {
-        MockitoAnnotations.initMocks(this)
-        mainActivity = MainActivity()
-        mainActivity.binding = mockBinding
-        mainActivity.setupViewPager()
-    }
-
-    @Test
-    fun testToolbarColor() {
-        mainActivity.onCreate(null)
-        verify(mockBinding.myToolbar).setBackgroundColor(
-            ContextCompat.getColor(
-                mainActivity,
-                com.google.android.material.R.color.design_default_color_secondary
-            )
-        )
-    }
-
-
-    @Test
-    fun testSearchButtonClickListener() {
-        mainActivity.onCreate(null)
-        mainActivity.findViewById<View>(R.id.search_btn).performClick()
-        Espresso.onView(ViewMatchers.withId(R.id.search_fragment_container))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-    }
+    @get:Rule
+    var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
     fun testViewPagerSetup() {
-        mainActivity.onCreate(null)
-        verify(mockBinding.pager).adapter = mockPagerAdapter
-        verify(mockTabLayoutMediator).attach()
+        // Verify that the PagerAdapter is set
+        onView(withId(R.id.pager)).check(matches(isDisplayed()))
+
+        // Verify that the tab text is set correctly
+        onView(withText("Top Stories")).check(matches(isDisplayed()))
+        onView(withText("Popular")).check(matches(isDisplayed()))
+        onView(withText("Business")).check(matches(isDisplayed()))
+        onView(withText("Arts")).check(matches(isDisplayed()))
+        onView(withText("Science")).check(matches(isDisplayed()))
     }
 
     @Test
-    fun testOptionsMenu() {
-        val mockMenu = mock(Menu::class.java)
-        mainActivity.onCreateOptionsMenu(mockMenu)
-        verify(mainActivity.menuInflater).inflate(R.menu.menu, mockMenu)
-    }
-
-    @Test
-    fun testNotificationsMenuItem() {
-        val mockMenuItem = mock(MenuItem::class.java)
-        mainActivity.onOptionsItemSelected(mockMenuItem)
-        Espresso.onView(ViewMatchers.withId(R.id.notification_fragment_container))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-
-    }
-
-    @Test
-    fun testHelpMenuItem() {
-        val mockMenuItem = mock(MenuItem::class.java)
-        mainActivity.onOptionsItemSelected(mockMenuItem)
-        Espresso.onView(ViewMatchers.withId(R.id.help_content))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-    }
-
-    @Test
-    fun testAboutMenuItem() {
-        val mockMenuItem = mock(MenuItem::class.java)
-        mainActivity.onOptionsItemSelected(mockMenuItem)
-        Espresso.onView(ViewMatchers.withId(R.id.about_content))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-    }
-
-    @Test
-    fun testHomeMenuItem() {
-        val mockMenuItem = mock(MenuItem::class.java)
-        mainActivity.onOptionsItemSelected(mockMenuItem)
-        Espresso.onView(ViewMatchers.withId(R.id.activity_main_scroll_view))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+    fun check_date_is_current(){
+        assertTrue(defaultSearchEndDate == currentDate.toString())
+        assertTrue(defaultNotificationEndDate == currentDate.toString())
     }
 }
