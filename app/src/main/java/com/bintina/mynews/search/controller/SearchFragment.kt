@@ -84,7 +84,7 @@ class SearchFragment : Fragment() {
         }
 
         //Check for null endDate entry
-        if (enteredSearchEndDate.isNullOrBlank()) {
+        if (enteredSearchEndDate.isBlank()) {
             defaultSearchEndDate
         }
 
@@ -124,7 +124,7 @@ class SearchFragment : Fragment() {
         // Create a date picker dialog
         val datePickerDialog = DatePickerDialog(
             requireContext(),
-            { view, year, month, dayOfMonth ->
+            { _, year, month, dayOfMonth ->
                 // Handle the selected date
                 val selectedStartDate = Date( year-1900, month, dayOfMonth -1)
                 // Update the TextView and save selected date
@@ -154,7 +154,7 @@ class SearchFragment : Fragment() {
         // Create a date picker dialog
         val datePickerDialog = DatePickerDialog(
             requireContext(),
-            { view, year, month, dayOfMonth ->
+            { _, year, month, dayOfMonth ->
                 // Handle the selected date
                 val selectedEndDate = java.util.Date( year -1900, month, dayOfMonth-1)
                 // Update the TextView and save selected date.

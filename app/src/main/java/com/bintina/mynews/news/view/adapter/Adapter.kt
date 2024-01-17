@@ -96,7 +96,7 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
             //Set Date View
             view.date.text =
-                SimpleDateFormat("d/M/Y", Locale.US).format(news?.publishedDate).toString()
+                SimpleDateFormat("d/M/Y", Locale.US).format(news?.publishedDate!!).toString()
 
 
             //Set Caption View

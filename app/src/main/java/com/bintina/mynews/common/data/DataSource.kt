@@ -1,6 +1,7 @@
 package com.bintina.mynews.common.data
 
 import android.util.Log
+import android.widget.Toast
 import com.bintina.mynews.common.api.news.ApiService
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.Doc
@@ -62,7 +63,7 @@ object DataSource {
         }
         val filteredList: List<News?>? = filteredForAll
 
-        return if (filteredList != null && filteredList!!.isNotEmpty()) {
+        return if (filteredList != null && filteredList.isNotEmpty()) {
             filteredList
         } else {
             null
@@ -115,13 +116,24 @@ object DataSource {
 
         Log.d("responseDataSource", "results has ${results?.size}")
 
-
-        return if (results != null && results!!.isNotEmpty()) {
-            Log.d("filteredListDataSourceLog", "has ${results.size} results")
-            results
-        } else {
-            emptyList()
+        //Filter out items with null section
+        var parameterToCheckForNull = "section"
+        val filteredForSection = results?.filterNot { Doc ->
+            when (parameterToCheckForNull) {
+                "section" -> Doc?.sectionName.isNullOrBlank()
+                else -> false
+            }
         }
+
+
+            return if (!filteredForSection.isNullOrEmpty()) {
+                Log.d("filteredListDataSourceLog", "has ${results.size} results")
+                filteredForSection
+            } else {
+                emptyList()
+
+            }
+
     }
 
     /**
@@ -190,22 +202,22 @@ object DataSource {
             }
         }
         parameterToCheckForNull = "multimedia"
-        val filteredForAll = filteredForAbstract!!.filterNot { Doc ->
+        val filteredForAll = filteredForAbstract!!.filterNot {
             when (parameterToCheckForNull) {
-                "multimedia" -> Doc?.multimedia!!.isEmpty()
+                "multimedia" -> it?.multimedia!!.isEmpty()
                 else -> false
             }
         }
         val filteredList: List<Doc?> = filteredForAll
-        if (filteredList == null) {
+        if (filteredList.isEmpty()) {
             Log.d(
                 "EmptyFilteredList",
                 "You are all caught up. There is no recent news in your chosen categories."
             )
-            // Toast.makeText(this,"You are all caught up. There is no recent news in your chosen categories.", Toast.LENGTH_LONG).Toast.Length
+            //Toast.makeText(myContext,"You are all caught up. There is no recent news in your chosen categories.", Toast.LENGTH_LONG).show()
         }
 
-        Log.d("responseDataSource", "results has ${filteredList?.size} after filter")
+        Log.d("responseDataSource", "results has ${filteredList.size} after filter")
         return filteredList
     }
 }
