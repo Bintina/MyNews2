@@ -15,7 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import com.bintina.mynews.R
+
 
 @RunWith(JUnit4::class)
 //@LargeTest
@@ -41,7 +41,7 @@ class MainActivityUnitTest {
     }
 
     @Test
-    fun check_date_is_current(){
+    fun check_date_is_current() {
         assertTrue(defaultSearchEndDate == currentDate.toString())
         assertTrue(defaultNotificationEndDate == currentDate.toString())
     }
