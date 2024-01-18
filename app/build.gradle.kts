@@ -32,13 +32,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_16
+        targetCompatibility = JavaVersion.VERSION_16
         //isIncremental = false
         /*options.compilerArgs.add("-Xlint:-options")*/
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "16"
     }
     buildFeatures {
         viewBinding = true
@@ -64,7 +64,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation ("androidx.activity:activity:1.8.2")
+    implementation ("androidx.activity:activity-ktx:1.8.2")
 
 //Retrofit implementations
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
