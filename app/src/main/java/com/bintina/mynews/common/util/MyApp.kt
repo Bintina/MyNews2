@@ -66,7 +66,7 @@ class MyApp: Application() {
 override fun onCreate(){
     super.onCreate()
     instance = this
-    val myContext: Context = this
+
 }
 
 }

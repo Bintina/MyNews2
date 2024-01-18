@@ -36,7 +36,7 @@ import kotlinx.coroutines.withContext
 class SearchResultsFragment : Fragment(), OnNewsClickedListener {
 
     // Adapter for displaying search results
-    lateinit var adapter: Adapter
+    private lateinit var adapter: Adapter
 
     // Binding for the fragment
     private var _binding: FragmentSearchResultBinding? = null

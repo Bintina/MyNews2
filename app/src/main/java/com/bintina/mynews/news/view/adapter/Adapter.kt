@@ -100,7 +100,7 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
 
             //Set Caption View
-            view.caption.text = news?.abstract
+            view.caption.text = news.abstract
 
             //Set click listener for News link
             view.cardContents.setOnClickListener { listener.openLink(newsLink) }
