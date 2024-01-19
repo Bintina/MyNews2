@@ -49,8 +49,9 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
+        initializeView()
 
         return binding.root
     }
@@ -81,18 +82,18 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
             val result = try {
                 DataSource.loadSearchResults(keyword, startDate, endDate, filters)
             } catch (e: Exception) {
-                emptyList<Doc?>()
                 Log.d("SearchResultTryCatch", "Error is $e")
                 Toast.makeText(
                     requireContext(),
                     "Sorry, we do not have results for this search at the moment. Please try a wider search.",
                     Toast.LENGTH_LONG
                 ).show()
+                emptyList<Doc?>()
             }
 
             // Update the UI with the search results
             withContext(Dispatchers.Main) {
-                adapter.searchResultList = result as MutableList<Doc?>
+                adapter.searchResultList = result.toMutableList()
                 adapter.notifyDataSetChanged()
                 Log.d(
                     "Result Fragment",
@@ -103,15 +104,18 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         }
     }
 
-    /**
+/*
+    */
+/**
      * Called when the fragment's activity has been created and the fragment's view hierarchy
      * is about to be created.
-     */
+     *//*
+
     @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initializeView()
     }
+*/
 
     /**
      * Called when the fragment is being destroyed.

@@ -61,11 +61,11 @@ class Adapter(): RecyclerView.Adapter<Adapter.ItemViewHolder>() {
             //Set Date View
             val apiDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.US)
             val newsDate = doc?.pubDate
-            val parsedDate = apiDateFormat.parse(newsDate!!)
+            val parsedDate = apiDateFormat.parse(newsDate!!)!!
             view.date.text = SimpleDateFormat("d/M/y", Locale.US).format(parsedDate)
 
             //Set Caption View
-            view.caption.text = doc?.abstract
+            view.caption.text = doc.abstract
 
             //Set click listener for News link
             view.cardContents.setOnClickListener{ listener.openLink(newsLink)}
