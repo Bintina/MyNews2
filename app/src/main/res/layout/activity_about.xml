@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:menu="@menu/menu"
-        app:title="My News" />
+        app:title="About" />
 
         <TextView
         android:id="@+id/about_title"
