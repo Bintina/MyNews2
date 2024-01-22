@@ -104,18 +104,7 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         }
     }
 
-/*
-    */
-/**
-     * Called when the fragment's activity has been created and the fragment's view hierarchy
-     * is about to be created.
-     *//*
 
-    @Deprecated("Deprecated in Java")
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-*/
 
     /**
      * Called when the fragment is being destroyed.

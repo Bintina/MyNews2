@@ -49,7 +49,7 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
 
         // Set default search start date
