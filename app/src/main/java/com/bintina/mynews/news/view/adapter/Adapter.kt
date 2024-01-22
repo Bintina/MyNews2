@@ -92,7 +92,8 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
                 .into(view.newsImage)
 
             //Set Section View
-            view.section.text = "${news?.section} > ${news?.subsection}"
+            val sectionText = "${news?.section} > ${news?.subsection}"
+            view.section.text = sectionText
 
             //Set Date View
             view.date.text =
