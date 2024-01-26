@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import com.bintina.mynews.MainActivity
+import com.bintina.mynews.common.model.news.News
+import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.common.util.MyApp.Companion.currentDate
 import com.bintina.mynews.common.util.MyApp.Companion.notificationStartDate
 import com.bintina.mynews.common.util.MyApp.Companion.searchEndDate
@@ -170,4 +172,30 @@ fun Context.openAboutActivity(){
 fun Context.goHome(){
     val intent = Intent(this, MainActivity::class.java)
     startActivity(intent)
+}
+
+/**
+ * Filters News Results.
+ */
+//filter DataSource results.........................................................................
+fun filterNewsResult(result: List<News?>?): List<News?> {
+    return result?.filter { news ->
+        // Filter condition: abstract, section, and subsection should not be blank
+        news?.abstract?.isNotBlank() == true &&
+                news.section?.isNotBlank() == true &&
+                news.subsection?.isNotBlank() == true
+    } ?: emptyList()
+
+}
+/**
+ * Filters Doc Results.
+ */
+fun filterSearchResult(result: List<Doc?>?): List<Doc?> {
+    return result?.filter { doc ->
+        // Filter condition: abstract, section, and subsection should not be blank
+        doc?.abstract?.isNotBlank() == true &&
+                doc.sectionName?.isNotBlank() == true &&
+                doc.subsectionName?.isNotBlank() == true
+    } ?: emptyList()
+
 }

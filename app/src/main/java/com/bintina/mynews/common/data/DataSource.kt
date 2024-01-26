@@ -9,6 +9,8 @@ import com.bintina.mynews.common.util.Constants.API_KEY
 import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
 import com.bintina.mynews.common.util.MyApp.Companion.currentDate
 import com.bintina.mynews.common.util.MyApp.Companion.notificationStartDate
+import com.bintina.mynews.common.util.filterNewsResult
+import com.bintina.mynews.common.util.filterSearchResult
 import com.bintina.mynews.common.util.getApiDates
 import java.util.Date
 
@@ -37,37 +39,7 @@ object DataSource {
 
         // Filter out results with null section, subsection or abstract
         val results = response?.results
-        var parameterToCheckForNull = "section"
-
-        val filteredForSection = results?.filterNot { News ->
-            when (parameterToCheckForNull) {
-                "section" -> News?.section.isNullOrBlank()
-                else -> false
-            }
-        }
-
-        parameterToCheckForNull = "subsection"
-        val filteredForSubsection = filteredForSection?.filterNot { News ->
-            when (parameterToCheckForNull) {
-                "subsection" -> News?.subsection.isNullOrBlank()
-                else -> false
-            }
-        }
-
-        parameterToCheckForNull = "abstract"
-        val filteredForAll = filteredForSubsection?.filterNot { News ->
-            when (parameterToCheckForNull) {
-                "abstract" -> News?.abstract.isNullOrBlank()
-                else -> false
-            }
-        }
-        val filteredList: List<News?>? = filteredForAll
-
-        return if (filteredList != null && filteredList.isNotEmpty()) {
-            filteredList
-        } else {
-            null
-        }
+        return filterNewsResult(results)
     }
 
     /**
@@ -117,24 +89,7 @@ object DataSource {
         Log.d("responseDataSource", "results has ${results?.size}")
 
         //Filter out items with null section
-        var parameterToCheckForNull = "section"
-        val filteredForSection = results?.filterNot { Doc ->
-            when (parameterToCheckForNull) {
-                "section" -> Doc?.sectionName.isNullOrBlank()
-                else -> false
-            }
-        }
-
-
-            return if (!filteredForSection.isNullOrEmpty()) {
-                Log.d("filteredListDataSourceLog", "has ${results.size} results")
-                filteredForSection
-            } else {
-                emptyList()
-
-            }
-
-    }
+return filterSearchResult(results)    }
 
     /**
      * Loads notification results based on the specified parameters.
@@ -178,46 +133,6 @@ object DataSource {
         val results: List<Doc?>? = response?.results?.docs
 
         //Filter out items with null section, subsection or image
-        var parameterToCheckForNull = "section"
-        val filteredForSection = results?.filterNot { Doc ->
-            when (parameterToCheckForNull) {
-                "section" -> Doc?.sectionName.isNullOrBlank()
-                else -> false
-            }
-        }
-
-        parameterToCheckForNull = "subsection"
-        val filteredForSubsection = filteredForSection?.filterNot { Doc ->
-            when (parameterToCheckForNull) {
-                "subsection" -> Doc?.subsectionName.isNullOrBlank()
-                else -> false
-            }
-        }
-
-        parameterToCheckForNull = "abstract"
-        val filteredForAbstract = filteredForSubsection?.filterNot { Doc ->
-            when (parameterToCheckForNull) {
-                "abstract" -> Doc?.abstract.isNullOrBlank()
-                else -> false
-            }
-        }
-        parameterToCheckForNull = "multimedia"
-        val filteredForAll = filteredForAbstract!!.filterNot {
-            when (parameterToCheckForNull) {
-                "multimedia" -> it?.multimedia!!.isEmpty()
-                else -> false
-            }
-        }
-        val filteredList: List<Doc?> = filteredForAll
-        if (filteredList.isEmpty()) {
-            Log.d(
-                "EmptyFilteredList",
-                "You are all caught up. There is no recent news in your chosen categories."
-            )
-            //Toast.makeText(myContext,"You are all caught up. There is no recent news in your chosen categories.", Toast.LENGTH_LONG).show()
-        }
-
-        Log.d("responseDataSource", "results has ${filteredList.size} after filter")
-        return filteredList
+return filterSearchResult(results)
     }
 }
