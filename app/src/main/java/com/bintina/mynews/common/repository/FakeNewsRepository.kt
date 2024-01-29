@@ -1,3 +1,5 @@
 package com.bintina.mynews.common.repository
 
-data class FakeNewsRepository()
+import com.google.gson.JsonArray
+
+data class FakeNewsRepository(val json: JsonArray)
