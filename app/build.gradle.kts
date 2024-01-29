@@ -88,7 +88,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     //Gson dependancy
-    implementation("com.google.code.gson:gson:2.9.1")
+    implementation("com.google.code.gson:gson:2.10")
 
 //Esspresso Dependancies............................................................................
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
