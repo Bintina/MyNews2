@@ -15,5 +15,23 @@ class TempSpace {
 //CRASH
 
 /*
-gradle wrapper settings adjusted
+Resolved the "Permission denied issue on a Windows
+
+
+  static-code-analysis:
+    needs: [ instrumentation-test ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: SonarCloud Scan
+        run: ./gradlew app:sonarqube -Dsonar.login=32b22dfae75a71fbabd586bb34433fd9430ceabc
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 */
