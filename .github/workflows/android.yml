@@ -60,11 +60,14 @@ jobs:
           path: app/build/reports/tests/testDebugUnitTest/
 
   instrumentation-test:
-    needs: [unit-test]
+    needs: [ unit-test ]
     runs-on: macos-latest
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
+
+      - name: Set execute permissions for gradlew
+        run: chmod +x ./gradlew
 
       - name: Run espresso tests
         uses: reactivecircus/android-emulator-runner@v2
