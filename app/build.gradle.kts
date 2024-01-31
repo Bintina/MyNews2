@@ -129,5 +129,11 @@ sonar {
         property("sonar.projectKey", "yrsxnssr1-sonarkey_mynews")
         property("sonar.organization", "yrsxnssr1-sonarkey")
         property("sonar.host.url", "https://sonarcloud.io")
+        property ("sonar.gradle.skipCompile", "true")
+    }
+}
+sonar {
+    properties {
+        property ("sonar.gradle.skipCompile", "true")
     }
 }
