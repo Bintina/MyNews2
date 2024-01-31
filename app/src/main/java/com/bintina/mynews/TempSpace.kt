@@ -15,7 +15,7 @@ class TempSpace {
 //CRASH
 
 /*
-Resolved the "Permission denied issue on a Windows
+Build cleaned and built
 
 
   static-code-analysis:
