@@ -6,6 +6,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    id("org.sonarqube") version "4.4.1.3373"
 }
 
 android {
@@ -32,8 +33,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_16
-        targetCompatibility = JavaVersion.VERSION_16
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
         //isIncremental = false
         /*options.compilerArgs.add("-Xlint:-options")*/
     }
@@ -122,4 +123,11 @@ dependencies {
     implementation("androidx.work:work-multiprocess:2.8.1")
 
 
+}
+sonar {
+    properties {
+        property("sonar.projectKey", "yrsxnssr1-sonarkey_mynews")
+        property("sonar.organization", "yrsxnssr1-sonarkey")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
