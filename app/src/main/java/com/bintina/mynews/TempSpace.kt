@@ -15,5 +15,5 @@ class TempSpace {
 //CRASH
 
 /*
-something
+adb path adjusted
 */
