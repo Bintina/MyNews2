@@ -15,5 +15,5 @@ class TempSpace {
 //CRASH
 
 /*
-adb path adjusted
+gradle wrapper settings adjusted
 */
