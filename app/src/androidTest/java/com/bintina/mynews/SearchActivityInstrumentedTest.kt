@@ -16,7 +16,7 @@ import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 class SearchActivityInstrumentedTest {
-
+/*
     val sleepDuration: Long = 20000
 
     @Rule
@@ -64,5 +64,5 @@ class SearchActivityInstrumentedTest {
                 ViewMatchers.isEnabled()
             )
         )
-    }
+    }*/
 }

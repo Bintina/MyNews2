@@ -5,6 +5,9 @@
       <entry key="MainActivityInstrumentedTest">
         <State />
       </entry>
+      <entry key="SearchActivityInstrumentedTest">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -20,6 +23,9 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-02-01T09:55:26.417594100Z" />
         </State>
+      </entry>
+      <entry key="search_screen_views_function_as_expected()">
+        <State />
       </entry>
     </value>
   </component>
