@@ -1,7 +1,6 @@
 package com.bintina.mynews.notifications.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -9,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.bintina.mynews.R
-import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.common.util.goHome
 import com.bintina.mynews.common.util.openAboutActivity
 import com.bintina.mynews.common.util.openHelpActivity
@@ -43,7 +41,7 @@ class NotificationDisplayActivity : AppCompatActivity() {
         toolbar.setBackgroundColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary))
 
         // Setting up a click listener for the search button
-        val searchBtn = findViewById<View>(R.id.search_btn)
+        val searchBtn = findViewById<View>(R.id.start_search_btn)
         searchBtn.setOnClickListener {
             openSearchActivity()
         }

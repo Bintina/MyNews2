@@ -32,8 +32,8 @@ class MainActivityInstrumentedTest {
     }
     @Test
     fun search_button_navigates_to_search_fragment() {
-        assertNotNull(withId(R.id.search_btn))
-        onView(withId(R.id.search_btn)).perform(click())
+        assertNotNull(withId(R.id.start_search_btn))
+        onView(withId(R.id.start_search_btn)).perform(click())
         Thread.sleep(sleepDuration) // You can adjust the delay based on your application's loading time
 
         onView(withId(R.id.search_query_fragment_container)).check(matches(isEnabled()))

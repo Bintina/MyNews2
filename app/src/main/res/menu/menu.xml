@@ -5,7 +5,7 @@
     android:id="@+id/menu_layout">
 
     <item
-        android:id="@+id/search_btn"
+        android:id="@+id/start_search_btn"
         android:icon="@drawable/baseline_search_24"
         android:title="@string/search_btn"
         app:showAsAction="always"

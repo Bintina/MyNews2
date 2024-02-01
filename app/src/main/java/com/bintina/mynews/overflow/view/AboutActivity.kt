@@ -47,7 +47,7 @@ class AboutActivity : AppCompatActivity(), OnNewsClickedListener {
         )
 
         // Set up the click listener for the search button
-        val searchBtn = findViewById<View>(R.id.search_btn)
+        val searchBtn = findViewById<View>(R.id.start_search_btn)
         searchBtn.setOnClickListener {
             openSearchActivity()
         }
