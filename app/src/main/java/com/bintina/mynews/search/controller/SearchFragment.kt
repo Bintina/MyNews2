@@ -66,7 +66,7 @@ class SearchFragment : Fragment() {
         }
 
         // Click listener for search button
-        binding.searchBtn.setOnClickListener {
+        binding.startSearchBtn.setOnClickListener {
             extractData()
         }
         return binding.root
