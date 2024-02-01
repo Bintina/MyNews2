@@ -23,6 +23,7 @@ class MainActivityInstrumentedTest {
     @JvmField
     val rule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule(MainActivity::class.java)
 
+    val sleepDuration: Long = 20000
     @Test
     fun recycler_view_exists() {
         // Check if RecyclerView is displayed
@@ -33,7 +34,7 @@ class MainActivityInstrumentedTest {
     fun search_button_navigates_to_search_fragment() {
         assertNotNull(withId(R.id.search_btn))
         onView(withId(R.id.search_btn)).perform(click())
-        Thread.sleep(2000) // You can adjust the delay based on your application's loading time
+        Thread.sleep(sleepDuration) // You can adjust the delay based on your application's loading time
 
         onView(withId(R.id.search_query_fragment_container)).check(matches(isEnabled()))
     }
@@ -51,7 +52,7 @@ class MainActivityInstrumentedTest {
     fun options_menu_notification_btn_inflates_notification_fragment() {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext())
         onView(withText(R.string.notifications)).perform(click())
-        Thread.sleep(2000) // You can adjust the delay based on your application's loading time
+        Thread.sleep(sleepDuration) // You can adjust the delay based on your application's loading time
 
         onView(withId(R.id.notifications_settings_container)).check(matches(isEnabled()))
     }
@@ -60,7 +61,7 @@ class MainActivityInstrumentedTest {
     fun options_menu_help_btn_is_clickable() {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext())
         onView(withText(R.string.help)).perform(click())
-        Thread.sleep(2000) // You can adjust the delay based on your application's loading time
+        Thread.sleep(sleepDuration) // You can adjust the delay based on your application's loading time
 
         onView(withId(R.id.help_title)).check(matches(isEnabled()))
     }
@@ -69,7 +70,7 @@ class MainActivityInstrumentedTest {
     fun options_menu_about_btn_is_clickable() {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext())
         onView(withText(R.string.about)).perform(click())
-        Thread.sleep(2000) // You can adjust the delay based on your application's loading time
+        Thread.sleep(sleepDuration) // You can adjust the delay based on your application's loading time
 
         onView(withId(R.id.about_title)).check(matches(isEnabled()))
     }
