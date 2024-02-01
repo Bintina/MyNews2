@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.bintina.mynews.R
 import com.bintina.mynews.common.util.goHome
+import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.common.util.openAboutActivity
 import com.bintina.mynews.common.util.openHelpActivity
 import com.bintina.mynews.common.util.openNotificationsActivity
@@ -34,6 +35,8 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        instantiateTodaysDate()
 
         // Set up the search button click listener
         val searchBtn = findViewById<View>(R.id.start_search_btn)

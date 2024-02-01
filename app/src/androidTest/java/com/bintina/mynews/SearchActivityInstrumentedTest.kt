@@ -16,18 +16,22 @@ import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 class SearchActivityInstrumentedTest {
+
+    val sleepDuration: Long = 20000
+
     @Rule
     @JvmField
     val rule: ActivityScenarioRule<NotificationsActivity> = ActivityScenarioRule(
-        NotificationsActivity::class.java)
+        NotificationsActivity::class.java
+    )
 
     @Test
-    fun fragment_container_exists(){
+    fun fragment_container_exists() {
         assertNotNull(withId(R.id.search_fragment_container))
     }
 
     @Test
-    fun search_screen_views_function_as_expected(){
+    fun search_screen_views_function_as_expected() {
         assertNotNull(withId(R.id.search_query_term_edit_text))
         onView(withId(R.id.search_query_term_edit_text)).perform(typeText("kenya"))
         assertNotNull(withId(R.id.checkbox_arts))
@@ -48,11 +52,11 @@ class SearchActivityInstrumentedTest {
         //assert Text matches Enable Notifications (once per day)
 
     }
+
     @Test
-    fun search_button_is_clickable(){
+    fun search_button_is_clickable() {
         assertNotNull(withId(R.id.start_search_btn))
         onView(withId(R.id.start_search_btn)).perform(click())
-        val sleepDuration: Long = 20000
         Thread.sleep(sleepDuration) // You can adjust the delay based on your application's loading time
 
         onView(withId(R.id.results_recyclerview)).check(
