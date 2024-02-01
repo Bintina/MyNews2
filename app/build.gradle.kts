@@ -122,7 +122,8 @@ dependencies {
     // optional - Multiprocess support
     implementation("androidx.work:work-multiprocess:2.8.1")
 
-
+    //mockito
+    testImplementation ("org.mockito:mockito-core:3.12.4")
 }
 sonar {
     properties {
