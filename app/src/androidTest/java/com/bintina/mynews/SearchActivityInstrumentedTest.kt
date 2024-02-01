@@ -49,13 +49,13 @@ class SearchActivityInstrumentedTest {
 
     }
     @Test
-    fun toggle_button_is_clickable(){
+    fun search_button_is_clickable(){
         assertNotNull(withId(R.id.start_search_btn))
         onView(withId(R.id.start_search_btn)).perform(click())
         val sleepDuration: Long = 20000
         Thread.sleep(sleepDuration) // You can adjust the delay based on your application's loading time
 
-        onView(withId(R.id.notifications_settings_container)).check(
+        onView(withId(R.id.results_recyclerview)).check(
             ViewAssertions.matches(
                 ViewMatchers.isEnabled()
             )
