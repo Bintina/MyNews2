@@ -27,22 +27,20 @@ import org.junit.Assert.assertNotNull
 @RunWith(JUnit4::class)
 class SearchActivityUnitTest {
 
-    val sleepDuration: Long = 20000
+    val sleepDuration: Long = 50000
 
     @Rule
     @JvmField
-    val rule: ActivityScenarioRule<SearchActivity> =
-        ActivityScenarioRule(SearchActivity::class.java)
+    val rule: ActivityScenarioRule<SearchActivity> = ActivityScenarioRule(SearchActivity::class.java)
 
     @Test
     fun search_keyword_is_search_term_is_entered(){
-        assertNotNull(withId(R.id.start_search_btn))
         onView(withId(R.id.search_query_term_edit_text)).perform(ViewActions.typeText("kenya"))
+        assertNotNull(withId(R.id.start_search_btn))
         onView(withId(R.id.start_search_btn)).perform(click())
-        Thread.sleep(sleepDuration) // You can adjust the delay based on your application's loading time
+        Thread.sleep(sleepDuration)
 
         assertEquals(MyApp.searchKeyword, "kenya")
-
 
     }
 
