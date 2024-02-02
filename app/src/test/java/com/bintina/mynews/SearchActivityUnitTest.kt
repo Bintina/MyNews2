@@ -36,7 +36,7 @@ class SearchActivityUnitTest {
     fun search_keyword_is_search_term_is_entered(){
         assertNotNull(withId(R.id.start_search_btn))
         onView(withId(R.id.search_query_term_edit_text)).perform(ViewActions.typeText("kenya"))
-        onView(withId(R.id.start_search_btn))
+        onView(withId(R.id.start_search_btn)).perform(click())
 
         assertEquals(MyApp.searchKeyword, "kenya")
 
