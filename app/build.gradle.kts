@@ -6,7 +6,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
-    id("org.sonarqube")
+
 }
 
 android {
@@ -124,17 +124,4 @@ dependencies {
 
     //mockito
     testImplementation ("org.mockito:mockito-core:3.12.4")
-}
-sonar {
-    properties {
-        property("sonar.projectKey", "yrsxnssr1-sonarkey_mynews")
-        property("sonar.organization", "yrsxnssr1-sonarkey")
-        property("sonar.host.url", "https://sonarcloud.io")
-        property ("sonar.gradle.skipCompile", "true")
-    }
-}
-sonar {
-    properties {
-        property ("sonar.gradle.skipCompile", "true")
-    }
 }
