@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.bintina.mynews.R
+import com.bintina.mynews.common.util.MyApp.Companion.searchKeyword
 import com.bintina.mynews.common.util.goHome
 import com.bintina.mynews.common.util.openAboutActivity
 import com.bintina.mynews.common.util.openHelpActivity
@@ -71,6 +73,10 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         val searchResultsFragment = SearchResultsFragment()
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
+
+        if (searchKeyword.isBlank()){
+            Toast.makeText(this, "Please enter a search term", Toast.LENGTH_LONG).show()
+        }else {
         transaction.replace(
             R.id.search_fragment_container,
             searchResultsFragment,
@@ -78,6 +84,7 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         )
         transaction.commit()
         Log.d("onSearchClickLog", "transaction commited")
+        }
     }
 
     /**
