@@ -41,7 +41,7 @@ class NotificationDisplayActivity : AppCompatActivity() {
         toolbar.setBackgroundColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary))
 
         // Setting up a click listener for the search button
-        val searchBtn = findViewById<View>(R.id.start_search_btn)
+        val searchBtn = findViewById<View>(R.id.menu_search_btn)
         searchBtn.setOnClickListener {
             openSearchActivity()
         }

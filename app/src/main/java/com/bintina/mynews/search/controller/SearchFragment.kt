@@ -25,6 +25,7 @@ import com.bintina.mynews.common.util.MyApp.Companion.searchKeyword
 import com.bintina.mynews.common.util.MyApp.Companion.searchStartDate
 import com.bintina.mynews.common.util.getDefaultSearchStartDate
 import com.bintina.mynews.common.util.getStringDates
+import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
 import java.sql.Date
 import java.text.SimpleDateFormat
@@ -51,6 +52,9 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
+
+        //instantiate date
+        instantiateTodaysDate()
 
         // Set default search start date
         getDefaultSearchStartDate(currentDate)

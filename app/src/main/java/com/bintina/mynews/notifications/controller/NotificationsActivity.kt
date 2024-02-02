@@ -52,7 +52,7 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
         )
 
         // Set up the search button click listener
-        val searchBtn = findViewById<View>(R.id.start_search_btn)
+        val searchBtn = findViewById<View>(R.id.menu_search_btn)
         searchBtn.setOnClickListener {
             openSearchActivity()
         }
