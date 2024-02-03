@@ -23,6 +23,6 @@ data class Multimedia(
     val url: String?,
     @SerializedName("width")
     val width: Int?
-): Parcelable{
+) : Parcelable {
 
 }

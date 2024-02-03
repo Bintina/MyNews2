@@ -28,7 +28,8 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
     /**
      * ViewHolder class representing individual items in the RecyclerView.
      */
-    class ItemViewHolder(private val view: ItemRowBinding, private val context: Context) : RecyclerView.ViewHolder(view.root) {
+    class ItemViewHolder(private val view: ItemRowBinding, private val context: Context) :
+        RecyclerView.ViewHolder(view.root) {
         /**
          * Binds data to the ViewHolder.
          *
@@ -43,10 +44,20 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
             // Set background color if clicked
             if (isClicked) {
-                view.cardContainer.setBackgroundColor(ContextCompat.getColor(context, androidx.cardview.R.color.cardview_shadow_start_color))
+                view.cardContainer.setBackgroundColor(
+                    ContextCompat.getColor(
+                        context,
+                        androidx.cardview.R.color.cardview_shadow_start_color
+                    )
+                )
             } else {
                 // Reset background to default if not clicked
-                view.cardContainer.setBackgroundColor(ContextCompat.getColor(context, androidx.cardview.R.color.cardview_shadow_end_color))
+                view.cardContainer.setBackgroundColor(
+                    ContextCompat.getColor(
+                        context,
+                        androidx.cardview.R.color.cardview_shadow_end_color
+                    )
+                )
             }
 
             //Set Image View with Glide
@@ -71,7 +82,7 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
             view.caption.text = doc.abstract
 
             //Set click listener for News link
-            view.cardContents.setOnClickListener{ listener.openLink(newsLink)}
+            view.cardContents.setOnClickListener { listener.openLink(newsLink) }
         }
     }
 

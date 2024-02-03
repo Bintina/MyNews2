@@ -60,7 +60,6 @@ object DataSource {
     ): List<Doc?> {
 
 
-
         //Format Dates to api date format
         val formattedStartDate = getApiDates(startDate, "yyyyMMdd")
         val formattedEndDate = getApiDates(endDate, "yyyyMMdd")
@@ -81,7 +80,8 @@ object DataSource {
 
 
         //Filter out items with null section
-return filterSearchResult(results)    }
+        return filterSearchResult(results)
+    }
 
     /**
      * Loads notification results based on the specified parameters.
@@ -119,6 +119,6 @@ return filterSearchResult(results)    }
         val results: List<Doc?>? = response?.results?.docs
 
         //Filter out items with null section, subsection or image
-return filterSearchResult(results)
+        return filterSearchResult(results)
     }
 }

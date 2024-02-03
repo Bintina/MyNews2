@@ -43,7 +43,7 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
 
         //Handle notification Click
         val mainIntent = Intent(applicationContext, NotificationDisplayActivity::class.java)
-            mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        mainIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         val mainPendingIntent = PendingIntent.getActivity(
             applicationContext, 1, mainIntent,
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE

@@ -21,7 +21,7 @@ import kotlinx.coroutines.withContext
 /**
  * Fragment displaying news articles
  */
-class NewsFragment: Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
+class NewsFragment : Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
 
     lateinit var adapter: Adapter
 
@@ -37,18 +37,17 @@ class NewsFragment: Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
-     initializeList()
+        initializeList()
 
         // Asynchronously load news data
-     lifecycleScope.launch(Dispatchers.IO) {
-         val result = DataSource.loadNews()
-         withContext(Dispatchers.Main){
-             if (result != null){//TODO("redundant null check")
-                 adapter.storiesList = result
-                 adapter.notifyDataSetChanged()
-             }
-         }
-     }
+        lifecycleScope.launch(Dispatchers.IO) {
+            val result = DataSource.loadNews()
+            withContext(Dispatchers.Main) {
+                adapter.storiesList = result
+                adapter.notifyDataSetChanged()
+
+            }
+        }
         return binding.root
     }
 

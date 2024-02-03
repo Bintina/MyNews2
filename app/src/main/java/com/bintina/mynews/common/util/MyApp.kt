@@ -8,12 +8,13 @@ import com.bintina.mynews.R
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.QueryDetails
 import java.util.Date
+
 /**
  * Custom Application class for MyApp.
  */
-class MyApp: Application() {
+class MyApp : Application() {
 
-    companion object{
+    companion object {
 
         // Application instance
         lateinit var instance: MyApp
@@ -38,12 +39,12 @@ class MyApp: Application() {
         var searchKeyword: String = ""
         var enteredSearchStartDate = ""
         var enteredSearchEndDate = ""
-        var searchBooleanArts : Boolean = false
-        var searchBooleanBusiness : Boolean = false
-        var searchBooleanEntreprenuers : Boolean = false
-        var searchBooleanPolitics : Boolean = false
-        var searchBooleanSports : Boolean = false
-        var searchBooleanTravel : Boolean = false
+        var searchBooleanArts: Boolean = false
+        var searchBooleanBusiness: Boolean = false
+        var searchBooleanEntreprenuers: Boolean = false
+        var searchBooleanPolitics: Boolean = false
+        var searchBooleanSports: Boolean = false
+        var searchBooleanTravel: Boolean = false
         lateinit var searchResults: List<News?>
 
 
@@ -51,22 +52,23 @@ class MyApp: Application() {
         var defaultNotificationStartDate = ""
         var defaultNotificationEndDate = ""
         var notificationKeyword: String = ""
-        var notificationBooleanArts : Boolean = false
-        var notificationBooleanBusiness : Boolean = false
-        var notificationBooleanEntreprenuers : Boolean = false
-        var notificationBooleanPolitics : Boolean = false
-        var notificationBooleanSports : Boolean = false
-        var notificationBooleanTravel : Boolean = false
+        var notificationBooleanArts: Boolean = false
+        var notificationBooleanBusiness: Boolean = false
+        var notificationBooleanEntreprenuers: Boolean = false
+        var notificationBooleanPolitics: Boolean = false
+        var notificationBooleanSports: Boolean = false
+        var notificationBooleanTravel: Boolean = false
 
     }
+
     /**
      * Called when the application is starting. Initializes the application instance
      * and obtains a reference to the application's context.
      */
-override fun onCreate(){
-    super.onCreate()
-    instance = this
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
 
-}
+    }
 
 }

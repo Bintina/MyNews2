@@ -79,6 +79,7 @@ fun instantiateTodaysDate(): Date {
     return currentDate
 
 }
+
 /**
  * Calculates and returns the default start date for notifications (6 months ago from the current date).
  *
@@ -93,6 +94,7 @@ fun getDefaultNotificationStartDate(currentDate: Date): Date {
     notificationStartDate = calendar.time
     return notificationStartDate
 }
+
 /**
  * Calculates and returns the default start date for searches (5 years ago from the current date).
  *
@@ -124,6 +126,7 @@ fun getStringDates(date: Date, format: String): String {
 
     return dateFormat.format(calendar.time)
 }
+
 /**
  * Converts a Date type to a formatted String suitable for API requests.
  *
@@ -140,36 +143,41 @@ fun getApiDates(date: Date, format: String): String {
 /**
  * Opens the SearchActivity.
  */
-fun Context.openSearchActivity(){
+fun Context.openSearchActivity() {
     val intent = Intent(this, SearchActivity::class.java)
     startActivity(intent)
     Log.d("MagnifyingglassButtonClick", "Magnifying button click method reached end")
 }
+
 /**
  * Opens the NotificationsActivity.
  */
-fun Context.openNotificationsActivity(){
+fun Context.openNotificationsActivity() {
     val intent = Intent(this, NotificationsActivity::class.java)
     startActivity(intent)
     Log.d("NavigateToNotificationAct", "Notifications button clicked")
 }
+
 /**
  * Opens the HelpActivity.
  */
-fun Context.openHelpActivity(){
+fun Context.openHelpActivity() {
     val intent = Intent(this, HelpActivity::class.java)
     startActivity(intent)
-}/**
+}
+
+/**
  * Opens the AboutActivity.
  */
-fun Context.openAboutActivity(){
+fun Context.openAboutActivity() {
     val intent = Intent(this, AboutActivity::class.java)
     startActivity(intent)
 }
+
 /**
  * Navigates to the MainActivity.
  */
-fun Context.goHome(){
+fun Context.goHome() {
     val intent = Intent(this, MainActivity::class.java)
     startActivity(intent)
 }
@@ -187,6 +195,7 @@ fun filterNewsResult(result: List<News?>?): List<News?> {
     } ?: emptyList()
 
 }
+
 /**
  * Filters Doc Results.
  */

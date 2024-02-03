@@ -38,7 +38,12 @@ class NotificationDisplayActivity : AppCompatActivity() {
         // Setting up the Toolbar and setting it's background color
         setSupportActionBar(findViewById(R.id.my_toolbar))
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
-        toolbar.setBackgroundColor(ContextCompat.getColor(this, com.google.android.material.R.color.design_default_color_secondary))
+        toolbar.setBackgroundColor(
+            ContextCompat.getColor(
+                this,
+                com.google.android.material.R.color.design_default_color_secondary
+            )
+        )
 
         // Setting up a click listener for the search button
         val searchBtn = findViewById<View>(R.id.menu_search_btn)
@@ -86,6 +91,7 @@ class NotificationDisplayActivity : AppCompatActivity() {
                 goHome()
                 return true
             }
+
             else -> return super.onOptionsItemSelected(item)
 
         }

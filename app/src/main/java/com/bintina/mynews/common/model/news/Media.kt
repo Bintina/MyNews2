@@ -19,6 +19,6 @@ data class Media(
     val subtype: String?,
     @SerializedName("type")
     val type: String?
-): Parcelable{
+) : Parcelable {
 
 }

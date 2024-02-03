@@ -61,11 +61,11 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
         // Retrieving notification global values
         val notificationKeyword = notificationKeyword
         val arts = notificationBooleanArts
-        val business =  notificationBooleanBusiness
+        val business = notificationBooleanBusiness
         val entreprenuers = notificationBooleanEntreprenuers
         val politics = notificationBooleanPolitics
         val sports = notificationBooleanSports
-        val travel =  notificationBooleanTravel
+        val travel = notificationBooleanTravel
 
         // Generating filters based on selected Checkbox Booleans
         val filters: String? =
@@ -84,7 +84,8 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
                 }
             } catch (e: Exception) {
                 emptyList<Doc?>()
-                Toast.makeText(requireContext(), "Sorry, $e Error has occurred.", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Sorry, $e Error has occurred.", Toast.LENGTH_LONG)
+                    .show()
             }
         }
     }

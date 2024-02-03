@@ -9,4 +9,4 @@ data class QueryDetails(
     var startDate: String?,
     var endDate: String?,
     var checked: List<String?>?
-): Parcelable
+) : Parcelable

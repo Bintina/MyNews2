@@ -20,7 +20,7 @@ import java.util.Locale
 
 data class MockNews(override val size: Int) : List<News?> {
 
-    public val mockNewsList: List<News?> by lazy {
+    val mockNewsList: List<News?> by lazy {
         generateMockNews()
     }
 
@@ -35,7 +35,6 @@ data class MockNews(override val size: Int) : List<News?> {
                 "",
                 null,
                 null,
-
                 "Promo",
                 "",
                 "",
@@ -75,7 +74,6 @@ data class MockNews(override val size: Int) : List<News?> {
                 ),
                 listOf(
                     Multimedia(
-
                         "Alexandre Meneghini/Reuters",
                         "Alexandre Meneghini/Reuters",
                         "Super Jumbo",
@@ -127,7 +125,7 @@ data class MockNews(override val size: Int) : List<News?> {
                 "",
                 null,
                 null,
-                publishedDate =  publishedDate2,
+                publishedDate = publishedDate2,
                 "world",
                 "",
                 "europe",
@@ -197,18 +195,15 @@ data class MockNews(override val size: Int) : List<News?> {
     }
 
     private fun generateMockSearchResults(): List<Doc?> {
-        // val createdDate = stringDateToLocalDateTime("2024-01-19T05:25:11-05:00")
-        //val publishedDate = stringDateToDate("2024-01-19T05:25:11-05:00")
-        //val createdDate2 = stringDateToLocalDateTime("2024-01-19T00:01:26-05:00")
-        //val publishedDate2 = stringDateToDate("2024-01-19T00:01:26-05:00")
-
         // Create a list of mock News objects
         return listOf(
             Doc(
                 "The fulminations surrounding the world’s biggest pop icon — and girlfriend of Chiefs tight end Travis Kelce — reached the stratosphere after Kansas City made it to the Super Bowl.",
-                Byline("",
+                Byline(
                     "",
-                    listOf(Person("", "", "", "", null, 1, "", null))),
+                    "",
+                    listOf(Person("", "", "", "", null, 1, "", null))
+                ),
                 "",
                 Headline(
                     null,
@@ -287,7 +282,8 @@ data class MockNews(override val size: Int) : List<News?> {
                 Byline(
                     "", "By Jonathan Weisman",
                     listOf(
-                        Person("Jonathan", "Weisman", "", "", null, 1, "reported", null))
+                        Person("Jonathan", "Weisman", "", "", null, 1, "reported", null)
+                    )
                 ),
                 "article",
                 Headline(
@@ -349,7 +345,8 @@ data class MockNews(override val size: Int) : List<News?> {
                             0,
                             "",
                             0,
-                            0),
+                            0
+                        ),
                         0,
                         "",
                         "",
@@ -385,7 +382,9 @@ data class MockNews(override val size: Int) : List<News?> {
                             null,
                             1,
                             "",
-                            null))
+                            null
+                        )
+                    )
                 ),
                 "",
                 Headline(
@@ -447,7 +446,8 @@ data class MockNews(override val size: Int) : List<News?> {
                             0,
                             "",
                             0,
-                            0),
+                            0
+                        ),
                         0,
                         "popup",
                         "popup",

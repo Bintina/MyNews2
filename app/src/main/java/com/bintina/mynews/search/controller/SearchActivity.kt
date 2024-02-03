@@ -38,7 +38,6 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         setContentView(binding.root)
 
 
-
         // Set up the search button click listener
         val searchBtn = findViewById<View>(R.id.menu_search_btn)
         searchBtn.setOnClickListener {
@@ -74,16 +73,16 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
 
-        if (searchKeyword.isBlank()){
+        if (searchKeyword.isBlank()) {
             Toast.makeText(this, "Please enter a search term", Toast.LENGTH_LONG).show()
-        }else {
-        transaction.replace(
-            R.id.search_fragment_container,
-            searchResultsFragment,
-            KEY_SEARCH_FRAGMENT_RESULTS
-        )
-        transaction.commit()
-        Log.d("onSearchClickLog", "transaction commited")
+        } else {
+            transaction.replace(
+                R.id.search_fragment_container,
+                searchResultsFragment,
+                KEY_SEARCH_FRAGMENT_RESULTS
+            )
+            transaction.commit()
+            Log.d("onSearchClickLog", "transaction commited")
         }
     }
 

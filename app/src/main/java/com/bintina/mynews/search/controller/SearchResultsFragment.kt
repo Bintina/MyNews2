@@ -105,7 +105,6 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
     }
 
 
-
     /**
      * Called when the fragment is being destroyed.
      */

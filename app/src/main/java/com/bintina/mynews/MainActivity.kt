@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.myToolbar)
-       //Customize the toolbar color
+        //Customize the toolbar color
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
         toolbar.setBackgroundColor(
             ContextCompat.getColor(
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         binding.pager.adapter = PagerAdapter(this)
 
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
-          //Set tab text based on position
+            //Set tab text based on position
             tab.text = when (position) {
                 0 -> "Top Stories"
                 1 -> "Popular"

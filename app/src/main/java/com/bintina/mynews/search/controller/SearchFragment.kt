@@ -134,7 +134,8 @@ class SearchFragment : Fragment() {
                 calendar.set(year, month, dayOfMonth)
 
                 // Convert the Calendar's timeInMillis to a Date
-                val selectedStartDate = Date(calendar.timeInMillis)        // possible bug fix type change: val selectedStartDate = LocalDate.of(year, month + 1, dayOfMonth)
+                val selectedStartDate =
+                    Date(calendar.timeInMillis)        // possible bug fix type change: val selectedStartDate = LocalDate.of(year, month + 1, dayOfMonth)
                 // Update the TextView and save selected date
                 binding.startDateEt.text = getStringDates(selectedStartDate, "dd/MM/yy")
                 searchStartDate = selectedStartDate
@@ -168,7 +169,8 @@ class SearchFragment : Fragment() {
                 calendar.set(year, month, dayOfMonth)
 
                 // Convert the Calendar's timeInMillis to a Date
-                val selectedEndDate = Date(calendar.timeInMillis)                // possible bug fix type change: val selectedStartDate = LocalDate.of(year, month + 1, dayOfMonth)
+                val selectedEndDate =
+                    Date(calendar.timeInMillis)                // possible bug fix type change: val selectedStartDate = LocalDate.of(year, month + 1, dayOfMonth)
                 // Update the TextView and save selected date.
                 binding.endDateEt.text = getStringDates(selectedEndDate, "dd/MM/yy")
                 searchEndDate = selectedEndDate

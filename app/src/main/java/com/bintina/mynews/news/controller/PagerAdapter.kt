@@ -10,7 +10,7 @@ import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
  *
  * @param activity The hosting FragmentActivity.
  */
-class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
+class PagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
 
     /**
      * Returns the number of items in the data set.
@@ -30,7 +30,7 @@ class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
         position.also { CURRENT_NEWS_STATE = it }
 
         // Return the appropriate fragment content based on the position
-        return when (position){
+        return when (position) {
             0 -> NewsFragment()
             1 -> NewsFragment()
             2 -> NewsFragment()
@@ -39,7 +39,6 @@ class PagerAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
             else -> throw IllegalStateException("Unexpected position $position")
         }
     }
-
 
 
 }

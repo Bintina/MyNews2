@@ -1,9 +1,6 @@
 package com.bintina.mynews.common.model.news
 
 
-
-
-
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
@@ -74,7 +71,7 @@ data class News(
     val media: List<Media>?,
     @SerializedName("multimedia")
     val multimedia: List<Multimedia>?
-): Parcelable{
+) : Parcelable {
 
 
 }

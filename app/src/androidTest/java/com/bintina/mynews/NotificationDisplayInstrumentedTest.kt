@@ -10,14 +10,15 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
-class NotificationDisplayInstrumentedTest
-{
+class NotificationDisplayInstrumentedTest {
     @Rule
     @JvmField
     val rule: ActivityScenarioRule<NotificationsActivity> = ActivityScenarioRule(
-        NotificationsActivity::class.java)
+        NotificationsActivity::class.java
+    )
+
     @Test
-    fun notification_display_screen_views_exist(){
+    fun notification_display_screen_views_exist() {
         Assert.assertNotNull(ViewMatchers.withId(R.id.notification_display_fragment_container))
         Assert.assertNotNull(ViewMatchers.withId(R.id.notification_display_recycler_view_container))
     }

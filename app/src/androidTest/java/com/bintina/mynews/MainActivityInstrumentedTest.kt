@@ -24,12 +24,14 @@ class MainActivityInstrumentedTest {
     val rule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule(MainActivity::class.java)
 
     val sleepDuration: Long = 50000
+
     @Test
     fun recycler_view_exists() {
         // Check if RecyclerView is displayed
         onView(withId(R.id.recyclerview)).check(matches(isDisplayed()))
 
     }
+
     @Test
     fun search_button_navigates_to_search_fragment() {
         assertNotNull(withId(R.id.menu_search_btn))
