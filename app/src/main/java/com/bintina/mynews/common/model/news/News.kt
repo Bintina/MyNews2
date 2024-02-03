@@ -41,7 +41,7 @@ data class News(
     @SerializedName("byline")
     val byline: String?,
     @SerializedName("created_date")
-    val createdDate: LocalDateTime,
+    val createdDate: LocalDateTime?,
     @SerializedName("des_facet")
     val desFacet: List<String?>?,
     @SerializedName("geo_facet")

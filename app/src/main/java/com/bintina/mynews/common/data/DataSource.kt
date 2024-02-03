@@ -23,7 +23,7 @@ object DataSource {
      *
      * @return List of [News] objects or null if no valid results.
      */
-    suspend fun loadNews(): List<News?>? {
+    suspend fun loadNews(): List<News?> {
         val apiCall = ApiService.create()
 
         val response = when (CURRENT_NEWS_STATE) {
