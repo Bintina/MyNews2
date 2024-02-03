@@ -2,9 +2,6 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="SearchActivityInstrumentedTest">
-        <State />
-      </entry>
       <entry key="SearchInstrumentedTest">
         <State />
       </entry>
@@ -23,9 +20,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-02-01T09:55:26.417594100Z" />
         </State>
-      </entry>
-      <entry key="search_screen_views_function_as_expected()">
-        <State />
       </entry>
     </value>
   </component>

@@ -7,6 +7,7 @@ package com.bintina.mynews.common.model.news
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import java.time.LocalDateTime
 import java.util.Date
 
 /**
@@ -36,15 +37,15 @@ import java.util.Date
 @Parcelize
 data class News(
     @SerializedName("abstract")
-    val `abstract`: String?,
+    val abstract: String?,
     @SerializedName("byline")
     val byline: String?,
     @SerializedName("created_date")
-    val createdDate: String?,
+    val createdDate: LocalDateTime,
     @SerializedName("des_facet")
-    val desFacet: List<String?>,
+    val desFacet: List<String?>?,
     @SerializedName("geo_facet")
-    val geoFacet: List<String?>,
+    val geoFacet: List<String?>?,
     @SerializedName("item_type")
     val itemType: String?,
     @SerializedName("kicker")
@@ -52,9 +53,9 @@ data class News(
     @SerializedName("material_type_facet")
     val materialTypeFacet: String?,
     @SerializedName("org_facet")
-    val orgFacet: List<String?>,
+    val orgFacet: List<String?>?,
     @SerializedName("per_facet")
-    val perFacet: List<String?>,
+    val perFacet: List<String?>?,
     @SerializedName("published_date")
     val publishedDate: Date?,
     @SerializedName("section")
@@ -72,9 +73,9 @@ data class News(
     @SerializedName("url")
     val url: String?,
     @SerializedName("media")
-        val media: List<Media>?,
+    val media: List<Media>?,
     @SerializedName("multimedia")
-        val multimedia: List<Multimedia>?
+    val multimedia: List<Multimedia>?
 ): Parcelable{
 
 
