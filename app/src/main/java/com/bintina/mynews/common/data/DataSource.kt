@@ -59,18 +59,11 @@ object DataSource {
         filters: String?
     ): List<Doc?> {
 
-        Log.d("DataSourceQuery", "DataSourceQuery = $keyword")
-        Log.d("DataSourceFilter", "DataSourceFilters = $filters")
-        Log.d("DataSourceDates", "before parsing startDate = $startDate & endDate = $endDate")
+
 
         //Format Dates to api date format
         val formattedStartDate = getApiDates(startDate, "yyyyMMdd")
         val formattedEndDate = getApiDates(endDate, "yyyyMMdd")
-
-        Log.d(
-            "DataSourceDates",
-            "after parsing startDate = $formattedStartDate & endDate = $formattedEndDate"
-        )
 
         val apiCall = com.bintina.mynews.common.api.search.ApiService.create()
         val response = apiCall.getSearchedNews(
@@ -86,7 +79,6 @@ object DataSource {
 
         val results: List<Doc?>? = response?.results?.docs
 
-        Log.d("responseDataSource", "results has ${results?.size}")
 
         //Filter out items with null section
 return filterSearchResult(results)    }
@@ -103,10 +95,7 @@ return filterSearchResult(results)    }
         notificationKeyword: String?,
         filters: String?
     ): List<Doc?> {
-        Log.d(
-            "DatasourceNotificationLog",
-            "before api call key = $notificationKeyword & filters = $filters"
-        )
+
         val startDate = notificationStartDate
 
         val endDate = currentDate
@@ -126,10 +115,7 @@ return filterSearchResult(results)    }
             "newest",
             API_KEY
         )
-        Log.d(
-            "DatasourceNotificationLog",
-            "key = $notificationKeyword & filters = $filters, startDate = $startDate and endDate = $endDate"
-        )
+
         val results: List<Doc?>? = response?.results?.docs
 
         //Filter out items with null section, subsection or image
