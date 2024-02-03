@@ -35,7 +35,6 @@ data class MockNews(override val size: Int) : List<News?> {
             News(
                 "Protesters in Tel Aviv demanded urgent action to free hostages, after a war cabinet minister said Israel should seek a longer cease-fire with Hamas to allow the captives to be released.",
                 "",
-                createdDate = createdDate,
                 null,
                 null,
 
@@ -123,7 +122,6 @@ data class MockNews(override val size: Int) : List<News?> {
             News(
                 "With a decisive turn toward youth and conservative ideas, the French president sets a path for his reshuffled government.",
                 "By Roger Cohen",
-                createdDate =  createdDate2,
                 null,
                 null,
                 "Article",
