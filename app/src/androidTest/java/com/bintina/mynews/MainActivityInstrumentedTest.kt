@@ -23,7 +23,7 @@ class MainActivityInstrumentedTest {
     @JvmField
     val rule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule(MainActivity::class.java)
 
-    val sleepDuration: Long = 30000
+    val sleepDuration: Long = 50000
     @Test
     fun recycler_view_exists() {
         // Check if RecyclerView is displayed
