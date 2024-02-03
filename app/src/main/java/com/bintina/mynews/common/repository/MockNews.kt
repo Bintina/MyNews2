@@ -19,6 +19,7 @@ import java.util.Date
 import java.util.Locale
 
 data class MockNews(override val size: Int) : List<News?> {
+
     public val mockNewsList: List<News?> by lazy {
         generateMockNews()
     }
