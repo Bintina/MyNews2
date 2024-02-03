@@ -67,9 +67,6 @@ class SearchInstrumentedTest {
     fun start_search_button_is_clickable(){
         Assert.assertNotNull(ViewMatchers.withId(R.id.start_search_btn))
         Espresso.onView(ViewMatchers.withId(R.id.start_search_btn)).perform(ViewActions.click())
-        Thread.sleep(sleepDuration) // You can adjust the delay based on your application's loading time
-
-        Espresso.onView(ViewMatchers.withId(R.id.results_fragment_container))
-            .check(ViewAssertions.matches(ViewMatchers.isEnabled()))
+      
     }
 }

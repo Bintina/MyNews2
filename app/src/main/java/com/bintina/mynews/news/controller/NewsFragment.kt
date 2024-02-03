@@ -43,7 +43,7 @@ class NewsFragment: Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
      lifecycleScope.launch(Dispatchers.IO) {
          val result = DataSource.loadNews()
          withContext(Dispatchers.Main){
-             if (result != null){
+             if (result != null){//TODO("redundant null check")
                  adapter.storiesList = result
                  adapter.notifyDataSetChanged()
              }
