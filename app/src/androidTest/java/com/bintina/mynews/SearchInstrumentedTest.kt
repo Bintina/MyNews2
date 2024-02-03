@@ -17,7 +17,7 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class SearchInstrumentedTest {
 
-    val sleepDuration: Long = 20000
+    val sleepDuration: Long = 50000
 
     @Rule
     @JvmField

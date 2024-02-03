@@ -25,9 +25,7 @@ data class MockNews(override val size: Int) : List<News?> {
     }
 
     private fun generateMockNews(): List<News?> {
-        val createdDate = stringDateToLocalDateTime("2024-01-19T05:25:11-05:00")
         val publishedDate = stringDateToDate("2024-01-19T05:25:11-05:00")
-        val createdDate2 = stringDateToLocalDateTime("2024-01-19T00:01:26-05:00")
         val publishedDate2 = stringDateToDate("2024-01-19T00:01:26-05:00")
 
         // Create a list of mock News objects
