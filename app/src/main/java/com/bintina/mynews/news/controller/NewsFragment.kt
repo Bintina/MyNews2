@@ -8,12 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.bintina.mynews.R
 import com.bintina.mynews.common.data.DataSource
+import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.databinding.FragmentNewsBinding
 import com.bintina.mynews.news.view.adapter.Adapter
 import com.bintina.mynews.news.controller.OnNewsClickedListener
 import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
 import com.bintina.mynews.common.util.MyApp.Companion.clickedArticles
+import com.bintina.mynews.common.util.openArticleActivity
+import com.bintina.mynews.news.view.WebViewActivity
+import com.bintina.mynews.search.controller.SearchActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -68,20 +73,20 @@ class NewsFragment : Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
         adapter.listener = this
 
     }
-
-    /**
-     * Opens the provided link in a browser.
-     *
-     * @param link The link to be opened.
-     */
     override fun openLink(link: String) {
-        val newsSite = Uri.parse(link)
-        val intent = Intent(Intent.ACTION_VIEW, newsSite)
+        // Create an Intent to start the new activity
+        val intent = Intent(activity, WebViewActivity::class.java)
 
+        // Optionally, you can pass data to the new Activity
+        intent.putExtra("newsLinkKey", link)
+
+        // Start the new Activity
+        startActivity(intent)
         // Add the clicked article to the clickedArticles list and update the adapter
         clickedArticles.add(link)
         adapter.notifyDataSetChanged()
 
         startActivity(intent)
     }
+
 }

@@ -1,6 +1,7 @@
 package com.bintina.mynews.news.controller
 
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -22,7 +23,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 /**
  * The main activity of the application
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     //set view binding variable
     private lateinit var binding: ActivityMainBinding
@@ -112,6 +113,5 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
 
 }

@@ -10,6 +10,7 @@ import com.bintina.mynews.common.util.MyApp.Companion.currentDate
 import com.bintina.mynews.common.util.MyApp.Companion.notificationStartDate
 import com.bintina.mynews.common.util.MyApp.Companion.searchEndDate
 import com.bintina.mynews.common.util.MyApp.Companion.searchStartDate
+import com.bintina.mynews.news.view.WebViewActivity
 import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.overflow.view.AboutActivity
 import com.bintina.mynews.overflow.view.HelpActivity
@@ -179,6 +180,14 @@ fun Context.openAboutActivity() {
  */
 fun Context.goHome() {
     val intent = Intent(this, MainActivity::class.java)
+    startActivity(intent)
+}
+
+/**
+ * Navigates to the News article.
+ */
+fun Context.openArticleActivity() {
+    val intent = Intent(this, WebViewActivity::class.java)
     startActivity(intent)
 }
 
