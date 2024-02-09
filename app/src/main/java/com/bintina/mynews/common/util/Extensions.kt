@@ -95,7 +95,30 @@ fun getDefaultNotificationStartDate(currentDate: Date): Date {
     notificationStartDate = calendar.time
     return notificationStartDate
 }
+/**
+ * Converts String to SP for notifications (6 months ago from the current date).
+ *
+ * @param context
+ */
+fun stringToPreference(context: Context, string: String, PREFERENCE_NAME: String) {
+    val newsSharedPref = context.getSharedPreferences(MyApp.FILE_NAME, Context.MODE_PRIVATE)
+    val newsSharedPrefEditor = newsSharedPref.edit()
 
+
+    newsSharedPrefEditor.putString(PREFERENCE_NAME, string).apply()
+}
+
+/**
+ * Converts SP to String for notifications (6 months ago from the current date).
+ *
+ * @param context
+ */
+
+fun preferenceToString(context: Context, PREFERENCE_NAME: String): String {
+    val newsSharedPref = context.getSharedPreferences(MyApp.FILE_NAME, Context.MODE_PRIVATE)
+
+    return newsSharedPref.getString(PREFERENCE_NAME, "").toString()
+}
 /**
  * Calculates and returns the default start date for searches (5 years ago from the current date).
  *

@@ -60,6 +60,13 @@ class MyApp : Application() {
         var notificationBooleanSports: Boolean = false
         var notificationBooleanTravel: Boolean = false
 
+        //notification Shared Preference Keys.
+        const val FILE_NAME = "Query Preferences"
+        const val QUERY_TERM = ""
+        const val START_DATE = ""
+        const val END_DATE = ""
+        const val DATE_RANGE = ""
+        const val FILTERS = ""
     }
 
     /**
