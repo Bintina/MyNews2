@@ -25,6 +25,7 @@ import com.bintina.mynews.common.util.MyApp.Companion.searchStartDate
 import com.bintina.mynews.common.util.getSelectedFilters
 import com.bintina.mynews.databinding.FragmentSearchResultBinding
 import com.bintina.mynews.news.controller.OnNewsClickedListener
+import com.bintina.mynews.news.view.WebViewActivity
 import com.bintina.mynews.search.view.adapter.Adapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -127,9 +128,14 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
      * Opens the link in a web browser when a search result item is clicked.
      */
     override fun openLink(link: String) {
-        val newsSite = Uri.parse(link)
-        val intent = Intent(Intent.ACTION_VIEW, newsSite)
+        // Create an Intent to start the new activity
+        val intent = Intent(activity, WebViewActivity::class.java)
 
+        // Optionally, you can pass data to the new Activity
+        intent.putExtra("newsLinkKey", link)
+
+        // Start the new Activity
+        startActivity(intent)
         // Add the clicked article to the clickedArticles list and update the adapter
         MyApp.clickedArticles.add(link)
         adapter.notifyDataSetChanged()

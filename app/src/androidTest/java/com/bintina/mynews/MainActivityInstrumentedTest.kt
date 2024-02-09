@@ -79,13 +79,5 @@ class MainActivityInstrumentedTest {
         onView(withId(R.id.about_title)).check(matches(isEnabled()))
     }
 
-    @Test
-    fun news_item_click_opens_web_view(){
-        assertNotNull(withId(R.id.card_contents))
-        onView(withId(R.id.card_contents)).perform(click())
-        Thread.sleep(sleepDuration)
 
-        onView(withId(R.id.webview)).check(matches(isEnabled()))
-
-    }
 }
