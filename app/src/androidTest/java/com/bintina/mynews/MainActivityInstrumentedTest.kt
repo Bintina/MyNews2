@@ -10,7 +10,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
+import com.bintina.mynews.news.controller.MainActivity
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -72,9 +74,18 @@ class MainActivityInstrumentedTest {
     fun options_menu_about_btn_is_clickable() {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext())
         onView(withText(R.string.about)).perform(click())
-        Thread.sleep(sleepDuration) // You can adjust the delay based on your application's loading time
+        Thread.sleep(sleepDuration)
 
         onView(withId(R.id.about_title)).check(matches(isEnabled()))
     }
 
+    @Test
+    fun news_item_click_opens_web_view(){
+        assertNotNull(withId(R.id.card_contents))
+        onView(withId(R.id.card_contents)).perform(click())
+        Thread.sleep(sleepDuration)
+
+        onView(withId(R.id.webview)).check(matches(isEnabled()))
+
+    }
 }

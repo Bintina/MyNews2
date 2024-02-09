@@ -3,7 +3,7 @@ package com.bintina.mynews.common.util
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import com.bintina.mynews.MainActivity
+import com.bintina.mynews.news.controller.MainActivity
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.common.util.MyApp.Companion.currentDate

@@ -125,4 +125,7 @@ dependencies {
     //mockito
     testImplementation ("org.mockito:mockito-core:3.12.4")
     testImplementation ("io.mockk:mockk:1.12.0")
+
+    //WebKit
+    implementation("androidx.webkit:webkit:1.8.0")
 }

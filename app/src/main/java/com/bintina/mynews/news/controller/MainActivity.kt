@@ -1,4 +1,4 @@
-package com.bintina.mynews
+package com.bintina.mynews.news.controller
 
 
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import com.bintina.mynews.R
 import com.bintina.mynews.common.util.goHome
 import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.common.util.openAboutActivity
