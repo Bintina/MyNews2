@@ -11,6 +11,7 @@ import java.util.Date
 
 /**
  * Custom Application class for MyApp.
+ * GitHub link: https://github.com/Bintina/MyNews2.git
  */
 class MyApp : Application() {
 
@@ -45,12 +46,9 @@ class MyApp : Application() {
         var searchBooleanPolitics: Boolean = false
         var searchBooleanSports: Boolean = false
         var searchBooleanTravel: Boolean = false
-        lateinit var searchResults: List<News?>
 
 
         //notification variables
-        var defaultNotificationStartDate = ""
-        var defaultNotificationEndDate = ""
         var notificationKeyword: String = ""
         var notificationBooleanArts: Boolean = false
         var notificationBooleanBusiness: Boolean = false
