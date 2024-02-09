@@ -21,8 +21,11 @@ import com.bintina.mynews.notifications.view.NotificationDisplayActivity
 import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.common.util.Constants
 import com.bintina.mynews.common.util.Constants.CHANNEL_ID
+import com.bintina.mynews.common.util.MyApp.Companion.FILTERS
+import com.bintina.mynews.common.util.MyApp.Companion.QUERY_TERM
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
 import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
+import com.bintina.mynews.common.util.preferenceToString
 
 /**
  * Worker class responsible for handling background work related to notifications.
@@ -40,6 +43,10 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
         // Set notification channel and ID
         val notificationChannelId = Constants.CHANNEL_ID
         val notificationId = Constants.NOTIFICATION_ID
+
+        //Fetch notification settings
+        val query = preferenceToString(applicationContext, QUERY_TERM)
+        val filters = preferenceToString(applicationContext, FILTERS)
 
         //Handle notification Click
         val mainIntent = Intent(applicationContext, NotificationDisplayActivity::class.java)

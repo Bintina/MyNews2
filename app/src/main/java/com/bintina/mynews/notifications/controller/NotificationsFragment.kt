@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.common.util.MyApp.Companion.currentDate
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanBusiness
@@ -14,6 +15,8 @@ import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanSports
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanTravel
 import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
 import com.bintina.mynews.common.util.getDefaultNotificationStartDate
+import com.bintina.mynews.common.util.getSelectedFilters
+import com.bintina.mynews.common.util.stringToPreference
 import com.bintina.mynews.databinding.FragmentNotificationsBinding
 
 /**
@@ -57,13 +60,26 @@ class NotificationsFragment : Fragment() {
      */
     private fun extractNotificationData() {
         // Extract notification data from UI elements
-        notificationKeyword = binding.notificationSearchQueryTermEditText.text.toString()
-        notificationBooleanArts = binding.notificationCheckboxArts.isChecked
-        notificationBooleanBusiness = binding.notificationCheckboxBusiness.isChecked
-        notificationBooleanEntreprenuers = binding.notificationCheckboxEntreprenuers.isChecked
-        notificationBooleanPolitics = binding.notificationCheckboxPolitics.isChecked
-        notificationBooleanSports = binding.notificationCheckboxSports.isChecked
-        notificationBooleanTravel = binding.notificationCheckboxTravel.isChecked
+        val notificationKeyword = binding.notificationSearchQueryTermEditText.text.toString()
+        val notificationBooleanArts = binding.notificationCheckboxArts.isChecked
+        val notificationBooleanBusiness = binding.notificationCheckboxBusiness.isChecked
+        val notificationBooleanEntreprenuers = binding.notificationCheckboxEntreprenuers.isChecked
+        val notificationBooleanPolitics = binding.notificationCheckboxPolitics.isChecked
+        val notificationBooleanSports = binding.notificationCheckboxSports.isChecked
+        val notificationBooleanTravel = binding.notificationCheckboxTravel.isChecked
+
+        val filters = getSelectedFilters(
+            notificationBooleanArts,
+            notificationBooleanBusiness,
+            notificationBooleanEntreprenuers,
+            notificationBooleanPolitics,
+            notificationBooleanSports,
+            notificationBooleanTravel
+        )
+        stringToPreference(requireContext(), notificationKeyword, MyApp.QUERY_TERM)
+        if(filters!= null) {
+            stringToPreference(requireContext(), filters, MyApp.FILTERS)
+        }
 
         // Notify the listener about the notifications click event
         listener.onNotificationsClick()
