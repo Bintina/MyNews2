@@ -6,27 +6,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import androidx.fragment.app.Fragment
+import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.databinding.FragmentWebViewBinding
 
-class WebViewFragment: Fragment() {
-var _binding: FragmentWebViewBinding? = null
+class WebViewFragment : Fragment() {
+    var _binding: FragmentWebViewBinding? = null
     val binding get() = _binding!!
+
+    val newsLink = MyApp.clickedNewsLink
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentWebViewBinding.inflate(inflater,container,false)
-        loadNewsLink()
+        _binding = FragmentWebViewBinding.inflate(inflater, container, false)
+        loadNewsLink(newsLink)
         return binding.root
     }
 
-    private fun loadNewsLink() {
+    private fun loadNewsLink(link: String) {
         val myWebView: WebView = binding.webview
-        myWebView.loadUrl("http://www.example.com")
+        myWebView.loadUrl(link)
 
-        val myWebViewWithContext = WebView(activityContext)
-        setContentView(myWebViewWithContext)
+        /*        val myWebViewWithContext = WebView(activityContext)
+                setContentView(myWebViewWithContext)*/
     }
 
     override fun onDestroy() {

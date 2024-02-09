@@ -73,6 +73,7 @@ dependencies {
 
     //Glide Image dependancy
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
 
 //coroutine dependencies
     //comes with main dispatcher

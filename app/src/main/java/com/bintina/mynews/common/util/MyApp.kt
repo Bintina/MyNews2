@@ -28,6 +28,9 @@ class MyApp : Application() {
         //Clicked Articles list
         val clickedArticles: MutableSet<String> = HashSet()
 
+        //clicked news link
+        var clickedNewsLink = ""
+
         //Date instances
         lateinit var currentDate: Date
         lateinit var notificationStartDate: Date

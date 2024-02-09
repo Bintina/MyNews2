@@ -7,7 +7,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bintina.mynews.R
 import com.bintina.mynews.common.model.news.News
+import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.common.util.MyApp.Companion.clickedArticles
+import com.bintina.mynews.common.util.MyApp.Companion.clickedNewsLink
 import com.bintina.mynews.databinding.ItemRowBinding
 import com.bintina.mynews.news.controller.OnNewsClickedListener
 import com.bumptech.glide.Glide
@@ -56,6 +58,7 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
          */
         fun bind(news: News?, listener: OnNewsClickedListener) {
             val newsLink = news?.url.toString()
+            clickedNewsLink = newsLink
 
             // Check if the article URL has been clicked
             val isClicked = clickedArticles.contains(newsLink)
