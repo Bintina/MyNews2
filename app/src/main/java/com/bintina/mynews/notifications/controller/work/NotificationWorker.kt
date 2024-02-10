@@ -17,15 +17,22 @@ import androidx.work.ListenableWorker
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.bintina.mynews.R
+import com.bintina.mynews.common.data.DataSource.loadNotificationResults
+import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.notifications.view.NotificationDisplayActivity
 import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.common.util.Constants
 import com.bintina.mynews.common.util.Constants.CHANNEL_ID
+import com.bintina.mynews.common.util.MyApp.Companion.FILE_NAME
 import com.bintina.mynews.common.util.MyApp.Companion.FILTERS
 import com.bintina.mynews.common.util.MyApp.Companion.QUERY_TERM
 import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
 import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
 import com.bintina.mynews.common.util.preferenceToString
+import com.bintina.mynews.notifications.view.adapter.Adapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 /**
  * Worker class responsible for handling background work related to notifications.
@@ -44,9 +51,8 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
         val notificationChannelId = Constants.CHANNEL_ID
         val notificationId = Constants.NOTIFICATION_ID
 
-        //Fetch notification settings
-        val query = preferenceToString(applicationContext, QUERY_TERM)
-        val filters = preferenceToString(applicationContext, FILTERS)
+        //call loadNotifictionResults
+        notificationTryCatch()
 
         //Handle notification Click
         val mainIntent = Intent(applicationContext, NotificationDisplayActivity::class.java)
@@ -117,6 +123,34 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
 
 
         }
+    }
+
+    private fun notificationTryCatch(): Result{
+
+            // Now, call the loadNotificationResults function
+            val notificationKeyword = preferenceToString(applicationContext, QUERY_TERM)
+            val filters = preferenceToString(applicationContext, FILTERS)
+            val adapter = Adapter()
+
+        try {
+        runBlocking {
+            val results = withContext(Dispatchers.IO) {
+                loadNotificationResults(notificationKeyword, filters)
+            }
+            withContext(Dispatchers.Main) {
+                // Process the results as needed
+                adapter.notificationsResultList = results as MutableList<Doc?>
+                adapter.notifyDataSetChanged()
+            }
+        }
+    } catch (e: Exception) {
+        // Handle exceptions if any
+        Log.e("NotificationWorker", "Error in doWork: ${e.message}")
+        return Result.failure()
+    }
+
+        return Result.success()
+
     }
 }
 

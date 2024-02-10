@@ -62,10 +62,10 @@ class MyApp : Application() {
 
         //notification Shared Preference Keys.
         const val FILE_NAME = "Query Preferences"
-        const val QUERY_TERM = ""
+        const val QUERY_TERM = "Query Term"
         const val START_DATE = ""
         const val END_DATE = ""
-        const val FILTERS = ""
+        const val FILTERS = "Filters"
     }
 
     /**

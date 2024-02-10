@@ -1,6 +1,7 @@
 package com.bintina.mynews.notifications.controller
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,6 +68,7 @@ class NotificationsFragment : Fragment() {
         val notificationBooleanPolitics = binding.notificationCheckboxPolitics.isChecked
         val notificationBooleanSports = binding.notificationCheckboxSports.isChecked
         val notificationBooleanTravel = binding.notificationCheckboxTravel.isChecked
+        Log.d("NotificationFragmentLog","keyword is $notificationKeyword" )
 
         val filters = getSelectedFilters(
             notificationBooleanArts,
@@ -76,7 +78,9 @@ class NotificationsFragment : Fragment() {
             notificationBooleanSports,
             notificationBooleanTravel
         )
+        Log.d("NotificationFragmentLog","filters are $filters" )
         stringToPreference(requireContext(), notificationKeyword, MyApp.QUERY_TERM)
+
         if(filters!= null) {
             stringToPreference(requireContext(), filters, MyApp.FILTERS)
         }

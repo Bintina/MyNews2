@@ -53,44 +53,6 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
     }
 
     /**
-     * Called when the fragment is resumed.
-     */
-    override fun onResume() {
-        super.onResume()
-
-        // Retrieving notification global values
-        val notificationKeyword = notificationKeyword
-        val arts = notificationBooleanArts
-        val business = notificationBooleanBusiness
-        val entreprenuers = notificationBooleanEntreprenuers
-        val politics = notificationBooleanPolitics
-        val sports = notificationBooleanSports
-        val travel = notificationBooleanTravel
-
-        // Generating filters based on selected Checkbox Booleans
-        val filters: String? =
-            getSelectedFilters(arts, business, entreprenuers, politics, sports, travel)
-
-        // Fetching notification results from the data source using coroutines
-        lifecycleScope.launch(Dispatchers.IO) {
-            try {
-                val result = DataSource.loadNotificationResults(notificationKeyword, filters)
-                withContext(Dispatchers.Main) {
-
-                    // Updating the adapter with the fetched results
-                    adapter.notificationsResultList = result as MutableList<Doc?>
-                    adapter.notifyDataSetChanged()
-
-                }
-            } catch (e: Exception) {
-                emptyList<Doc?>()
-                Toast.makeText(requireContext(), "Sorry, $e Error has occurred.", Toast.LENGTH_LONG)
-                    .show()
-            }
-        }
-    }
-
-    /**
      * Opens the link in a web browser when a notification item is clicked.
      */
     override fun openLink(link: String) {
