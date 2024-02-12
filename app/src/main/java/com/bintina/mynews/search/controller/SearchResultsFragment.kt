@@ -134,12 +134,11 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         // Optionally, you can pass data to the new Activity
         intent.putExtra("newsLinkKey", link)
 
-        // Start the new Activity
-        startActivity(intent)
         // Add the clicked article to the clickedArticles list and update the adapter
         MyApp.clickedArticles.add(link)
         adapter.notifyDataSetChanged()
 
+        // Start the new Activity
         startActivity(intent)
     }
 

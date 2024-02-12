@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import com.bintina.mynews.databinding.FragmentDisplayNotificationsBinding
 import com.bintina.mynews.news.controller.OnNewsClickedListener
 import com.bintina.mynews.common.util.MyApp
+import com.bintina.mynews.news.view.WebViewActivity
 import com.bintina.mynews.notifications.view.adapter.Adapter
 
 /**
@@ -43,8 +44,11 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
      * Opens the link in a web browser when a notification item is clicked.
      */
     override fun openLink(link: String) {
-        val newsSite = Uri.parse(link)
-        val intent = Intent(Intent.ACTION_VIEW, newsSite)
+        // Create an Intent to start the new activity
+        val intent = Intent(activity, WebViewActivity::class.java)
+
+        // Optionally, you can pass data to the new Activity
+        intent.putExtra("newsLinkKey", link)
 
         // Add the clicked article to the clickedArticles list and update the adapter
         MyApp.clickedArticles.add(link)

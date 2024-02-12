@@ -145,8 +145,6 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
             withContext(Dispatchers.Main) {
                 // Process the results as needed
                 MyApp.notificationNewsList = results as MutableList<Doc?>
-                //adapter.notificationsResultList = results as MutableList<Doc?>
-                adapter.notifyDataSetChanged()
                 Log.d("NWorkerLog", "list size is ${adapter.notificationsResultList.size}")
             }
         }
