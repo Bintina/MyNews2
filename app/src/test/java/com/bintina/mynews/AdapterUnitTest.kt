@@ -2,7 +2,7 @@ package com.bintina.mynews
 
 import android.content.Context
 import com.bintina.mynews.common.model.news.News
-import com.bintina.mynews.common.repository.MockNews
+import com.bintina.mynews.repository.MockNews
 import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.news.controller.OnNewsClickedListener
 import com.bintina.mynews.news.view.adapter.Adapter
@@ -16,9 +16,6 @@ import org.junit.Before
 import org.junit.Test
 
 class AdapterUnitTest {
-
-    @MockK(relaxed = true)
-    lateinit var context: Context
 
     @MockK(relaxed = true)
     lateinit var listener: OnNewsClickedListener

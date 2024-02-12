@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="@string/news_title_placeholder"
-                    android:textFontWeight="700"
+                    android:textFontWeight="900"
                     app:layout_constraintBottom_toTopOf="@id/caption"
                     app:layout_constraintStart_toEndOf="@id/news_image"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -77,7 +77,7 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@string/news_caption_placeholder"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/news_image"
