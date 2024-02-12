@@ -1,4 +1,4 @@
-package com.bintina.mynews.common.repository
+package com.bintina.mynews.repository
 
 import com.bintina.mynews.common.model.news.Media
 import com.bintina.mynews.common.model.news.MediaMetadata

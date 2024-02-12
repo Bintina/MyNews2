@@ -8,7 +8,7 @@ import com.bintina.mynews.common.model.news.MediaMetadata
 import com.bintina.mynews.common.model.news.Multimedia
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.Doc
-import com.bintina.mynews.common.repository.MockNews
+import com.bintina.mynews.repository.MockNews
 import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.common.util.filterNewsResult
 import com.bintina.mynews.common.util.getDefaultNotificationStartDate
