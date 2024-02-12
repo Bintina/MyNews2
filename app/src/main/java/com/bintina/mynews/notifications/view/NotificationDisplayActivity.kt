@@ -1,6 +1,7 @@
 package com.bintina.mynews.notifications.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -61,6 +62,7 @@ class NotificationDisplayActivity : AppCompatActivity() {
             KEY_NOTIFICATION_DISPLAY_FRAGMENT
         )
         transaction.commit()
+        Log.d("NDActivityLog", "transaction.commit() called in onCreate")
     }
 
     // Creating options menu in the toolbar

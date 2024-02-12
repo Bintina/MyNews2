@@ -20,8 +20,7 @@ import java.util.Locale
 */
 class Adapter(): RecyclerView.Adapter<Adapter.ItemViewHolder>() {
     // List of search results
-    var notificationsResultList = mutableListOf<Doc?>()
-
+    var notificationsResultList = MyApp.notificationNewsList
     // Listener for handling item click events
     lateinit var listener: OnNewsClickedListener
 
@@ -79,6 +78,7 @@ class Adapter(): RecyclerView.Adapter<Adapter.ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 Log.d("NotificationsAdapterLog","Notification Adapter onCreateView called")
+Log.d("NDAdapterLog","result size = ${notificationsResultList.size}")
         return ItemViewHolder(binding, parent.context)
     }
 

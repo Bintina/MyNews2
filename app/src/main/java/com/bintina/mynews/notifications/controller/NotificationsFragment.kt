@@ -8,13 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.common.util.MyApp.Companion.currentDate
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanBusiness
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanEntreprenuers
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanPolitics
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanSports
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanTravel
-import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
 import com.bintina.mynews.common.util.getDefaultNotificationStartDate
 import com.bintina.mynews.common.util.getSelectedFilters
 import com.bintina.mynews.common.util.stringToPreference

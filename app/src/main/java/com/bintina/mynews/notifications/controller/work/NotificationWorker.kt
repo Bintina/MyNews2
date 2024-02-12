@@ -23,11 +23,12 @@ import com.bintina.mynews.notifications.view.NotificationDisplayActivity
 import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.common.util.Constants
 import com.bintina.mynews.common.util.Constants.CHANNEL_ID
+import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.common.util.MyApp.Companion.FILE_NAME
 import com.bintina.mynews.common.util.MyApp.Companion.FILTERS
 import com.bintina.mynews.common.util.MyApp.Companion.QUERY_TERM
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
-import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
+import com.bintina.mynews.common.util.getDefaultNotificationStartDate
+import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.common.util.preferenceToString
 import com.bintina.mynews.notifications.view.adapter.Adapter
 import kotlinx.coroutines.Dispatchers
@@ -60,6 +61,7 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
         val mainPendingIntent = PendingIntent.getActivity(
             applicationContext, 1, mainIntent,
             PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
+
         )
 
         // Set up second button intent
@@ -132,6 +134,9 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
             val filters = preferenceToString(applicationContext, FILTERS)
             val adapter = Adapter()
 
+        val currentDate =instantiateTodaysDate()
+        getDefaultNotificationStartDate(currentDate)
+
         try {
         runBlocking {
             val results = withContext(Dispatchers.IO) {
@@ -139,8 +144,10 @@ class NotificationWorker(appContext: Context, workerParams: WorkerParameters) :
             }
             withContext(Dispatchers.Main) {
                 // Process the results as needed
-                adapter.notificationsResultList = results as MutableList<Doc?>
+                MyApp.notificationNewsList = results as MutableList<Doc?>
+                //adapter.notificationsResultList = results as MutableList<Doc?>
                 adapter.notifyDataSetChanged()
+                Log.d("NWorkerLog", "list size is ${adapter.notificationsResultList.size}")
             }
         }
     } catch (e: Exception) {

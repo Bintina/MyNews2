@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.view.View
 import com.bintina.mynews.R
 import com.bintina.mynews.common.model.news.News
+import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.common.model.search.QueryDetails
 import java.util.Date
 
@@ -52,7 +53,7 @@ class MyApp : Application() {
 
 
         //notification variables
-        var notificationKeyword: String = ""
+        var notificationNewsList: List<Doc?> = emptyList()
         var notificationBooleanArts: Boolean = false
         var notificationBooleanBusiness: Boolean = false
         var notificationBooleanEntreprenuers: Boolean = false
@@ -63,8 +64,6 @@ class MyApp : Application() {
         //notification Shared Preference Keys.
         const val FILE_NAME = "Query Preferences"
         const val QUERY_TERM = "Query Term"
-        const val START_DATE = ""
-        const val END_DATE = ""
         const val FILTERS = "Filters"
     }
 

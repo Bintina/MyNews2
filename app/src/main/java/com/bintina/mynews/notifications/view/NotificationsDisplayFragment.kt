@@ -7,25 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.databinding.FragmentDisplayNotificationsBinding
-import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.news.controller.OnNewsClickedListener
-import com.bintina.mynews.common.util.getSelectedFilters
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import com.bintina.mynews.common.data.DataSource
 import com.bintina.mynews.common.util.MyApp
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanArts
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanBusiness
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanEntreprenuers
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanPolitics
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanSports
-import com.bintina.mynews.common.util.MyApp.Companion.notificationBooleanTravel
-import com.bintina.mynews.common.util.MyApp.Companion.notificationKeyword
 import com.bintina.mynews.notifications.view.adapter.Adapter
 
 /**
@@ -49,6 +34,8 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
     ): View {
         _binding = FragmentDisplayNotificationsBinding.inflate(inflater, container, false)
         initializeView()
+
+        Log.d("NDFragmentLog", "onCreateView Called")
         return binding.root
     }
 
@@ -81,6 +68,8 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
         adapter = Adapter()
         binding.notificationResultsRecyclerview.adapter = adapter
         adapter.listener = this
+
+        Log.d("NDFragmentLog","list has ${adapter.notificationsResultList.size} items")
 
     }
 }
