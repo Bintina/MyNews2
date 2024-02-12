@@ -4,7 +4,7 @@
     android:id="@+id/card_contents"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="4dp"
     app:cardBackgroundColor="@color/cardview_light_background"
     app:cardCornerRadius="@dimen/cardview_compat_inset_shadow">
 

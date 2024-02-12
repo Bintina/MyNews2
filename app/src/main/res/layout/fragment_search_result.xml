@@ -5,8 +5,7 @@
     android:id="@+id/results_fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context=".search.controller.SearchResultsFragment">
+    tools:context=".search.controller.SearchActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/results_recyclerview"

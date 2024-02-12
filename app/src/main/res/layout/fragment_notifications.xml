@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/notifications_settings_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="20dp">
 
     <EditText
         android:id="@+id/notification_search_query_term_edit_text"
@@ -12,7 +13,8 @@
         android:hint="@string/search_query_et"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/notification_checkbox_grid"/>
 
     <GridLayout
         android:id="@+id/notification_checkbox_grid"
@@ -20,75 +22,69 @@
         android:layout_height="wrap_content"
         android:columnCount="2"
         android:numColumns="2"
-        android:padding="5dp"
+        android:padding="4dp"
         android:stretchMode="spacingWidth"
-        app:layout_constraintBottom_toTopOf="@id/toggle_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notification_search_query_term_edit_text">
+        app:layout_constraintTop_toBottomOf="@+id/notification_search_query_term_edit_text"
+        app:layout_constraintBottom_toTopOf="@id/toggle_row"
+        >
 
         <CheckBox
             android:id="@+id/notification_checkbox_arts"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
-            android:text="@string/arts_checkbox_txt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="@string/arts_checkbox_txt"/>
 
         <CheckBox
             android:id="@+id/notification_checkbox_business"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
-            android:text="@string/business_checkbox_txt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="@string/business_checkbox_txt"/>
 
         <CheckBox
             android:id="@+id/notification_checkbox_entreprenuers"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
-            android:text="@string/entreprenuers_checkbox_txt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date_query_details" />
+            android:text="@string/entreprenuers_checkbox_txt"/>
 
         <CheckBox
             android:id="@+id/notification_checkbox_politics"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
-            android:text="@string/politics_checkbox_txt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date_query_details" />
+            android:text="@string/politics_checkbox_txt" />
 
         <CheckBox
             android:id="@+id/notification_checkbox_sports"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
-            android:text="@string/sports_checkbox_txt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date_query_details" />
+            android:text="@string/sports_checkbox_txt"/>
 
         <CheckBox
             android:id="@+id/notification_checkbox_travel"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_columnWeight="1"
-            android:text="@string/travel_checkbox_txt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date_query_details" />
+            android:text="@string/travel_checkbox_txt" />
 
     </GridLayout>
+
+    <LinearLayout
+        android:id="@+id/toggle_row"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="240dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notification_checkbox_grid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
 
     <TextView
         android:id="@+id/toggle_text"
@@ -108,4 +104,5 @@
         app:layout_constraintStart_toEndOf="@id/toggle_text"
         app:layout_constraintTop_toBottomOf="@+id/notification_checkbox_grid" />
 
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
