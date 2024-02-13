@@ -52,6 +52,8 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
+
+
         initializeView()
 
         return binding.root
@@ -62,6 +64,8 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
      */
     override fun onResume() {
         super.onResume()
+        val progressIndicator = binding.circularProgressIndicator
+        progressIndicator.visibility = View.VISIBLE
 
         // Retrieve search parameters from global variables
         val keyword = searchKeyword
@@ -84,22 +88,28 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
                 DataSource.loadSearchResults(keyword, startDate, endDate, filters)
             } catch (e: Exception) {
                 Log.d("SearchResultTryCatch", "Error is $e")
-                Toast.makeText(
-                    requireContext(),
-                    "Sorry, we do not have results for this search at the moment. Please try a wider search.",
-                    Toast.LENGTH_LONG
-                ).show()
                 emptyList<Doc?>()
             }
 
             // Update the UI with the search results
             withContext(Dispatchers.Main) {
-                adapter.searchResultList = result.toMutableList()
-                adapter.notifyDataSetChanged()
-                Log.d(
-                    "Result Fragment",
-                    "${result.size}, Start date is $startDate and End date is $endDate"
-                )
+                if(result.isNullOrEmpty()){
+                Toast.makeText(
+                    requireContext(),
+                    "Sorry, we do not have results for this search at the moment.",
+                    Toast.LENGTH_LONG
+                ).show()
+                    progressIndicator.visibility = View.GONE
+
+                }else {
+                    adapter.searchResultList = result.toMutableList()
+                    adapter.notifyDataSetChanged()
+                    progressIndicator.visibility = View.GONE
+                    Log.d(
+                        "Result Fragment",
+                        "${result.size}, Start date is $startDate and End date is $endDate"
+                    )
+                }
             }
 
         }

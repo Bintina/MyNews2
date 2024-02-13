@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.bintina.mynews.R
@@ -42,15 +43,31 @@ class NewsFragment : Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
+
+        val progressIndicator = binding.circularProgressIndicator
+        progressIndicator.visibility = View.VISIBLE
+
         initializeList()
 
         // Asynchronously load news data
         lifecycleScope.launch(Dispatchers.IO) {
             val result = DataSource.loadNews()
             withContext(Dispatchers.Main) {
-                adapter.storiesList = result
-                adapter.notifyDataSetChanged()
+                if (result.isNullOrEmpty()) {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.no_news),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    progressIndicator.visibility = View.GONE
 
+                } else {
+
+                    adapter.storiesList = result
+                    adapter.notifyDataSetChanged()
+
+                    progressIndicator.visibility = View.GONE
+                }
             }
         }
         return binding.root
@@ -73,6 +90,7 @@ class NewsFragment : Fragment(CURRENT_NEWS_STATE), OnNewsClickedListener {
         adapter.listener = this
 
     }
+
     override fun openLink(link: String) {
         // Create an Intent to start the new activity
         val intent = Intent(activity, WebViewActivity::class.java)

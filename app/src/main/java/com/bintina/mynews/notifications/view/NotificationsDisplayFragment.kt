@@ -7,10 +7,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bintina.mynews.R
 import com.bintina.mynews.databinding.FragmentDisplayNotificationsBinding
 import com.bintina.mynews.news.controller.OnNewsClickedListener
 import com.bintina.mynews.common.util.MyApp
+import com.bintina.mynews.common.util.MyApp.Companion.notificationNewsList
 import com.bintina.mynews.news.view.WebViewActivity
 import com.bintina.mynews.notifications.view.adapter.Adapter
 
@@ -34,6 +37,7 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDisplayNotificationsBinding.inflate(inflater, container, false)
+
         initializeView()
 
         Log.d("NDFragmentLog", "onCreateView Called")
@@ -69,11 +73,22 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
      * Initializes the view by setting up the adapter and RecyclerView.
      */
     private fun initializeView() {
+        val progressIndicator = binding.circularProgressIndicator
+        progressIndicator.visibility = View.VISIBLE
+
         adapter = Adapter()
         binding.notificationResultsRecyclerview.adapter = adapter
         adapter.listener = this
+        if (notificationNewsList.isNullOrEmpty()) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.no_news),
+                Toast.LENGTH_LONG
+            ).show()
+            progressIndicator.visibility = View.GONE
 
-        Log.d("NDFragmentLog","list has ${adapter.notificationsResultList.size} items")
+        }
+        progressIndicator.visibility = View.GONE
 
     }
 }
