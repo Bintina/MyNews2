@@ -36,6 +36,8 @@ class MainActivity : AppCompatActivity(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        instantiateTodaysDate()
+
         setSupportActionBar(binding.myToolbar)
         //Customize the toolbar color
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
@@ -55,7 +57,6 @@ class MainActivity : AppCompatActivity(){
         //Set up the ViewPager with TabLayout
         setupViewPager()
 
-        instantiateTodaysDate()
     }
 
     //Set up ViewPager with TabLayoutMediator attached.

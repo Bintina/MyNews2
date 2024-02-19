@@ -61,6 +61,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.test.ext:junit-ktx:1.1.5")
     implementation("androidx.test.espresso:espresso-contrib:3.5.1")
+    implementation("androidx.annotation:annotation:1.7.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -74,6 +75,7 @@ dependencies {
     //Glide Image dependancy
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+    implementation("com.github.bumptech.glide:okhttp3-integration:4.11.0")
 
 //coroutine dependencies
     //comes with main dispatcher
