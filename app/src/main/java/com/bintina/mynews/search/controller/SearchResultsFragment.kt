@@ -1,7 +1,6 @@
 package com.bintina.mynews.search.controller
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.bintina.mynews.common.data.DataSource
+import com.bintina.mynews.common.data.repository.DataSource
 import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.common.util.MyApp
 import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanArts

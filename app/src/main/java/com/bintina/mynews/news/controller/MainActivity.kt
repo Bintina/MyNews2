@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         instantiateTodaysDate()
 
         setSupportActionBar(binding.myToolbar)
@@ -56,12 +57,17 @@ class MainActivity : AppCompatActivity(){
 
         //Set up the ViewPager with TabLayout
         setupViewPager()
+        //   progressIndicator.visibility = View.GONE
 
     }
 
     //Set up ViewPager with TabLayoutMediator attached.
     private fun setupViewPager() {
         binding.pager.adapter = PagerAdapter(this)
+
+        val progressIndicator = binding.circularProgressIndicator
+        progressIndicator.visibility = View.VISIBLE
+
 
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
             //Set tab text based on position

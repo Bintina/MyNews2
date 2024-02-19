@@ -17,14 +17,12 @@ import androidx.work.ListenableWorker
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.bintina.mynews.R
-import com.bintina.mynews.common.data.DataSource.loadNotificationResults
+import com.bintina.mynews.common.data.repository.DataSource.loadNotificationResults
 import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.notifications.view.NotificationDisplayActivity
-import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.common.util.Constants
 import com.bintina.mynews.common.util.Constants.CHANNEL_ID
 import com.bintina.mynews.common.util.MyApp
-import com.bintina.mynews.common.util.MyApp.Companion.FILE_NAME
 import com.bintina.mynews.common.util.MyApp.Companion.FILTERS
 import com.bintina.mynews.common.util.MyApp.Companion.QUERY_TERM
 import com.bintina.mynews.common.util.getDefaultNotificationStartDate

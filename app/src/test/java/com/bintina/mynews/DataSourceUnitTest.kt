@@ -1,12 +1,7 @@
 package com.bintina.mynews
 
 
-import com.bintina.mynews.common.api.news.ApiService
-import com.bintina.mynews.common.data.DataSource
-import com.bintina.mynews.common.model.news.Media
-import com.bintina.mynews.common.model.news.MediaMetadata
-import com.bintina.mynews.common.model.news.Multimedia
-import com.bintina.mynews.common.model.news.News
+import com.bintina.mynews.common.data.repository.DataSource
 import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.repository.MockNews
 import com.bintina.mynews.common.util.MyApp
@@ -17,14 +12,7 @@ import com.bintina.mynews.common.util.instantiateTodaysDate
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
-import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito.`when`
-import org.mockito.MockitoAnnotations
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.util.Date
 
 class DataSourceTest {
 
