@@ -4,6 +4,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bintina.mynews.common.util.MyApp.Companion.CURRENT_NEWS_STATE
+import com.bintina.mynews.news.view.ArtNewsFragment
+import com.bintina.mynews.news.view.BusinessNewsFragment
+import com.bintina.mynews.news.view.PopularNewsFragment
+import com.bintina.mynews.news.view.ScienceNewsFragment
+import com.bintina.mynews.news.view.TopStoriesFragment
 
 /**
  * Pager adapter for managing fragments in the ViewPager.
@@ -31,11 +36,11 @@ class PagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) 
 
         // Return the appropriate fragment content based on the position
         return when (position) {
-            0 -> NewsFragment()
-            1 -> NewsFragment()
-            2 -> NewsFragment()
-            3 -> NewsFragment()
-            4 -> NewsFragment()
+            0 -> TopStoriesFragment()
+            1 -> PopularNewsFragment()
+            2 -> BusinessNewsFragment()
+            3 -> ArtNewsFragment()
+            4 -> ScienceNewsFragment()
             else -> throw IllegalStateException("Unexpected position $position")
         }
     }

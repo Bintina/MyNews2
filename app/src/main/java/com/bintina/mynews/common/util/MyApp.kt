@@ -38,6 +38,13 @@ class MyApp : Application() {
         lateinit var searchStartDate: Date
         lateinit var searchEndDate: Date
 
+        //news variables
+        var topStoriesList: List<News?> = emptyList()
+        var popularNewsList: List<News?> = emptyList()
+        var businessStoriesList: List<News?> = emptyList()
+        var artStoriesList: List<News?> = emptyList()
+        var scienceStoriesList: List<News?> = emptyList()
+
         //search variables
         var defaultSearchStartDate = ""
         var defaultSearchEndDate = ""

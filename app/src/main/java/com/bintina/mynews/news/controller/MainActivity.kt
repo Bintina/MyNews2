@@ -3,13 +3,27 @@ package com.bintina.mynews.news.controller
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.test.core.app.ActivityScenario.launch
 import com.bintina.mynews.R
+import com.bintina.mynews.common.data.repository.DataSource.loadArtNews
+import com.bintina.mynews.common.data.repository.DataSource.loadBusinessNews
+import com.bintina.mynews.common.data.repository.DataSource.loadPopularNews
+import com.bintina.mynews.common.data.repository.DataSource.loadScienceNews
+import com.bintina.mynews.common.data.repository.DataSource.loadTopNews
+import com.bintina.mynews.common.model.news.News
+import com.bintina.mynews.common.util.MyApp.Companion.artStoriesList
+import com.bintina.mynews.common.util.MyApp.Companion.businessStoriesList
+import com.bintina.mynews.common.util.MyApp.Companion.popularNewsList
+import com.bintina.mynews.common.util.MyApp.Companion.scienceStoriesList
+import com.bintina.mynews.common.util.MyApp.Companion.topStoriesList
 import com.bintina.mynews.common.util.goHome
 import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.common.util.openAboutActivity
@@ -18,12 +32,16 @@ import com.bintina.mynews.common.util.openNotificationsActivity
 import com.bintina.mynews.common.util.openSearchActivity
 import com.bintina.mynews.databinding.ActivityMainBinding
 import com.bintina.mynews.news.controller.PagerAdapter
+import com.bintina.mynews.news.view.adapter.Adapter
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * The main activity of the application
  */
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
+    lateinit var adapter: Adapter
 
     //set view binding variable
     private lateinit var binding: ActivityMainBinding
@@ -35,9 +53,19 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        adapter = Adapter()
 
 
         instantiateTodaysDate()
+
+        /*lifecycleScope.launch(Dispatchers.IO) {
+            //getNewsLists()
+            adapter.notifyDataSetChanged()
+        }*/
+            Log.d(
+                "MainActLog",
+                "TopStories has ${topStoriesList.size}, PopularStories has ${popularNewsList.size}, BusinessStories has ${businessStoriesList.size}, ArtStories has ${artStoriesList.size}, ScienceStories has ${scienceStoriesList.size}"
+            )
 
         setSupportActionBar(binding.myToolbar)
         //Customize the toolbar color
@@ -65,8 +93,6 @@ class MainActivity : AppCompatActivity(){
     private fun setupViewPager() {
         binding.pager.adapter = PagerAdapter(this)
 
-        val progressIndicator = binding.circularProgressIndicator
-        progressIndicator.visibility = View.VISIBLE
 
 
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
@@ -121,4 +147,14 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
+   /* private suspend fun getNewsLists():List<List<News?>> {
+        lifecycleScope.launch { loadArtNews(lifecycleScope) }
+        lifecycleScope.launch { loadScienceNews(lifecycleScope) }
+
+
+        return listOf(
+            popularNewsList,
+            businessStoriesList, artStoriesList,
+            scienceStoriesList)
+    }*/
 }

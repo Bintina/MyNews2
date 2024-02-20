@@ -22,7 +22,15 @@ import java.util.Locale
 class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
     // List of news items
-    var storiesList: List<News?> = emptyList<News?>()
+    var storiesList: List<News?> = when (MyApp.CURRENT_NEWS_STATE) {
+        0 -> MyApp.topStoriesList
+        1 -> MyApp.popularNewsList
+        2 -> MyApp.businessStoriesList
+        3 -> MyApp.artStoriesList
+        else -> {MyApp.scienceStoriesList}
+    }
+
+
 
     // Listener for news item clicks
     lateinit var listener: OnNewsClickedListener
