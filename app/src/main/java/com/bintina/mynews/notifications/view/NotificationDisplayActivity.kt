@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.bintina.mynews.R
 import com.bintina.mynews.common.util.goHome
+import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.common.util.openAboutActivity
 import com.bintina.mynews.common.util.openHelpActivity
 import com.bintina.mynews.common.util.openNotificationsActivity
@@ -36,6 +37,7 @@ class NotificationDisplayActivity : AppCompatActivity() {
         binding = ActivityDisplayNotificationsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        instantiateTodaysDate()
         // Setting up the Toolbar and setting it's background color
         setSupportActionBar(findViewById(R.id.my_toolbar))
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)

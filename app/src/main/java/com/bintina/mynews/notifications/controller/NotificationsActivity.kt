@@ -13,6 +13,7 @@ import androidx.work.WorkManager
 import androidx.work.WorkRequest
 import com.bintina.mynews.R
 import com.bintina.mynews.common.util.goHome
+import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.common.util.openAboutActivity
 import com.bintina.mynews.common.util.openHelpActivity
 import com.bintina.mynews.common.util.openNotificationsActivity
@@ -40,6 +41,7 @@ class NotificationsActivity : AppCompatActivity(), OnNotificationsClickedListene
         super.onCreate(savedInstanceState)
         binding = ActivityNotificationsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        instantiateTodaysDate()
 
         // Set up the toolbar
         setSupportActionBar(findViewById(R.id.my_toolbar))

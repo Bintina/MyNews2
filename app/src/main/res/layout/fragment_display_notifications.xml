@@ -9,7 +9,7 @@
     tools:context=".notifications.view.NotificationDisplayActivity">
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/circular_progress_indicator"
+        android:id="@+id/notification_circular_progress_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:indicatorSize="40dp"

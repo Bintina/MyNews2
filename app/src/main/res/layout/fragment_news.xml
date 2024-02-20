@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+
     tools:context=".news.controller.NewsFragment">
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -15,6 +15,7 @@
         app:trackThickness="4dp"
         app:trackColor="@color/design_default_color_secondary"
         app:indicatorColor="@color/design_default_color_on_secondary"
+        app:showAnimationBehavior="inward"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -63,7 +63,7 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
      */
     override fun onResume() {
         super.onResume()
-        val progressIndicator = binding.circularProgressIndicator
+        val progressIndicator = binding.searchCircularProgressIndicator
         progressIndicator.visibility = View.VISIBLE
 
         // Retrieve search parameters from global variables

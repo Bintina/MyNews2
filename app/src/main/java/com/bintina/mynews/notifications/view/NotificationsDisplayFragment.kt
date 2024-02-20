@@ -73,7 +73,7 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
      * Initializes the view by setting up the adapter and RecyclerView.
      */
     private fun initializeView() {
-        val progressIndicator = binding.circularProgressIndicator
+        val progressIndicator = binding.notificationCircularProgressIndicator
         progressIndicator.visibility = View.VISIBLE
 
         adapter = Adapter()
