@@ -125,26 +125,6 @@ object DataSource {
             return@async scienceStoriesList
         }
 
-    suspend fun loadNews(): List<News?> {
-
-        val apiCall = ApiService.create()
-        println("current news state is $CURRENT_NEWS_STATE")
-
-        val response = when (CURRENT_NEWS_STATE) {
-            0 -> apiCall.getTopStories()
-            1 -> apiCall.getPopularNews()
-            2 -> apiCall.getBusinessNews()
-            3 -> apiCall.getArtStories()
-            4 -> apiCall.getScienceStories()
-            else -> {
-                null
-            }
-        }
-
-        // Filter out results with null section, subsection or abstract
-        val results = response?.results
-        return filterNewsResult(results)
-    }
 
     /**
      * Loads search results based on the specified parameters.
