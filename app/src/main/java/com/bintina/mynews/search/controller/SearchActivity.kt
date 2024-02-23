@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.bintina.mynews.R
 import com.bintina.mynews.common.util.MyApp.Companion.searchKeyword
 import com.bintina.mynews.common.util.goHome
@@ -17,13 +18,14 @@ import com.bintina.mynews.common.util.openHelpActivity
 import com.bintina.mynews.common.util.openNotificationsActivity
 import com.bintina.mynews.common.util.openSearchActivity
 import com.bintina.mynews.databinding.ActivitySearchBinding
+import com.bintina.mynews.search.SearchViewModel
 
 /**
  * Activity for handling search functionality.
  */
 class SearchActivity : AppCompatActivity(), OnSearchClicked {
     lateinit var binding: ActivitySearchBinding
-
+    private lateinit var viewModel: SearchViewModel
     companion object {
         const val KEY_SEARCH_FRAGMENT = "KEY_SEARCH_FRAGMENT"
         const val KEY_SEARCH_FRAGMENT_RESULTS = "KEY_SEARCH_FRAGMENT_RESULTS"
@@ -36,6 +38,9 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize ViewModel
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
 
 
         // Set up the search button click listener

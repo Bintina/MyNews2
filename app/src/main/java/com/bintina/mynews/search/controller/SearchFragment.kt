@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.bintina.mynews.common.util.MyApp.Companion.currentDate
 import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchEndDate
 import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchStartDate
@@ -27,6 +28,7 @@ import com.bintina.mynews.common.util.getDefaultSearchStartDate
 import com.bintina.mynews.common.util.getStringDates
 import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
+import com.bintina.mynews.search.SearchViewModel
 import java.sql.Date
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -36,6 +38,9 @@ import java.util.Locale
  * A fragment for searching articles based on user input.
  */
 class SearchFragment : Fragment() {
+
+    private lateinit var viewModel: SearchViewModel
+
     // Binding for the fragment
     private var _binding: FragmentSearchArticlesBinding? = null
     private val binding get() = _binding!!
@@ -52,7 +57,8 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
-
+// Initialize ViewModel
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         //instantiate date
         instantiateTodaysDate()
 
