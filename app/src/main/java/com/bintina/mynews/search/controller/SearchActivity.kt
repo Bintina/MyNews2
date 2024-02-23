@@ -14,6 +14,7 @@ import com.bintina.mynews.R
 import com.bintina.mynews.common.util.MyApp.Companion.searchKeyword
 import com.bintina.mynews.common.util.goHome
 import com.bintina.mynews.common.util.navigateToFragment
+import com.bintina.mynews.common.util.navigateToSearchFragment
 import com.bintina.mynews.common.util.openAboutActivity
 import com.bintina.mynews.common.util.openHelpActivity
 import com.bintina.mynews.common.util.openNotificationsActivity
@@ -31,6 +32,18 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
     lateinit var binding: ActivitySearchBinding
 
     companion object {
+        fun goToSearchResults() {
+            val fragmentManager = supportFragmentManager
+            val transaction = fragmentManager.beginTransaction()
+
+            if (searchKeyword.isBlank()) {
+                Toast.makeText(this, "Please enter a search term", Toast.LENGTH_LONG).show()
+            } else {
+                navigateToSearchFragment(transaction,R.id.search_fragment_container, KEY_SEARCH_FRAGMENT_RESULTS)
+                Log.d("onSearchClickLog", "transaction commited")
+            }
+        }
+
         const val KEY_SEARCH_FRAGMENT = "KEY_SEARCH_FRAGMENT"
         const val KEY_SEARCH_FRAGMENT_RESULTS = "KEY_SEARCH_FRAGMENT_RESULTS"
     }
@@ -82,18 +95,10 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         goToSearchResults()
     }
 
-    private fun goToSearchResults() {
+     fun goToSearchResults() {
 
         // Replace the search fragment with the search results fragment
-        val fragmentManager = supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
 
-        if (searchKeyword.isBlank()) {
-            Toast.makeText(this, "Please enter a search term", Toast.LENGTH_LONG).show()
-        } else {
-            navigateToFragment(transaction,R.id.search_fragment_container, searchResultsFragment, KEY_SEARCH_FRAGMENT_RESULTS)
-            Log.d("onSearchClickLog", "transaction commited")
-        }
 
     }
 

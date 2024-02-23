@@ -3,6 +3,7 @@ package com.bintina.mynews.search
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,7 @@ import com.bintina.mynews.common.util.MyApp.Companion.searchResultList
 import com.bintina.mynews.common.util.getDefaultSearchStartDate
 import com.bintina.mynews.common.util.getSelectedFilters
 import com.bintina.mynews.common.util.instantiateTodaysDate
+import com.bintina.mynews.common.util.navigateToSearchFragment
 import com.bintina.mynews.search.controller.SearchActivity
 import com.bintina.mynews.search.controller.SearchFragment
 import com.bintina.mynews.search.controller.SearchResultsFragment
@@ -47,6 +49,11 @@ class SearchViewModel : ViewModel() {
 
     private val _newResultList = MutableLiveData<List<Doc?>>()
     val newResultList: LiveData<List<Doc?>> get() = _newResultList
+
+    //
+    private val _fragmentManager = MutableLiveData<FragmentTransaction>()
+    val fragmentManager: LiveData<FragmentTransaction> get() = _fragmentManager
+    //val transaction = fragmentManager.beginTransaction()
 
 
 
@@ -121,7 +128,7 @@ class SearchViewModel : ViewModel() {
     }
 
     fun goToSearch(){
-
+SearchActivity.goToSearchResults()
 
     }
 }
