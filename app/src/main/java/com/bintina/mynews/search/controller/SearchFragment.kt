@@ -1,44 +1,49 @@
 package com.bintina.mynews.search.controller
 
 import android.app.DatePickerDialog
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.bintina.mynews.common.util.MyApp.Companion.currentDate
-import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchEndDate
-import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchStartDate
-import com.bintina.mynews.common.util.MyApp.Companion.enteredSearchEndDate
-import com.bintina.mynews.common.util.MyApp.Companion.enteredSearchStartDate
-import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanArts
-import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanBusiness
-import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanEntreprenuers
-import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanPolitics
-import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanSports
-import com.bintina.mynews.common.util.MyApp.Companion.searchBooleanTravel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.bintina.mynews.common.data.repository.DataSource
+import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.common.util.MyApp.Companion.searchEndDate
-import com.bintina.mynews.common.util.MyApp.Companion.searchKeyword
+import com.bintina.mynews.common.util.MyApp.Companion.searchResultList
 import com.bintina.mynews.common.util.MyApp.Companion.searchStartDate
-import com.bintina.mynews.common.util.getDefaultSearchStartDate
+import com.bintina.mynews.common.util.getSelectedFilters
 import com.bintina.mynews.common.util.getStringDates
-import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
+import com.bintina.mynews.search.SearchViewModel
+import com.bintina.mynews.search.view.adapter.Adapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.sql.Date
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Locale
 
 /**
  * A fragment for searching articles based on user input.
  */
 class SearchFragment : Fragment() {
+    private lateinit var viewModel: SearchViewModel
+    lateinit var adapter: Adapter
+
     // Binding for the fragment
     private var _binding: FragmentSearchArticlesBinding? = null
     private val binding get() = _binding!!
+
+    //search key terms
+    lateinit var keyword: String
+    lateinit var startDate: java.util.Date
+    lateinit var endDate: java.util.Date
+    var filters: String? = null
 
     // Listener for search click events
     lateinit var listener: OnSearchClicked
@@ -53,69 +58,74 @@ class SearchFragment : Fragment() {
     ): View {
         _binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
 
-        //instantiate date
-        instantiateTodaysDate()
+        // Initialize ViewModel
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        extractSearchTerms()
 
-        // Set default search start date
-        getDefaultSearchStartDate(currentDate)
 
         // Click listener for start date EditText
+        startDate = searchStartDate
         binding.startDateEt.setOnClickListener {
-            showStartDatePicker()
+            startDate = showStartDatePicker()
         }
-
         // Click listener for end date EditText
+        endDate = searchEndDate
         binding.endDateEt.setOnClickListener {
-            showEndDatePicker()
+            endDate = showEndDatePicker()
         }
 
-        // Click listener for search button
-        binding.startSearchBtn.setOnClickListener {
-            extractData()
-        }
+Log.d("SearchFragLog", "dates are $startDate and $endDate")
+        viewModel.setSearchDates(startDate, endDate)
+
+Log.d("SearchFragLog", "onCreateView reached end")
         return binding.root
     }
 
     /**
-     * Extracts data from UI elements and triggers the search.
+     * Extracts data from UI elements.
      */
-    private fun extractData() {
-        searchKeyword = binding.searchQueryTermEditText.text.toString()
-
-        //Check for null startDate entry
-        if (enteredSearchStartDate.isNullOrBlank()) {
-            defaultSearchStartDate
-        }
-
-        //Check for null endDate entry
-        if (enteredSearchEndDate.isBlank()) {
-            defaultSearchEndDate
-        }
+    fun extractSearchTerms(): String? {
+        // Retrieve search parameters from user entries
+        keyword = binding.searchQueryTermEditText.text.toString()
+Log.d("SearchFragLog", "extractSearchTerms keyword is $keyword")
 
         //Checkbox values
-        searchBooleanArts = binding.checkboxArts.isChecked
-        searchBooleanBusiness = binding.checkboxBusiness.isChecked
-        searchBooleanEntreprenuers = binding.checkboxEntreprenuers.isChecked
-        searchBooleanPolitics = binding.checkboxPolitics.isChecked
-        searchBooleanSports = binding.checkboxSports.isChecked
-        searchBooleanTravel = binding.checkboxTravel.isChecked
+        val arts = binding.checkboxArts.isChecked
+        val business = binding.checkboxBusiness.isChecked
+        val entreprenuers = binding.checkboxEntreprenuers.isChecked
+        val politics = binding.checkboxPolitics.isChecked
+        val sports = binding.checkboxSports.isChecked
+        val travel = binding.checkboxTravel.isChecked
 
-        // Notify the listener about the search click
-        listener.onSearchClick()
+        // Get selected filters
+        filters = viewModel.setFilters(arts, business, entreprenuers, politics, sports, travel)
+Log.d("SearchFragLog", "extractSearchTerms ran")
+        return filters
+
     }
+
+
 
     /**
      * Called when the fragment is being destroyed.
      */
     override fun onDestroy() {
+keyword = binding.searchQueryTermEditText.text.toString()
+        viewModel._keyword.value = keyword
+Log.d("SearchFragLog", "keyword is $keyword")
         super.onDestroy()
         _binding = null
+    }
+
+    fun goToSearch(){
+
+
     }
 
     /**
      * Shows the date picker dialog for selecting the start date.
      */
-    fun showStartDatePicker() {
+    fun showStartDatePicker(): java.util.Date {
         // Calendar instance for handling dates
         val currentDate = Calendar.getInstance()
         currentDate.add(Calendar.YEAR, -5)
@@ -138,7 +148,12 @@ class SearchFragment : Fragment() {
                     Date(calendar.timeInMillis)        // possible bug fix type change: val selectedStartDate = LocalDate.of(year, month + 1, dayOfMonth)
                 // Update the TextView and save selected date
                 binding.startDateEt.text = getStringDates(selectedStartDate, "dd/MM/yy")
-                searchStartDate = selectedStartDate
+
+                if (selectedStartDate != null) {
+                    startDate = selectedStartDate
+                } else {
+                    startDate = searchStartDate
+                }
             },
             // Set initial date in the date picker
             initialStartYear, initialStartMonth, initialStartDay
@@ -146,12 +161,13 @@ class SearchFragment : Fragment() {
 
         // Show the date picker dialog
         datePickerDialog.show()
+        return startDate
     }
 
     /**
      * Shows the date picker dialog for selecting the end date.
      */
-    fun showEndDatePicker() {
+    fun showEndDatePicker(): java.util.Date {
         // Calendar instance for handling dates
         val currentDate = Calendar.getInstance()
 
@@ -173,7 +189,12 @@ class SearchFragment : Fragment() {
                     Date(calendar.timeInMillis)                // possible bug fix type change: val selectedStartDate = LocalDate.of(year, month + 1, dayOfMonth)
                 // Update the TextView and save selected date.
                 binding.endDateEt.text = getStringDates(selectedEndDate, "dd/MM/yy")
-                searchEndDate = selectedEndDate
+
+                if (selectedEndDate != null) {
+                    endDate = selectedEndDate
+                } else {
+                    endDate = searchEndDate
+                }
             },
             // Set initial date in the date picker
             initialEndYear, initialEndMonth, initialEndDay
@@ -181,5 +202,6 @@ class SearchFragment : Fragment() {
 
         // Show the date picker dialog
         datePickerDialog.show()
+        return endDate
     }
 }

@@ -57,6 +57,7 @@ class MyApp : Application() {
         var searchBooleanPolitics: Boolean = false
         var searchBooleanSports: Boolean = false
         var searchBooleanTravel: Boolean = false
+        var searchResultList: List<Doc?> = emptyList()
 
 
         //notification variables

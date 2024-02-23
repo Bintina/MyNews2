@@ -1,6 +1,7 @@
 package com.bintina.mynews.search.view.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -20,7 +21,7 @@ import java.util.Locale
 class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
 
     // List of search results
-    var searchResultList = mutableListOf<Doc?>()
+    var searchResultList = emptyList<Doc?>()
 
     // Listener for handling item click events
     lateinit var listener: OnNewsClickedListener
@@ -91,7 +92,7 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
+        Log.d("SearchAdapterLog", "Search onCreateView Created")
         return ItemViewHolder(binding, parent.context)
     }
 
@@ -105,6 +106,7 @@ class Adapter() : RecyclerView.Adapter<Adapter.ItemViewHolder>() {
      */
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(searchResultList[position], listener)
+        Log.d("SearchAdapterLog", "Search list has ${searchResultList.size}")
     }
 
 }

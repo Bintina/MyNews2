@@ -3,6 +3,7 @@ package com.bintina.mynews.common.data.repository
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.LiveData
 import com.bintina.mynews.common.api.news.ApiService
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.Doc
@@ -143,7 +144,7 @@ object DataSource {
         filters: String?
     ): List<Doc?> {
 
-
+Log.d("DatasourceSearchLog","Method called")
         //Format Dates to api date format
         val formattedStartDate = getApiDates(startDate, "yyyyMMdd")
         val formattedEndDate = getApiDates(endDate, "yyyyMMdd")
@@ -160,11 +161,13 @@ object DataSource {
             API_KEY
         )
 
+Log.d("DatasourceSearchLog","keword $keyword, filters: $filters, start: $formattedStartDate, end: $formattedEndDate")
         val results: List<Doc?>? = response?.results?.docs
 
-
+Log.d("DatasourceSearchLog","${results?.size} results found")
+val filteredResult = filterSearchResult(results)
         //Filter out items with null section
-        return filterSearchResult(results)
+        return filteredResult
     }
 
     /**

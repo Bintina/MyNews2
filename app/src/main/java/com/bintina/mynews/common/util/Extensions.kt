@@ -3,6 +3,10 @@ package com.bintina.mynews.common.util
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.bintina.mynews.R
 import com.bintina.mynews.news.controller.MainActivity
 import com.bintina.mynews.common.model.news.News
 import com.bintina.mynews.common.model.search.Doc
@@ -15,6 +19,7 @@ import com.bintina.mynews.notifications.controller.NotificationsActivity
 import com.bintina.mynews.overflow.view.AboutActivity
 import com.bintina.mynews.overflow.view.HelpActivity
 import com.bintina.mynews.search.controller.SearchActivity
+import com.bintina.mynews.search.controller.SearchResultsFragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -95,6 +100,7 @@ fun getDefaultNotificationStartDate(currentDate: Date): Date {
     notificationStartDate = calendar.time
     return notificationStartDate
 }
+
 /**
  * Converts String to SP for notifications (6 months ago from the current date).
  *
@@ -119,6 +125,7 @@ fun preferenceToString(context: Context, PREFERENCE_NAME: String): String {
 
     return newsSharedPref.getString(PREFERENCE_NAME, "").toString()
 }
+
 /**
  * Calculates and returns the default start date for searches (5 years ago from the current date).
  *
@@ -206,12 +213,8 @@ fun Context.goHome() {
     startActivity(intent)
 }
 
-/**
- * Navigates to the News article.
- */
-fun Context.openArticleActivity() {
-    val intent = Intent(this, WebViewActivity::class.java)
-    startActivity(intent)
+fun Context.openSearchResults() {
+
 }
 
 /**
@@ -239,4 +242,16 @@ fun filterSearchResult(result: List<Doc?>?): List<Doc?> {
                 doc.subsectionName?.isNotBlank() == true
     } ?: emptyList()
 
+}
+
+fun navigateToSearchFragment(transaction: FragmentTransaction,container: Int, KEY: String){
+
+    val fragment = SearchResultsFragment()
+
+    transaction.replace(
+        container,
+        fragment,
+        KEY
+    )
+    transaction.commit()
 }

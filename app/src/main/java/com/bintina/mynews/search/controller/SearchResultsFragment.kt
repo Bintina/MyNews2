@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.bintina.mynews.R
 import com.bintina.mynews.common.data.repository.DataSource
 import com.bintina.mynews.common.model.search.Doc
 import com.bintina.mynews.common.util.MyApp
@@ -25,6 +28,7 @@ import com.bintina.mynews.common.util.getSelectedFilters
 import com.bintina.mynews.databinding.FragmentSearchResultBinding
 import com.bintina.mynews.news.controller.OnNewsClickedListener
 import com.bintina.mynews.news.view.WebViewActivity
+import com.bintina.mynews.search.SearchViewModel
 import com.bintina.mynews.search.view.adapter.Adapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -34,6 +38,7 @@ import kotlinx.coroutines.withContext
  * Fragment responsible for displaying search results based on user input.
  */
 class SearchResultsFragment : Fragment(), OnNewsClickedListener {
+    private lateinit var viewModel: SearchViewModel
 
     // Adapter for displaying search results
     private lateinit var adapter: Adapter
@@ -52,67 +57,33 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
     ): View {
         _binding = FragmentSearchResultBinding.inflate(inflater, container, false)
 
+        // Initialize ViewModel
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+
 
         initializeView()
 
+        // Observe LiveData from ViewModel and update the Adapter
+        viewModel.newResultList.observe(viewLifecycleOwner, Observer { newList ->
+            adapter.searchResultList = newList ?: emptyList()
+            adapter.notifyDataSetChanged()  // Notify the adapter that the data has changed
+        })
+        Log.d("SearchResultFragLog", "onCreateView Called")
         return binding.root
     }
 
+    /*    */
     /**
      * Called when the fragment is resumed.
-     */
+     *//*
     override fun onResume() {
         super.onResume()
         val progressIndicator = binding.searchCircularProgressIndicator
         progressIndicator.visibility = View.VISIBLE
 
-        // Retrieve search parameters from global variables
-        val keyword = searchKeyword
-        val startDate = searchStartDate
-        val endDate = searchEndDate
-        val arts = searchBooleanArts
-        val business = searchBooleanBusiness
-        val entreprenuers = searchBooleanEntreprenuers
-        val politics = searchBooleanPolitics
-        val sports = searchBooleanSports
-        val travel = searchBooleanTravel
 
-        // Get selected filters
-        val filters: String? =
-            getSelectedFilters(arts, business, entreprenuers, politics, sports, travel)
 
-        // Use coroutines to perform the search operation in the background
-        lifecycleScope.launch(Dispatchers.IO) {
-            val result = try {
-                DataSource.loadSearchResults(keyword, startDate, endDate, filters)
-            } catch (e: Exception) {
-                Log.d("SearchResultTryCatch", "Error is $e")
-                emptyList<Doc?>()
-            }
-
-            // Update the UI with the search results
-            withContext(Dispatchers.Main) {
-                if(result.isNullOrEmpty()){
-                Toast.makeText(
-                    requireContext(),
-                    "Sorry, we do not have results for this search at the moment.",
-                    Toast.LENGTH_LONG
-                ).show()
-                    progressIndicator.visibility = View.GONE
-
-                }else {
-                    adapter.searchResultList = result.toMutableList()
-                    adapter.notifyDataSetChanged()
-                    progressIndicator.visibility = View.GONE
-                    Log.d(
-                        "Result Fragment",
-                        "${result.size}, Start date is $startDate and End date is $endDate"
-                    )
-                }
-            }
-
-        }
-    }
+    }*/
 
 
     /**
@@ -127,11 +98,27 @@ class SearchResultsFragment : Fragment(), OnNewsClickedListener {
      * Initializes the view components, including the adapter for the RecyclerView.
      */
     private fun initializeView() {
-        adapter = Adapter()
+        val progressIndicator = binding.searchCircularProgressIndicator
+        progressIndicator.visibility = View.VISIBLE
+
+        adapter = com.bintina.mynews.search.view.adapter.Adapter()
         binding.resultsRecyclerview.adapter = adapter
         adapter.listener = this
+        Log.d("SearchResFragLog", "adapter initialised")
+        if (MyApp.searchResultList.isEmpty()) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.no_news),
+                Toast.LENGTH_LONG
+            ).show()
+            progressIndicator.visibility = View.GONE
+
+        }
+        progressIndicator.visibility = View.GONE
 
     }
+
+
 
     /**
      * Opens the link in a web browser when a search result item is clicked.

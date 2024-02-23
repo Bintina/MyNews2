@@ -79,7 +79,7 @@ class NotificationsDisplayFragment : Fragment(), OnNewsClickedListener {
         adapter = Adapter()
         binding.notificationResultsRecyclerview.adapter = adapter
         adapter.listener = this
-        if (notificationNewsList.isNullOrEmpty()) {
+        if (notificationNewsList.isEmpty()) {
             Toast.makeText(
                 requireContext(),
                 getString(R.string.no_news),

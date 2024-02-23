@@ -15,6 +15,7 @@ import androidx.test.core.app.ActivityScenario.launch
 import com.bintina.mynews.R
 import com.bintina.mynews.common.data.repository.DataSource.loadArtNews
 import com.bintina.mynews.common.data.repository.DataSource.loadBusinessNews
+import com.bintina.mynews.common.data.repository.DataSource.loadNewsLists
 import com.bintina.mynews.common.data.repository.DataSource.loadPopularNews
 import com.bintina.mynews.common.data.repository.DataSource.loadScienceNews
 import com.bintina.mynews.common.data.repository.DataSource.loadTopNews
@@ -58,15 +59,15 @@ class MainActivity : AppCompatActivity() {
 
         instantiateTodaysDate()
 
-        /*lifecycleScope.launch(Dispatchers.IO) {
-            //getNewsLists()
+    /*    lifecycleScope.launch(Dispatchers.IO) {
+            loadNewsLists(lifecycleScope)
             adapter.notifyDataSetChanged()
-        }*/
+        }
             Log.d(
                 "MainActLog",
                 "TopStories has ${topStoriesList.size}, PopularStories has ${popularNewsList.size}, BusinessStories has ${businessStoriesList.size}, ArtStories has ${artStoriesList.size}, ScienceStories has ${scienceStoriesList.size}"
             )
-
+*/
         setSupportActionBar(binding.myToolbar)
         //Customize the toolbar color
         val toolbar = findViewById<Toolbar>(R.id.my_toolbar)

@@ -9,19 +9,25 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.bintina.mynews.R
 import com.bintina.mynews.common.util.MyApp.Companion.searchKeyword
 import com.bintina.mynews.common.util.goHome
+import com.bintina.mynews.common.util.navigateToFragment
 import com.bintina.mynews.common.util.openAboutActivity
 import com.bintina.mynews.common.util.openHelpActivity
 import com.bintina.mynews.common.util.openNotificationsActivity
 import com.bintina.mynews.common.util.openSearchActivity
 import com.bintina.mynews.databinding.ActivitySearchBinding
+import com.bintina.mynews.search.SearchViewModel
 
 /**
  * Activity for handling search functionality.
  */
 class SearchActivity : AppCompatActivity(), OnSearchClicked {
+
+    private lateinit var viewModel: SearchViewModel
+
     lateinit var binding: ActivitySearchBinding
 
     companion object {
@@ -36,6 +42,9 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize ViewModel
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
 
 
         // Set up the search button click listener
@@ -68,22 +77,24 @@ class SearchActivity : AppCompatActivity(), OnSearchClicked {
      * Called when the search button is clicked.
      */
     override fun onSearchClick() {
+
+        viewModel.search()
+        goToSearchResults()
+    }
+
+    private fun goToSearchResults() {
+
         // Replace the search fragment with the search results fragment
-        val searchResultsFragment = SearchResultsFragment()
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
 
         if (searchKeyword.isBlank()) {
             Toast.makeText(this, "Please enter a search term", Toast.LENGTH_LONG).show()
         } else {
-            transaction.replace(
-                R.id.search_fragment_container,
-                searchResultsFragment,
-                KEY_SEARCH_FRAGMENT_RESULTS
-            )
-            transaction.commit()
+            navigateToFragment(transaction,R.id.search_fragment_container, searchResultsFragment, KEY_SEARCH_FRAGMENT_RESULTS)
             Log.d("onSearchClickLog", "transaction commited")
         }
+
     }
 
     /**
