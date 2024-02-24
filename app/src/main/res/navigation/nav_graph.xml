@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/main_news_fragment">
+
+    <fragment
+        android:id="@+id/main_news_fragment"
+        android:name="com.bintina.mynews.news.view.MainNewsFragment"
+        android:label="Main News">
+
+    <action
+        android:id="@+id/action_news_to_search"
+        app:destination="@id/search_articles_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/news_fragment_top_instance"
+        android:name="com.bintina.mynews.news.view.TopStoriesFragment"
+        android:label="Top Stories">
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/news_fragment_popular_instance"
+        android:name="com.bintina.mynews.news.view.TopStoriesFragment"
+        android:label="Top Stories" />
+
+    <fragment
+        android:id="@+id/news_fragment_business_instance"
+        android:name="com.bintina.mynews.news.view.BusinessNewsFragment"
+        android:label="Business News" />
+
+    <fragment
+        android:id="@+id/news_fragment_art_instance"
+        android:name="com.bintina.mynews.news.view.ArtNewsFragment"
+        android:label="Art Stories" />
+
+    <fragment
+        android:id="@+id/news_fragment_science_instance"
+        android:name="com.bintina.mynews.news.view.ScienceNewsFragment"
+        android:label="Science Stories" />
+
+    <fragment
+        android:id="@+id/search_articles_fragment"
+        android:name="com.bintina.mynews.search.controller.SearchFragment"
+        android:label="Search">
+
+        <!-- Action to navigate from Search to Results. -->
+        <action
+            android:id="@+id/action_search_to_results"
+            app:destination="@id/search_results_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/search_results_fragment"
+        android:name="com.bintina.mynews.search.controller.SearchResultsFragment"
+        android:label="Search Results" />
+
+    <fragment
+        android:id="@+id/notifications_fragment"
+        android:name="com.bintina.mynews.notifications.controller.NotificationsFragment"
+        android:label="Notifications" />
+
+    <fragment
+        android:id="@+id/notifications_display_fragment"
+        android:name="com.bintina.mynews.notifications.view.NotificationsDisplayFragment"
+        android:label="Notifications Display" />
+
+    <fragment
+        android:id="@+id/about_fragment"
+        android:name="com.bintina.mynews.overflow.view.AboutFragment"
+        android:label="About" />
+
+    <fragment
+        android:id="@+id/help_fragment"
+        android:name="com.bintina.mynews.overflow.view.HelpFragment"
+        android:label="Help" />
+
+</navigation>

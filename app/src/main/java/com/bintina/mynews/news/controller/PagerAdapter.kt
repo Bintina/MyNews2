@@ -15,7 +15,7 @@ import com.bintina.mynews.news.view.TopStoriesFragment
  *
  * @param activity The hosting FragmentActivity.
  */
-class PagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activity) {
+class PagerAdapter(activity: Fragment) : FragmentStateAdapter(activity) {
 
     /**
      * Returns the number of items in the data set.

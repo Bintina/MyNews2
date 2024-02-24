@@ -6,6 +6,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    id("androidx.navigation.safeargs")
 
 }
 
@@ -83,11 +84,9 @@ dependencies {
     //comes with the core functions that the language provides
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
     //lifecycledependency
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
 //Fragments support
-    //Java language implementation
-    implementation("androidx.fragment:fragment:1.6.2")
     //Kotlin
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
@@ -108,34 +107,31 @@ dependencies {
 
 
     // (Java only)
-    implementation("androidx.work:work-runtime:2.8.1")
+    implementation("androidx.work:work-runtime:2.9.0")
 
     // Kotlin + coroutines
-    implementation("androidx.work:work-runtime-ktx:2.8.1")
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
 
     // optional - RxJava2 support
-    implementation("androidx.work:work-rxjava2:2.8.1")
+    implementation("androidx.work:work-rxjava2:2.9.0")
 
     // optional - GCMNetworkManager support
-    implementation("androidx.work:work-gcm:2.8.1")
+    implementation("androidx.work:work-gcm:2.9.0")
 
     // optional - Test helpers
     androidTestImplementation("androidx.work:work-testing:2.8.1")
 
     // optional - Multiprocess support
-    implementation("androidx.work:work-multiprocess:2.8.1")
+    implementation("androidx.work:work-multiprocess:2.9.0")
 
     //mockito
     testImplementation ("org.mockito:mockito-core:3.12.4")
     testImplementation ("io.mockk:mockk:1.12.0")
 
     //WebKit
-    implementation("androidx.webkit:webkit:1.8.0")
+    implementation("androidx.webkit:webkit:1.10.0")
 
     //Jetpack Navigation Dependencies
-    // Java language implementation
-    implementation("androidx.navigation:navigation-fragment:2.7.7")
-    implementation("androidx.navigation:navigation-ui:2.7.7")
 
     // Kotlin
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
@@ -149,4 +145,5 @@ dependencies {
 
     // Jetpack Compose Integration
     implementation("androidx.navigation:navigation-compose:2.7.7")
+
 }

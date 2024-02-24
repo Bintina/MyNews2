@@ -37,4 +37,9 @@ object Constants {
     const val NOTIFICATION_ID = 1
 
     const val DELAY_TIME_MILLIS: Long = 3000
+
+    //NavController Key
+    const val KEY_SEARCH_NAV ="SearchNavKey"
+
+
 }

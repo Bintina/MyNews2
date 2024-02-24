@@ -9,7 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import com.bintina.mynews.R
 import com.bintina.mynews.common.util.MyApp.Companion.currentDate
 import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchEndDate
 import com.bintina.mynews.common.util.MyApp.Companion.defaultSearchStartDate
@@ -40,6 +44,7 @@ import java.util.Locale
 class SearchFragment : Fragment() {
 
     private lateinit var viewModel: SearchViewModel
+    lateinit var navController: NavController
 
     // Binding for the fragment
     private var _binding: FragmentSearchArticlesBinding? = null
@@ -59,6 +64,10 @@ class SearchFragment : Fragment() {
         _binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
 // Initialize ViewModel
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+
+        //instantiate navController
+        navController = findNavController()
+
         //instantiate date
         instantiateTodaysDate()
 
@@ -78,6 +87,7 @@ class SearchFragment : Fragment() {
         // Click listener for search button
         binding.startSearchBtn.setOnClickListener {
             extractData()
+            navController.navigate(R.id.action_search_to_results)
         }
         return binding.root
     }

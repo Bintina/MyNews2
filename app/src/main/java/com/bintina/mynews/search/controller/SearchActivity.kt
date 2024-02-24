@@ -26,6 +26,7 @@ import com.bintina.mynews.search.SearchViewModel
 class SearchActivity : AppCompatActivity(), OnSearchClicked {
     lateinit var binding: ActivitySearchBinding
     private lateinit var viewModel: SearchViewModel
+
     companion object {
         const val KEY_SEARCH_FRAGMENT = "KEY_SEARCH_FRAGMENT"
         const val KEY_SEARCH_FRAGMENT_RESULTS = "KEY_SEARCH_FRAGMENT_RESULTS"
