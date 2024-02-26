@@ -9,6 +9,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.bintina.mynews.R
 import com.bintina.mynews.common.util.MyApp.Companion.artStoriesList
@@ -25,7 +26,6 @@ import com.bintina.mynews.common.util.openSearchActivity
 import com.bintina.mynews.databinding.ActivityMainBinding
 import com.bintina.mynews.news.view.MainNewsFragment
 import com.bintina.mynews.news.view.adapter.Adapter
-import com.bintina.mynews.search.controller.SearchActivity
 
 /**
  * The main activity of the application
@@ -33,6 +33,7 @@ import com.bintina.mynews.search.controller.SearchActivity
 class MainActivity : AppCompatActivity() {
     lateinit var adapter: Adapter
 
+    lateinit var navController: NavController
     //set view binding variable
     private lateinit var binding: ActivityMainBinding
 
@@ -49,9 +50,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_news_fragment_constraint) as NavHostFragment
-        val navController = navHostFragment.navController
-
+        val navHostFragment = supportFragmentManager.findFragmentById(com.bintina.mynews.R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
 
 
 
@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
         //Set up click listener for search button
         val searchBtn = findViewById<View>(R.id.menu_search_btn)
         searchBtn.setOnClickListener {
-            // Now you have access to the NavController and can use its actions
             val action = MainNewsFragmentDirections.actionNewsToSearch()
             navController.navigate(action)
                 }
@@ -86,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.main_fragment_container, mainNewsFragment,
+        transaction.add(R.id.nav_host_fragment, mainNewsFragment,
             KEY_MAIN_NEWS_FRAGMENT
         )
         transaction.commit()

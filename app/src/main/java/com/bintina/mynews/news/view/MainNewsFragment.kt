@@ -1,6 +1,5 @@
 package com.bintina.mynews.news.view
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.databinding.FragmentMainNewsBinding
 import com.bintina.mynews.news.controller.PagerAdapter
 import com.bintina.mynews.news.view.adapter.Adapter
-import com.google.android.material.R
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainNewsFragment : Fragment() {
@@ -30,7 +28,8 @@ class MainNewsFragment : Fragment() {
         _binding = FragmentMainNewsBinding.inflate(inflater, container, false)
         adapter = Adapter()
         //instantiate navController
-        navController = findNavController()
+
+       navController = findNavController()
 
         instantiateTodaysDate()
 

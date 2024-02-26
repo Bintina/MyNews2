@@ -4,43 +4,49 @@
     android:id="@+id/nav_graph.xml"
     app:startDestination="@id/main_news_fragment">
 
+
     <fragment
         android:id="@+id/main_news_fragment"
         android:name="com.bintina.mynews.news.view.MainNewsFragment"
         android:label="Main News">
+        <action
+            android:id="@+id/action_news_to_search"
+            app:destination="@id/search_articles_fragment" />
 
-    <action
-        android:id="@+id/action_news_to_search"
-        app:destination="@id/search_articles_fragment" />
+        <navigation
+            android:id="@+id/news_view_pager_container"
+            app:startDestination="@id/news_fragment_top_instance">
+
+            <fragment
+                android:id="@+id/news_fragment_top_instance"
+                android:name="com.bintina.mynews.news.view.TopStoriesFragment"
+                android:label="Top Stories">
+
+            </fragment>
+
+
+            <fragment
+                android:id="@+id/news_fragment_popular_instance"
+                android:name="com.bintina.mynews.news.view.TopStoriesFragment"
+                android:label="Top Stories" />
+
+            <fragment
+                android:id="@+id/news_fragment_business_instance"
+                android:name="com.bintina.mynews.news.view.BusinessNewsFragment"
+                android:label="Business News" />
+
+            <fragment
+                android:id="@+id/news_fragment_art_instance"
+                android:name="com.bintina.mynews.news.view.ArtNewsFragment"
+                android:label="Art Stories" />
+
+            <fragment
+                android:id="@+id/news_fragment_science_instance"
+                android:name="com.bintina.mynews.news.view.ScienceNewsFragment"
+
+                android:label="Science Stories" />
+        </navigation>
     </fragment>
-
-    <fragment
-        android:id="@+id/news_fragment_top_instance"
-        android:name="com.bintina.mynews.news.view.TopStoriesFragment"
-        android:label="Top Stories">
-
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/news_fragment_popular_instance"
-        android:name="com.bintina.mynews.news.view.TopStoriesFragment"
-        android:label="Top Stories" />
-
-    <fragment
-        android:id="@+id/news_fragment_business_instance"
-        android:name="com.bintina.mynews.news.view.BusinessNewsFragment"
-        android:label="Business News" />
-
-    <fragment
-        android:id="@+id/news_fragment_art_instance"
-        android:name="com.bintina.mynews.news.view.ArtNewsFragment"
-        android:label="Art Stories" />
-
-    <fragment
-        android:id="@+id/news_fragment_science_instance"
-        android:name="com.bintina.mynews.news.view.ScienceNewsFragment"
-        android:label="Science Stories" />
 
     <fragment
         android:id="@+id/search_articles_fragment"

@@ -36,4 +36,5 @@
     <string name="home_btn">Home</string>
     <string name="no_news">There is no new news in this category</string>
     <string name="error_loading_news">Error loading news</string>
+    <string name="main_news_tag">MAIN_NEWS_TAG</string>
 </resources>

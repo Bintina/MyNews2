@@ -69,7 +69,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("androidx.activity:activity-ktx:1.8.2")
 
-//Retrofit implementations
+    //Retrofit implementations
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
@@ -78,7 +78,7 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
     implementation("com.github.bumptech.glide:okhttp3-integration:4.11.0")
 
-//coroutine dependencies
+    //coroutine dependencies
     //comes with main dispatcher
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     //comes with the core functions that the language provides
@@ -86,14 +86,14 @@ dependencies {
     //lifecycledependency
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
-//Fragments support
+    //Fragments support
     //Kotlin
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     //Gson dependancy
     implementation("com.google.code.gson:gson:2.10")
 
-//Esspresso Dependancies............................................................................
+    //Esspresso Dependancies............................................................................
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test:rules:1.5.0")

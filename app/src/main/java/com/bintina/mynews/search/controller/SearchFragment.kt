@@ -33,6 +33,7 @@ import com.bintina.mynews.common.util.getStringDates
 import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.databinding.FragmentSearchArticlesBinding
 import com.bintina.mynews.search.SearchViewModel
+import com.bintina.mynews.search.SearchViewModelFactory
 import java.sql.Date
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -62,8 +63,10 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchArticlesBinding.inflate(inflater, container, false)
-// Initialize ViewModel
-        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+
+// Initialize ViewModel using the factory
+        val factory = SearchViewModelFactory(requireActivity().application)
+        viewModel = ViewModelProvider(this, factory).get(SearchViewModel::class.java)
 
         //instantiate navController
         navController = findNavController()
@@ -84,11 +87,15 @@ class SearchFragment : Fragment() {
             showEndDatePicker()
         }
 
-        // Click listener for search button
-        binding.startSearchBtn.setOnClickListener {
-            extractData()
+
+        binding.startSearchBtn.setOnClickListener { view ->
             navController.navigate(R.id.action_search_to_results)
         }
+        // Click listener for search button
+    /*    binding.startSearchBtn.setOnClickListener {
+            extractData()
+            navController.navigate(R.id.action_search_to_results)
+        }*/
         return binding.root
     }
 

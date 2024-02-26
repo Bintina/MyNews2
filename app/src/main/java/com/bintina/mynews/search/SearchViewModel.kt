@@ -1,5 +1,7 @@
 package com.bintina.mynews.search
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +12,7 @@ import com.bintina.mynews.common.util.instantiateTodaysDate
 import com.bintina.mynews.search.view.adapter.Adapter
 import java.util.Date
 
-class SearchViewModel: ViewModel() {
+class SearchViewModel(application: Application): AndroidViewModel(application) {
     lateinit var adapter: Adapter
     private val _searchResultList = MutableLiveData<List<Doc>>()
     val searchResultList: LiveData<List<Doc>> get() = _searchResultList
