@@ -46,6 +46,7 @@ class MainActivityInstrumentedTest {
 
     @Test
     fun options_menu_buttons_exist() {
+        Thread.sleep(sleepDuration)
         assertNotNull(withId(R.id.menu_layout))
         assertNotNull(withId(R.id.notifications_btn))
         assertNotNull(withId(R.id.about_btn))
