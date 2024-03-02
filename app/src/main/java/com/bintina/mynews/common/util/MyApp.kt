@@ -61,12 +61,7 @@ class MyApp : Application() {
 
         //notification variables
         var notificationNewsList: List<Doc?> = emptyList()
-        var notificationBooleanArts: Boolean = false
-        var notificationBooleanBusiness: Boolean = false
-        var notificationBooleanEntreprenuers: Boolean = false
-        var notificationBooleanPolitics: Boolean = false
-        var notificationBooleanSports: Boolean = false
-        var notificationBooleanTravel: Boolean = false
+
 
         //notification Shared Preference Keys.
         const val FILE_NAME = "Query Preferences"

@@ -29,6 +29,7 @@ class MainActivityInstrumentedTest {
 
     @Test
     fun recycler_view_exists() {
+        Thread.sleep(sleepDuration)
         // Check if RecyclerView is displayed
         onView(withId(R.id.recyclerview)).check(matches(isDisplayed()))
 

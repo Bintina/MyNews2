@@ -207,14 +207,6 @@ fun Context.goHome() {
 }
 
 /**
- * Navigates to the News article.
- */
-fun Context.openArticleActivity() {
-    val intent = Intent(this, WebViewActivity::class.java)
-    startActivity(intent)
-}
-
-/**
  * Filters News Results.
  */
 //filter DataSource results.........................................................................
